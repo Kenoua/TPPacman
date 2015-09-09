@@ -1,0 +1,17 @@
+C:\Users\Vincent\Downloads\TP2\DespicableGame\DespicableGame\DespicableGame\bin\x86\Debug\Content\Sprites\Hwall.xnb
+C:\Users\Vincent\Downloads\TP2\DespicableGame\DespicableGame\DespicableGame\bin\x86\Debug\Content\Sprites\Vwall.xnb
+C:\Users\Vincent\Downloads\TP2\DespicableGame\DespicableGame\DespicableGame\bin\x86\Debug\Content\Sprites\Gru.xnb
+C:\Users\Vincent\Downloads\TP2\DespicableGame\DespicableGame\DespicableGame\bin\x86\Debug\Content\Sprites\Warp1.xnb
+C:\Users\Vincent\Downloads\TP2\DespicableGame\DespicableGame\DespicableGame\bin\x86\Debug\Content\Sprites\Warp2.xnb
+C:\Users\Vincent\Downloads\TP2\DespicableGame\DespicableGame\DespicableGame\bin\x86\Debug\Content\Sprites\Dollar.xnb
+C:\Users\Vincent\Downloads\TP2\DespicableGame\DespicableGame\DespicableGame\bin\x86\Debug\Content\Sprites\Minion1.xnb
+C:\Users\Vincent\Downloads\TP2\DespicableGame\DespicableGame\DespicableGame\bin\x86\Debug\Content\Sprites\Minion2.xnb
+C:\Users\Vincent\Downloads\TP2\DespicableGame\DespicableGame\DespicableGame\bin\x86\Debug\Content\Sprites\Minion3.xnb
+C:\Users\Vincent\Downloads\TP2\DespicableGame\DespicableGame\DespicableGame\bin\x86\Debug\Content\Sprites\Police.xnb
+C:\Users\Vincent\Downloads\TP2\DespicableGame\DespicableGame\DespicableGame\bin\x86\Debug\Content\Sprites\Weapon.xnb
+C:\Users\Vincent\Downloads\TP2\DespicableGame\DespicableGame\DespicableGame\bin\x86\Debug\DespicableGame.exe
+C:\Users\Vincent\Downloads\TP2\DespicableGame\DespicableGame\DespicableGame\bin\x86\Debug\DespicableGame.pdb
+C:\Users\Vincent\Downloads\TP2\DespicableGame\DespicableGame\DespicableGame\obj\x86\Debug\DespicableGame.csprojResolveAssemblyReference.cache
+C:\Users\Vincent\Downloads\TP2\DespicableGame\DespicableGame\DespicableGame\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Vincent\Downloads\TP2\DespicableGame\DespicableGame\DespicableGame\obj\x86\Debug\DespicableGame.exe
+C:\Users\Vincent\Downloads\TP2\DespicableGame\DespicableGame\DespicableGame\obj\x86\Debug\DespicableGame.pdb
