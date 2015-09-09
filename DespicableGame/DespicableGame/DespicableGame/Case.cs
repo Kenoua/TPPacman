@@ -9,7 +9,7 @@ namespace DespicableGame
 {
     public enum limites { haut = 1, bas = 2, gauche = 4, droite = 8 };
 
-    class Case
+    public class Case
     {
         private int contour;
         private Vector2 position;
