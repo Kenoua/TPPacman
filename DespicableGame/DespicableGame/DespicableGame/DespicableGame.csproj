@@ -73,6 +73,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Case.cs" />
+    <Compile Include="EnemyStates\EtatAleatoire.cs" />
+    <Compile Include="EnemyStates\EtatApeurer.cs" />
+    <Compile Include="EnemyStates\EtatEnnemi.cs" />
+    <Compile Include="EnemyStates\EtatPoursuite.cs" />
+    <Compile Include="EnemyStates\EtatRoder.cs" />
     <Compile Include="Labyrinthe.cs" />
     <Compile Include="Personnage.cs" />
     <Compile Include="PersonnageJoueur.cs" />
