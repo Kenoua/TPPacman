@@ -140,12 +140,12 @@ namespace DespicableGame.GameStates
 
             if (Gru.Destination == null)
             {
-                if (input.GetGamePadJoystick().Left.Y == -1)
+                if (input.GetGamePadJoystick().Left.Y == 1)
                 {
                     Gru.VerifierMouvement(Gru.ActualCase.CaseHaut, 0, -VITESSE);
                 }
 
-                else if (input.GetGamePadJoystick().Left.Y == 1)
+                else if (input.GetGamePadJoystick().Left.Y == -1)
                 {
                     Gru.VerifierMouvement(Gru.ActualCase.CaseBas, 0, VITESSE);
                 }

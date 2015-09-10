@@ -73,6 +73,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Case.cs" />
+    <Compile Include="Command\Commande.cs" />
     <Compile Include="EnemyStates\EtatAleatoire.cs" />
     <Compile Include="EnemyStates\EtatApeurer.cs" />
     <Compile Include="EnemyStates\EtatEnnemi.cs" />
