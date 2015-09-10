@@ -12,6 +12,8 @@ namespace DespicableGame
         public PersonnageJoueur(Texture2D dessin, Vector2 position, Case ActualCase)
             : base(dessin, position, ActualCase)
         {
+            dernierContact = DateTime.Now;
+            delaiProchainContact = new TimeSpan(0, 0, 0, 1, 500);
             pointsVie = 3;
             Destination = null;
         }
@@ -63,10 +65,14 @@ namespace DespicableGame
 
         public override void Toucher()
         {
-            pointsVie--;
-            if(pointsVie == 0)
+            if (DateTime.Now - dernierContact >= delaiProchainContact)
             {
-                mort = true;
+                dernierContact = DateTime.Now;
+                pointsVie--;
+                if (pointsVie == 0)
+                {
+                    mort = true;
+                }
             }
         }
 

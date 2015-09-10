@@ -12,6 +12,8 @@ namespace DespicableGame
         protected Vector2 position;
         protected bool mort;
         protected int pointsVie;
+        protected DateTime dernierContact;
+        protected TimeSpan delaiProchainContact;
 
         public Case ActualCase { get; set; }
         public Case Destination { get; set; }

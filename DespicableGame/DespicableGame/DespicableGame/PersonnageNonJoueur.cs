@@ -14,6 +14,8 @@ namespace DespicableGame
             : base(dessin, position, ActualCase)
         {
             pointsVie = 1;
+            dernierContact = DateTime.Now;
+            delaiProchainContact = new TimeSpan(0, 0, 0, 0, 300);
             etatPresent = new EnemyStates.EtatAleatoire(this);
             Destination = MouvementIA(ActualCase);
         }
