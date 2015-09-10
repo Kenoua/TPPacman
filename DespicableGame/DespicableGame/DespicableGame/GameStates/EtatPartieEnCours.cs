@@ -88,8 +88,22 @@ namespace DespicableGame.GameStates
 
         public void Update()
         {
-            Gru.Mouvement();
-            Police.Mouvement();
+            if (!Gru.EstMort())
+            {
+                Gru.Mouvement();
+                Police.Mouvement();
+
+                if (Gru.ActualCase == Police.ActualCase)
+                {
+                    Gru.Toucher();
+                }
+            }
+            else
+            {
+                DespicableGame.etatDeJeu = new EtatMenu();
+                ((EtatMenu)DespicableGame.etatDeJeu).PartiePerdu();
+                DespicableGame.etatDeJeu.LoadContent(content);
+            }
         }
 
         public void HandleInput()
@@ -133,7 +147,7 @@ namespace DespicableGame.GameStates
                 {
                     Gru.VerifierMouvement(Gru.ActualCase.CaseDroite, VITESSE, 0);
                 }
-            }  
+            }
         }
 
         private void HandleGamePadInput()
@@ -162,7 +176,7 @@ namespace DespicableGame.GameStates
                 {
                     Gru.VerifierMouvement(Gru.ActualCase.CaseDroite, VITESSE, 0);
                 }
-            }  
+            }
         }
 
         public void Draw(SpriteBatch _spriteBatch)
@@ -194,7 +208,8 @@ namespace DespicableGame.GameStates
             Police.Draw(_spriteBatch);
 
             //Draw de Gru
-            Gru.Draw(_spriteBatch);
+            if (!Gru.EstMort())
+                Gru.Draw(_spriteBatch);
         }
 
         public bool HasExited()

@@ -10,6 +10,9 @@ namespace DespicableGame
     {
         protected Texture2D dessin;
         protected Vector2 position;
+        protected bool mort;
+        protected int pointsVie;
+
         public Case ActualCase { get; set; }
         public Case Destination { get; set; }
         public int VitesseX { get; set; }
@@ -17,6 +20,7 @@ namespace DespicableGame
 
         public Personnage(Texture2D sprite, Vector2 position, Case actualCase)
         {
+            mort = false;
             VitesseX = 0;
             VitesseY = 0;
 
@@ -26,6 +30,10 @@ namespace DespicableGame
         }
 
         public abstract void Mouvement();
+
+        public abstract void Toucher();
+
+        public abstract bool EstMort();
 
         public void Draw(SpriteBatch spritebatch)
         {
