@@ -73,7 +73,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Case.cs" />
-    <Compile Include="Command\Commande.cs" />
     <Compile Include="EnemyStates\EtatAleatoire.cs" />
     <Compile Include="EnemyStates\EtatApeurer.cs" />
     <Compile Include="EnemyStates\EtatEnnemi.cs" />
@@ -92,6 +91,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="DespicableGame.cs" />
     <Compile Include="Teleporteur.cs" />
+    <Compile Include="XMLCommandsReader.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />

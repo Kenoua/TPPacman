@@ -106,27 +106,30 @@ namespace DespicableGame.GameStates
 
         private void HandleKeyboardInput()
         {
-            if (input.IsInputPressed(Keys.Escape))
-                exit = true;
-
-            if (Gru.Destination == null)
+            if (input.IsInputPressed(Keys.P))
             {
-                if (input.IsInputDown(Keys.Up))
+                DespicableGame.etatDeJeu = new EtatPause();
+                DespicableGame.etatDeJeu.LoadContent(content);
+                ((EtatPause)DespicableGame.etatDeJeu).setPartieInachever(this);
+            }
+            else if (Gru.Destination == null)
+            {
+                if (input.IsInputDown(Keys.W))
                 {
                     Gru.VerifierMouvement(Gru.ActualCase.CaseHaut, 0, -VITESSE);
                 }
 
-                else if (input.IsInputDown(Keys.Down))
+                else if (input.IsInputDown(Keys.S))
                 {
                     Gru.VerifierMouvement(Gru.ActualCase.CaseBas, 0, VITESSE);
                 }
 
-                else if (input.IsInputDown(Keys.Left))
+                else if (input.IsInputDown(Keys.A))
                 {
                     Gru.VerifierMouvement(Gru.ActualCase.CaseGauche, -VITESSE, 0);
                 }
 
-                else if (input.IsInputDown(Keys.Right))
+                else if (input.IsInputDown(Keys.D))
                 {
                     Gru.VerifierMouvement(Gru.ActualCase.CaseDroite, VITESSE, 0);
                 }
