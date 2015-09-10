@@ -18,37 +18,17 @@ namespace DespicableGame
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        
+        public static InputHandler input;
+        public static GameStates.EtatJeu etatDeJeu;
+
         public const int SCREENWIDTH = 1280;
         public const int SCREENHEIGHT = 796;
         
-        PersonnageJoueur Gru;
-
-        PersonnageNonJoueur Police;
-
-        Texture2D murHorizontal;
-        Texture2D murVertical;
-
-        Texture2D warpEntree;
-        Vector2 warpEntreePos;
-
-        Texture2D[] warpSorties = new Texture2D[4];
-        Vector2[] warpSortiesPos = new Vector2[4];
-
-        //VITESSE doit être un diviseur entier de 64
-        public const int VITESSE = 4;
-
-        //Position de départ de Gru
-        public const int DEPART_X = 6;
-        public const int DEPART_Y = 7;
-
-        private Labyrinthe labyrinthe;
-
-
-        public DespicableGame()
+                public DespicableGame()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            labyrinthe = new Labyrinthe();
         }
 
         /// <summary>
@@ -112,39 +92,9 @@ namespace DespicableGame
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            murHorizontal = Content.Load<Texture2D>("Sprites\\Hwall");
-            murVertical = Content.Load<Texture2D>("Sprites\\Vwall");
-
-            // TODO: use this.Content to load your game content here
-            Gru = new PersonnageJoueur
-                (
-                Content.Load<Texture2D>("Sprites\\Gru"),
-                new Vector2(labyrinthe.GetCase(DEPART_X, DEPART_Y).GetPosition().X, labyrinthe.GetCase(DEPART_X, DEPART_Y).GetPosition().Y),
-                labyrinthe.GetCase(DEPART_X, DEPART_Y)
-                );
-
-
-            Police = new PersonnageNonJoueur
-                (
-                Content.Load<Texture2D>("Sprites\\Police"),
-                new Vector2(labyrinthe.GetCase(7, 9).GetPosition().X, labyrinthe.GetCase(7, 9).GetPosition().Y),
-                labyrinthe.GetCase(7, 9)
-                );
-
-            //L'entrée du téléporteur
-            warpEntree = Content.Load<Texture2D>("Sprites\\Warp1");
-            warpEntreePos = new Vector2(labyrinthe.GetCase(7, 4).GetPosition().X - Case.TAILLE_LIGNE, labyrinthe.GetCase(7, 4).GetPosition().Y + Case.TAILLE_LIGNE);
-
-            //Les sorties du téléporteur
-            for (int i = 0; i < warpSorties.Length; i++)
-            {
-                warpSorties[i] = Content.Load<Texture2D>("Sprites\\Warp2");
-            }
-
-            warpSortiesPos[0] = new Vector2(labyrinthe.GetCase(0, 0).GetPosition().X, labyrinthe.GetCase(0, 0).GetPosition().Y);
-            warpSortiesPos[1] = new Vector2(labyrinthe.GetCase(Labyrinthe.LARGEUR - 1, 0).GetPosition().X, labyrinthe.GetCase(Labyrinthe.LARGEUR - 1, 0).GetPosition().Y);
-            warpSortiesPos[2] = new Vector2(labyrinthe.GetCase(0, Labyrinthe.HAUTEUR - 1).GetPosition().X, labyrinthe.GetCase(0, Labyrinthe.HAUTEUR - 1).GetPosition().Y);
-            warpSortiesPos[3] = new Vector2(labyrinthe.GetCase(Labyrinthe.LARGEUR - 1, Labyrinthe.HAUTEUR - 1).GetPosition().X, labyrinthe.GetCase(Labyrinthe.LARGEUR - 1, Labyrinthe.HAUTEUR - 1).GetPosition().Y);
+            input = new InputHandler();
+            etatDeJeu = new GameStates.EtatPartieEnCours();
+            etatDeJeu.LoadContent(Content);
         }
 
         /// <summary>
@@ -163,37 +113,12 @@ namespace DespicableGame
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            GamePadState padOneState = GamePad.GetState(PlayerIndex.One);
+            HandleInput();
 
-            if (Keyboard.GetState().IsKeyDown(Keys.Escape) || padOneState.Buttons.Back == ButtonState.Pressed)
+            if (etatDeJeu.HasExited())
                 this.Exit();
 
-            if (Gru.Destination == null)
-            {
-                if (Keyboard.GetState().IsKeyDown(Keys.Up) || padOneState.DPad.Up == ButtonState.Pressed)
-                {
-                    Gru.VerifierMouvement(Gru.ActualCase.CaseHaut, 0, -VITESSE);
-                }
-
-                else if (Keyboard.GetState().IsKeyDown(Keys.Down) || padOneState.DPad.Down == ButtonState.Pressed)
-                {
-                    Gru.VerifierMouvement(Gru.ActualCase.CaseBas, 0, VITESSE);
-                }
-
-                else if (Keyboard.GetState().IsKeyDown(Keys.Left) || padOneState.DPad.Left == ButtonState.Pressed)
-                {
-                    Gru.VerifierMouvement(Gru.ActualCase.CaseGauche, -VITESSE, 0);
-                }
-
-                else if (Keyboard.GetState().IsKeyDown(Keys.Right) || padOneState.DPad.Right == ButtonState.Pressed)
-                {
-                    Gru.VerifierMouvement(Gru.ActualCase.CaseDroite, VITESSE, 0);
-                }
-            }  
-
-            // TODO: Add your update logic here
-            Gru.Mouvement();
-            Police.Mouvement();
+            etatDeJeu.Update();
             base.Update(gameTime);
         }
 
@@ -206,36 +131,16 @@ namespace DespicableGame
             GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin();
 
-            //Draw de chacune des cases
-            for (int i = 0; i < Labyrinthe.LARGEUR; i++)
-            {
-                for (int j = 0; j < Labyrinthe.HAUTEUR; j++)
-                {
-                    labyrinthe.GetCase(i, j).DessinerMurs(spriteBatch, murHorizontal, murVertical);
-                }
-            }
-
-            //Draw du cadre extérieur
-            labyrinthe.DessinerHorizontal(spriteBatch, murHorizontal);
-            labyrinthe.DessinerVertical(spriteBatch, murVertical);
-
-            //Draw de l'entrée du téléporteur
-            spriteBatch.Draw(warpEntree, warpEntreePos, Color.White);
-
-            //Draw des sorties du téléporteur
-            for (int i = 0; i < 4; i++)
-            {
-                spriteBatch.Draw(warpSorties[i], warpSortiesPos[i], Color.White);
-            }
-
-            //Draw de la Police
-            Police.Draw(spriteBatch);
-
-            //Draw de Gru
-            Gru.Draw(spriteBatch);
+            etatDeJeu.Draw(spriteBatch);
 
             spriteBatch.End();
             base.Draw(gameTime);
         }
+
+        private void HandleInput()
+        {
+            etatDeJeu.HandleInput();
+            input.Update();
+        }  
     }
 }

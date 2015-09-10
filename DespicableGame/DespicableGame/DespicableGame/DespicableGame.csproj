@@ -78,6 +78,11 @@
     <Compile Include="EnemyStates\EtatEnnemi.cs" />
     <Compile Include="EnemyStates\EtatPoursuite.cs" />
     <Compile Include="EnemyStates\EtatRoder.cs" />
+    <Compile Include="GameStates\EtatJeu.cs" />
+    <Compile Include="GameStates\EtatMenu.cs" />
+    <Compile Include="GameStates\EtatPartieEnCours.cs" />
+    <Compile Include="GameStates\EtatPause.cs" />
+    <Compile Include="InputHandler.cs" />
     <Compile Include="Labyrinthe.cs" />
     <Compile Include="Personnage.cs" />
     <Compile Include="PersonnageJoueur.cs" />
