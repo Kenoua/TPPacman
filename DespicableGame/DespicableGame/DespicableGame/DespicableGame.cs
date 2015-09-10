@@ -93,7 +93,7 @@ namespace DespicableGame
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             input = new InputHandler();
-            etatDeJeu = new GameStates.EtatPartieEnCours();
+            etatDeJeu = new GameStates.EtatMenu();
             etatDeJeu.LoadContent(Content);
         }
 
