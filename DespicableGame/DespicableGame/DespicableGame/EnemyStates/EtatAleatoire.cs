@@ -32,7 +32,7 @@ namespace DespicableGame.EnemyStates
                     if (!(AI_Case.CaseHaut == null || AI_Case.CaseHaut is Teleporteur))
                     {
                         personnage.VitesseX = 0;
-                        personnage.VitesseY = -DespicableGame.VITESSE;
+                        personnage.VitesseY = -4/*-DespicableGame.VITESSE*/;
                         return AI_Case.CaseHaut;
                     }
                 }
@@ -42,7 +42,7 @@ namespace DespicableGame.EnemyStates
                     if (!(AI_Case.CaseBas == null || AI_Case.CaseBas is Teleporteur))
                     {
                         personnage.VitesseX = 0;
-                        personnage.VitesseY = DespicableGame.VITESSE;
+                        personnage.VitesseY = 4;
                         return AI_Case.CaseBas;
                     }
                 }
@@ -51,7 +51,7 @@ namespace DespicableGame.EnemyStates
                 {
                     if (!(AI_Case.CaseGauche == null || AI_Case.CaseGauche is Teleporteur))
                     {
-                        personnage.VitesseX = -DespicableGame.VITESSE;
+                        personnage.VitesseX = -4;
                         personnage.VitesseY = 0;
                         return AI_Case.CaseGauche;
                     }
@@ -61,7 +61,7 @@ namespace DespicableGame.EnemyStates
                 {
                     if (!(AI_Case.CaseDroite == null || AI_Case.CaseDroite is Teleporteur))
                     {
-                        personnage.VitesseX = DespicableGame.VITESSE;
+                        personnage.VitesseX = 4;
                         personnage.VitesseY = 0;
                         return AI_Case.CaseDroite;
                     }
