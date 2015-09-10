@@ -23,7 +23,7 @@ namespace DespicableGame
         public static GameStates.EtatJeu etatDeJeu;
 
         public const int SCREENWIDTH = 1280;
-        public const int SCREENHEIGHT = 796;
+        public const int SCREENHEIGHT = 760;
         
                 public DespicableGame()
         {
