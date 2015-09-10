@@ -5,6 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
+
 namespace DespicableGame
 {
     public abstract class Objets
@@ -20,7 +21,7 @@ namespace DespicableGame
             ActualCase = actualCase;
         }
 
-        public abstract void Rammasser();
+        public abstract void Rammasser(PersonnageJoueur joueur);
 
         public void Draw(SpriteBatch spritebatch)
         {
