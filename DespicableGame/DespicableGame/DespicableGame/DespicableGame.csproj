@@ -95,6 +95,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="DespicableGame.cs" />
     <Compile Include="Teleporteur.cs" />
+    <Compile Include="XMLCommandsReader.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />
