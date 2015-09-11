@@ -19,6 +19,9 @@ namespace DespicableGame
         private KeyboardState oldKeyboardState;
         private KeyboardState currentKeyboardState;
 
+        public static Buttons boutonGamePad;
+        public static List<Keys> touchesClavier;
+
         public enum GamePadThumbSticksSide { LEFT, RIGHT }
 
         /// <summary>
@@ -28,6 +31,10 @@ namespace DespicableGame
         {
             currentGamePadState = GamePad.GetState(PlayerIndex.One);
             currentKeyboardState = Keyboard.GetState();
+
+            XMLCommandReader xmlReader = new XMLCommandReader();
+            touchesClavier = xmlReader.LoadKeys();
+            boutonGamePad = xmlReader.LoadButton();
         }
 
         /// <summary>

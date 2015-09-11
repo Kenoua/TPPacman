@@ -16,6 +16,7 @@ namespace DespicableGame.GameStates
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         InputHandler input;
+
         public const int SCREENWIDTH = 1280;
         public const int SCREENHEIGHT = 796;
 
@@ -48,6 +49,7 @@ namespace DespicableGame.GameStates
         {
             labyrinthe = new Labyrinthe();
             content = _content;
+
             input = DespicableGame.input;
 
             murHorizontal = content.Load<Texture2D>("Sprites\\Hwall");
@@ -88,8 +90,22 @@ namespace DespicableGame.GameStates
 
         public void Update()
         {
-            Gru.Mouvement();
-            Police.Mouvement();
+            if (!Gru.EstMort())
+            {
+                Gru.Mouvement();
+                Police.Mouvement();
+
+                if (Gru.ActualCase == Police.ActualCase)
+                {
+                    Gru.ToucherAutrePersonnage();
+                }
+            }
+            else
+            {
+                DespicableGame.etatDeJeu = new EtatMenu();
+                ((EtatMenu)DespicableGame.etatDeJeu).PartiePerdu();
+                DespicableGame.etatDeJeu.LoadContent(content);
+            }
         }
 
         public void HandleInput()
@@ -108,42 +124,49 @@ namespace DespicableGame.GameStates
         {
             if (input.IsInputPressed(Keys.P))
             {
-                DespicableGame.etatDeJeu = new EtatPause();
-                DespicableGame.etatDeJeu.LoadContent(content);
-                ((EtatPause)DespicableGame.etatDeJeu).setPartieInachever(this);
+                PausePartie();
             }
             else if (Gru.Destination == null)
             {
-                if (input.IsInputDown(Keys.W))
+                if (input.IsInputDown(InputHandler.touchesClavier[4]))
+                {
+                    //Attaquer
+                }
+                else if (input.IsInputDown(InputHandler.touchesClavier[0]))
                 {
                     Gru.VerifierMouvement(Gru.ActualCase.CaseHaut, 0, -VITESSE);
                 }
 
-                else if (input.IsInputDown(Keys.S))
+                else if (input.IsInputDown(InputHandler.touchesClavier[1]))
                 {
                     Gru.VerifierMouvement(Gru.ActualCase.CaseBas, 0, VITESSE);
                 }
 
-                else if (input.IsInputDown(Keys.A))
+                else if (input.IsInputDown(InputHandler.touchesClavier[2]))
                 {
                     Gru.VerifierMouvement(Gru.ActualCase.CaseGauche, -VITESSE, 0);
                 }
 
-                else if (input.IsInputDown(Keys.D))
+                else if (input.IsInputDown(InputHandler.touchesClavier[3]))
                 {
                     Gru.VerifierMouvement(Gru.ActualCase.CaseDroite, VITESSE, 0);
                 }
-            }  
+            }
         }
 
         private void HandleGamePadInput()
         {
             if (input.IsInputPressed(Buttons.Back))
-                exit = true;
-
+            {
+                PausePartie();
+            }
             if (Gru.Destination == null)
             {
-                if (input.GetGamePadJoystick().Left.Y == 1)
+                if(input.IsInputDown(InputHandler.boutonGamePad))
+                {
+                    //Attaquer
+                }
+                else if (input.GetGamePadJoystick().Left.Y == 1)
                 {
                     Gru.VerifierMouvement(Gru.ActualCase.CaseHaut, 0, -VITESSE);
                 }
@@ -162,7 +185,14 @@ namespace DespicableGame.GameStates
                 {
                     Gru.VerifierMouvement(Gru.ActualCase.CaseDroite, VITESSE, 0);
                 }
-            }  
+            }
+        }
+
+        private void PausePartie()
+        {
+            DespicableGame.etatDeJeu = new EtatPause();
+            DespicableGame.etatDeJeu.LoadContent(content);
+            ((EtatPause)DespicableGame.etatDeJeu).setPartieInachever(this);
         }
 
         public void Draw(SpriteBatch _spriteBatch)
@@ -194,7 +224,8 @@ namespace DespicableGame.GameStates
             Police.Draw(_spriteBatch);
 
             //Draw de Gru
-            Gru.Draw(_spriteBatch);
+            if (!Gru.EstMort())
+                Gru.Draw(_spriteBatch);
         }
 
         public bool HasExited()
