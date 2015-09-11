@@ -43,7 +43,6 @@ namespace DespicableGame
                     new Vector2(labyrinthe.GetCase(x, y).GetPosition().X, labyrinthe.GetCase(x, y).GetPosition().Y), 
                     labyrinthe.GetCase(x, y))); 
             }
-
             return badges;
         }
 

@@ -7,16 +7,20 @@ namespace DespicableGame.EnemyStates
 {
     public class EtatAleatoire : EtatEnnemi
     {
-        private readonly Personnage personnage;
+        private readonly PersonnageNonJoueur personnage;
 
-        public EtatAleatoire(Personnage _personnage)
+        public EtatAleatoire(PersonnageNonJoueur _personnage)
         {
             personnage = _personnage;
         }
 
         public void Update()
         {
-
+            personnage.JoueurEnVue();
+            if(personnage.GetPositionJoueur() != null)
+            {
+                personnage.ChangerEtat(new EtatPoursuite(personnage));
+            }
         }
 
         public Case Mouvement(Case AI_Case)
