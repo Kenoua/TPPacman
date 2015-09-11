@@ -54,7 +54,13 @@ namespace DespicableGame.GameStates
             labyrinthe = new Labyrinthe();
             content = _content;
 
-            LevelLoader.AugementerLevel(1);
+            if (LevelLoader.AugementerLevel(1) == 8) 
+            {
+                DespicableGame.etatDeJeu = new EtatMenu();
+                ((EtatMenu)DespicableGame.etatDeJeu).PartieGagner();
+                DespicableGame.etatDeJeu.LoadContent(content);
+            }
+
             LevelLoader.SetContent(content, labyrinthe);
 
             input = DespicableGame.input;
@@ -111,6 +117,7 @@ namespace DespicableGame.GameStates
             }
             else
             {
+                LevelLoader.Recommencer();
                 DespicableGame.etatDeJeu = new EtatMenu();
                 ((EtatMenu)DespicableGame.etatDeJeu).PartiePerdu();
                 DespicableGame.etatDeJeu.LoadContent(content);

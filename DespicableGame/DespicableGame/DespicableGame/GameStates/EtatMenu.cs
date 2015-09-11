@@ -19,6 +19,7 @@ namespace DespicableGame.GameStates
         private int optionSelectionner = 0;
         private string[] textesMenu;
         private bool partiePerdu = false;
+        private bool partieGagner = false;
 
         public void LoadContent(ContentManager _content)
         {
@@ -118,6 +119,11 @@ namespace DespicableGame.GameStates
             partiePerdu = true;
         }
 
+        public void PartieGagner()
+        {
+            partieGagner = true;
+        }
+
         public void Draw(SpriteBatch _spriteBatch)
         {
             _spriteBatch.Draw(content.Load<Texture2D>("Sprites\\background"), Vector2.Zero, null, Color.White, 0f, Vector2.Zero, 2.0f, SpriteEffects.None, 0f);
@@ -125,6 +131,9 @@ namespace DespicableGame.GameStates
 
             if(partiePerdu)
                 _spriteBatch.DrawString(content.Load<SpriteFont>("Font\\MainFont"), "Game Over", new Vector2(550, 100), Color.Tomato);
+
+            if (partieGagner)
+                _spriteBatch.DrawString(content.Load<SpriteFont>("Font\\MainFont"), "Congratulations! You are now a Pokemon Master!", new Vector2(100, 100), Color.Gold);
 
             for (int i = 0; i < NB_OPTION; i++)
             {
