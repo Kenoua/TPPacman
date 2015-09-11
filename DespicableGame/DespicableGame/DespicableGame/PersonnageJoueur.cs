@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace DespicableGame
 {
-    class PersonnageJoueur : Personnage
+    public class PersonnageJoueur : Personnage
     {
         public PersonnageJoueur(Texture2D dessin, Vector2 position, Case ActualCase)
             : base(dessin, position, ActualCase)

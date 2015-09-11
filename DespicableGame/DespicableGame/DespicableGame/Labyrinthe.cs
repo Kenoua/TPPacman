@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace DespicableGame
 {
-    class Labyrinthe
+    public class Labyrinthe
     {
         private Case[][] Cases;
         public const int LARGEUR = 14;
