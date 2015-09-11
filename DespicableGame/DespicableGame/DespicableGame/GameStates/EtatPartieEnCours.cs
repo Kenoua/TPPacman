@@ -23,6 +23,7 @@ namespace DespicableGame.GameStates
         public static PersonnageJoueur Gru;
 
         List<Badge> listeBadges;
+        List<Badge> listeBadgesEnlever;
 
         List<PersonnageNonJoueur> Polices;
 
@@ -91,6 +92,7 @@ namespace DespicableGame.GameStates
 
             //Les objets, Badges/Pokéballs/MasterBalls
             listeBadges = LevelLoader.ChargerBadges();
+            listeBadgesEnlever = new List<Badge>();
         }
 
         public void Update()
@@ -119,7 +121,18 @@ namespace DespicableGame.GameStates
         
         public void updateObjets()
         {
-            
+            foreach(Badge B in listeBadges)
+            {
+                if (B.ActualCase == Gru.ActualCase)
+                {
+                    Gru.badgesAmasse.Add(B);
+                    listeBadgesEnlever.Add(B);
+                }
+            }
+            foreach(Badge B in listeBadgesEnlever)
+            {
+                listeBadges.Remove(B);
+            }
         }
 
         public void HandleInput()
@@ -238,6 +251,7 @@ namespace DespicableGame.GameStates
             {
                 O.Draw(_spriteBatch);
             }
+            
             //Draw de la Police
             foreach(PersonnageNonJoueur police in Polices)
             {

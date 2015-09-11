@@ -9,6 +9,7 @@ namespace DespicableGame
 {
     public class PersonnageJoueur : Personnage
     {
+        public List<Badge> badgesAmasse;
         public PersonnageJoueur(Texture2D dessin, Vector2 position, Case ActualCase)
             : base(dessin, position, ActualCase)
         {
@@ -16,6 +17,7 @@ namespace DespicableGame
             delaiProchainContact = new TimeSpan(0, 0, 0, 1, 500);
             pointsVie = 3;
             Destination = null;
+            badgesAmasse = new List<Badge>();
         }
 
         //Algo assez ordinaire.  Pour que ça fonctionne, la vitesse doit être un diviseur entier de 64, pourrait être à revoir.
