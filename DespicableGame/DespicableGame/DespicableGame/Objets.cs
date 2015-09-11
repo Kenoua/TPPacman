@@ -21,7 +21,7 @@ namespace DespicableGame
             ActualCase = actualCase;
         }
 
-        public abstract void Rammasser(PersonnageJoueur joueur);
+        public abstract void Rammasser();
 
         public void Draw(SpriteBatch spritebatch)
         {
