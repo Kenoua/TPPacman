@@ -33,7 +33,7 @@ namespace DespicableGame
 
         public abstract void Mouvement();
 
-        public abstract void Toucher();
+        public abstract void ToucherAutrePersonnage();
 
         public abstract bool EstMort();
 

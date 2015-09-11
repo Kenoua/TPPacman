@@ -40,7 +40,7 @@ namespace DespicableGame
             return mort;
         }
 
-        public override void Toucher()
+        public override void ToucherAutrePersonnage()
         {
             
         }
