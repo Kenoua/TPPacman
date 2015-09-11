@@ -13,6 +13,7 @@ namespace DespicableGame
         public PersonnageNonJoueur(Texture2D dessin, Vector2 position, Case ActualCase)
             : base(dessin, position, ActualCase)
         {
+            directionArriere = -1;
             pointsVie = 1;
             dernierContact = DateTime.Now;
             delaiProchainContact = new TimeSpan(0, 0, 0, 0, 300);

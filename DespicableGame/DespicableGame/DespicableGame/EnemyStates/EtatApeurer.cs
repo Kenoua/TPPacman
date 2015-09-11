@@ -7,6 +7,13 @@ namespace DespicableGame.EnemyStates
 {
     public class EtatApeurer : EtatEnnemi
     {
+        private readonly Personnage personnage;
+
+        public EtatApeurer(Personnage _personnage)
+        {
+            personnage = _personnage;
+        }
+
         public void Update()
         {
 

@@ -83,8 +83,10 @@
     <Compile Include="GameStates\EtatMenu.cs" />
     <Compile Include="GameStates\EtatPartieEnCours.cs" />
     <Compile Include="GameStates\EtatPause.cs" />
+    <Compile Include="GenerateurChiffreAleatoire.cs" />
     <Compile Include="InputHandler.cs" />
     <Compile Include="Labyrinthe.cs" />
+    <Compile Include="LevelLoader.cs" />
     <Compile Include="MasterBall.cs" />
     <Compile Include="Objets.cs" />
     <Compile Include="Personnage.cs" />
