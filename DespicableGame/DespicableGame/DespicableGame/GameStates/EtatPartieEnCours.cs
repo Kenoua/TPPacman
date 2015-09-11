@@ -21,7 +21,7 @@ namespace DespicableGame.GameStates
         public const int SCREENHEIGHT = 796;
 
         PersonnageJoueur Gru;
-
+        List<Objets> listeObjets;
         PersonnageNonJoueur Police;
 
         Texture2D murHorizontal;
@@ -32,6 +32,8 @@ namespace DespicableGame.GameStates
 
         Texture2D[] warpSorties = new Texture2D[4];
         Vector2[] warpSortiesPos = new Vector2[4];
+
+        Texture2D[] badgesTextures = new Texture2D[8];
 
         //VITESSE doit être un diviseur entier de 64
         public const int VITESSE = 4;
@@ -55,10 +57,19 @@ namespace DespicableGame.GameStates
             murHorizontal = content.Load<Texture2D>("Sprites\\Hwall");
             murVertical = content.Load<Texture2D>("Sprites\\Vwall");
 
+            badgesTextures[0] = content.Load<Texture2D>("Sprites\\Badge1");
+            badgesTextures[1] = content.Load<Texture2D>("Sprites\\badge2");
+            badgesTextures[2] = content.Load<Texture2D>("Sprites\\badge3");
+            badgesTextures[3] = content.Load<Texture2D>("Sprites\\badge4");
+            badgesTextures[4] = content.Load<Texture2D>("Sprites\\badge5");
+            badgesTextures[5] = content.Load<Texture2D>("Sprites\\badge6");
+            badgesTextures[6] = content.Load<Texture2D>("Sprites\\badge7");
+            badgesTextures[7] = content.Load<Texture2D>("Sprites\\badge8");
+
             // TODO: use this.Content to load your game content here
             Gru = new PersonnageJoueur
                 (
-                content.Load<Texture2D>("Sprites\\Gru"),
+                content.Load<Texture2D>("Sprites\\RedPlayer"),
                 new Vector2(labyrinthe.GetCase(DEPART_X, DEPART_Y).GetPosition().X, labyrinthe.GetCase(DEPART_X, DEPART_Y).GetPosition().Y),
                 labyrinthe.GetCase(DEPART_X, DEPART_Y)
                 );
@@ -66,7 +77,7 @@ namespace DespicableGame.GameStates
 
             Police = new PersonnageNonJoueur
                 (
-                content.Load<Texture2D>("Sprites\\Police"),
+                content.Load<Texture2D>("Sprites\\RocketGrunt"),
                 new Vector2(labyrinthe.GetCase(7, 9).GetPosition().X, labyrinthe.GetCase(7, 9).GetPosition().Y),
                 labyrinthe.GetCase(7, 9)
                 );
@@ -86,6 +97,8 @@ namespace DespicableGame.GameStates
             warpSortiesPos[2] = new Vector2(labyrinthe.GetCase(0, Labyrinthe.HAUTEUR - 1).GetPosition().X, labyrinthe.GetCase(0, Labyrinthe.HAUTEUR - 1).GetPosition().Y);
             warpSortiesPos[3] = new Vector2(labyrinthe.GetCase(Labyrinthe.LARGEUR - 1, Labyrinthe.HAUTEUR - 1).GetPosition().X, labyrinthe.GetCase(Labyrinthe.LARGEUR - 1, Labyrinthe.HAUTEUR - 1).GetPosition().Y);
 
+            //Les objets, Badges/Pokéballs/MasterBalls
+            listeObjets = new List<Objets>();
         }
 
         public void Update()
@@ -110,7 +123,31 @@ namespace DespicableGame.GameStates
 
             Gru.Mouvement();
             Police.Mouvement();
+            updateObjets();
+        }
+        
+        public void updateObjets()
+        {
+            if(listeObjets.Count() ==0)
+            {
+                Badge newBadge = new Badge(BadgeType.Boulder, badgesTextures[0], new Vector2(64*10, 64*10), labyrinthe.GetCase(9,9));
+                Badge newBadge1 = new Badge(BadgeType.Cascade, badgesTextures[1], new Vector2(64 * 13, 64 * 4), labyrinthe.GetCase(12, 3));
+                Badge newBadge2 = new Badge(BadgeType.Lightning, badgesTextures[2], new Vector2(64 * 3, 64 * 5), labyrinthe.GetCase(2, 4));
+                Badge newBadge3 = new Badge(BadgeType.March, badgesTextures[3], new Vector2(64 * 7, 64 * 7), labyrinthe.GetCase(6, 6));
+                Badge newBadge4 = new Badge(BadgeType.Rainbow, badgesTextures[4], new Vector2(64 * 5, 64 * 8), labyrinthe.GetCase(4, 7));
+                Badge newBadge5 = new Badge(BadgeType.Soul, badgesTextures[5], new Vector2(64 * 11, 64 * 6), labyrinthe.GetCase(10, 5));
+                Badge newBadge6 = new Badge(BadgeType.Volcano, badgesTextures[6], new Vector2(64 * 9, 64 * 3), labyrinthe.GetCase(8, 2));
+                Badge newBadge7 = new Badge(BadgeType.Earth, badgesTextures[7], new Vector2(64 * 4, 64 * 4), labyrinthe.GetCase(3, 3));
 
+                listeObjets.Add(newBadge);
+                listeObjets.Add(newBadge1);
+                listeObjets.Add(newBadge2);
+                listeObjets.Add(newBadge3);
+                listeObjets.Add(newBadge4);
+                listeObjets.Add(newBadge5);
+                listeObjets.Add(newBadge6);
+                listeObjets.Add(newBadge7);
+            }
         }
 
         public void HandleInput()
@@ -224,7 +261,11 @@ namespace DespicableGame.GameStates
             {
                 _spriteBatch.Draw(warpSorties[i], warpSortiesPos[i], Color.White);
             }
-
+            //Draw des objets
+            foreach (Objets O in listeObjets)
+            {
+                O.Draw(_spriteBatch);
+            }
             //Draw de la Police
             Police.Draw(_spriteBatch);
 
