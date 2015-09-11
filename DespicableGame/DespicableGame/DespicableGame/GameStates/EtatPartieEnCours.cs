@@ -83,7 +83,7 @@ namespace DespicableGame.GameStates
                 );
 
             //L'entrée du téléporteur
-            warpEntree = content.Load<Texture2D>("Sprites\\Warp1");
+            warpEntree = content.Load<Texture2D>("Sprites\\Pigeot");
             warpEntreePos = new Vector2(labyrinthe.GetCase(7, 4).GetPosition().X - Case.TAILLE_LIGNE, labyrinthe.GetCase(7, 4).GetPosition().Y + Case.TAILLE_LIGNE);
 
             //Les sorties du téléporteur
