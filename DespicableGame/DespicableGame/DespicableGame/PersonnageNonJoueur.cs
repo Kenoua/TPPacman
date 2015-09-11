@@ -13,6 +13,9 @@ namespace DespicableGame
         public PersonnageNonJoueur(Texture2D dessin, Vector2 position, Case ActualCase)
             : base(dessin, position, ActualCase)
         {
+            pointsVie = 1;
+            dernierContact = DateTime.Now;
+            delaiProchainContact = new TimeSpan(0, 0, 0, 0, 300);
             etatPresent = new EnemyStates.EtatAleatoire(this);
             Destination = MouvementIA(ActualCase);
         }
@@ -30,6 +33,16 @@ namespace DespicableGame
                     Destination = MouvementIA(ActualCase);
                 }
             }
+        }
+
+        public override bool EstMort()
+        {
+            return mort;
+        }
+
+        public override void ToucherAutrePersonnage()
+        {
+            
         }
 
         //AI totalement random et qui ne peut pas entrer dans les téléporteurs.  À revoir absolument.

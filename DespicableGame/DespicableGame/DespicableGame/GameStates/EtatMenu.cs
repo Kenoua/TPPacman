@@ -15,17 +15,17 @@ namespace DespicableGame.GameStates
         protected ContentManager content;
         protected InputHandler input;
         private bool exit = false;
-        private readonly int NB_OPTION = 3;
+        private readonly int NB_OPTION = 2;
         private int optionSelectionner = 0;
         private string[] textesMenu;
+        private bool partiePerdu = false;
 
         public void LoadContent(ContentManager _content)
         {
             content = _content;
             textesMenu = new string[NB_OPTION];
             textesMenu[0] = "Play";
-            textesMenu[1] = "Option";
-            textesMenu[2] = "Exit";
+            textesMenu[1] = "Exit";
             input = DespicableGame.input;
         }
 
@@ -105,11 +105,6 @@ namespace DespicableGame.GameStates
 
             if (optionSelectionner == 1)
             {
-                
-            }
-
-            if (optionSelectionner == 2)
-            {
                 exit = true;
             }
         }
@@ -118,17 +113,25 @@ namespace DespicableGame.GameStates
             return exit;
         }
 
+        public void PartiePerdu()
+        {
+            partiePerdu = true;
+        }
+
         public void Draw(SpriteBatch _spriteBatch)
         {
             _spriteBatch.Draw(content.Load<Texture2D>("Sprites\\background"), Vector2.Zero, null, Color.White, 0f, Vector2.Zero, 2.0f, SpriteEffects.None, 0f);
             Color couleurTexte;
+
+            if(partiePerdu)
+                _spriteBatch.DrawString(content.Load<SpriteFont>("Font\\MainFont"), "Game Over", new Vector2(550, 100), Color.Tomato);
 
             for (int i = 0; i < NB_OPTION; i++)
             {
                 couleurTexte = Color.White;
                 if (optionSelectionner == i)
                     couleurTexte = Color.Blue;
-                _spriteBatch.DrawString(content.Load<SpriteFont>("Font\\MainFont"), textesMenu[i], new Vector2(500, 100 * i), couleurTexte);
+                _spriteBatch.DrawString(content.Load<SpriteFont>("Font\\MainFont"), textesMenu[i], new Vector2(600, 200 + 100 * i), couleurTexte);
             }
         }
     }
