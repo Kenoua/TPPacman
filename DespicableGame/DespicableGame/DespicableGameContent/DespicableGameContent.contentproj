@@ -119,8 +119,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Sprites\Badge1.png">
-      <Name>Badge1</Name>
+    <Compile Include="Sprites\badge1.png">
+      <Name>badge1</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
