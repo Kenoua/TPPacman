@@ -11,54 +11,49 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
-namespace Exercice5
+namespace DespicableGame
 {
-    public class XMLScoreReader
+    public class XMLCommandReader
     {
-        List<Buttons> boutons;
+        Buttons boutonGamePad;
+        List<Keys> touchesClaviers;
 
-        public XMLScoreReader()
+        public XMLCommandReader()
         {
-            boutons = new List<Buttons>();
+            touchesClaviers = new List<Keys>();
         }
 
-      
-        public void Load(string _filePath, string typeInput)
-        {
-            XmlReader reader = XmlReader.Create(_filePath);
 
-            if (typeInput == "Keyboard")
+        public List<Keys> LoadKeys()
+        {
+            XmlReader reader = XmlReader.Create("keyboardCommands.xml");
+
+            reader.MoveToContent();
+            while (reader.ReadToFollowing("Command"))
             {
-                reader.MoveToContent();
-                while (reader.ReadToFollowing("ScoreSave"))
-                {
-                    
-                }
+                Keys key;
+                reader.ReadToFollowing("Button");
+                
+                string keyString = reader.ReadElementContentAsString();
+                Enum.TryParse(keyString, out key);
+                touchesClaviers.Add(key);
             }
-            else
-            {
-                reader.MoveToContent();
-                while (reader.ReadToFollowing("ScoreSave"))
-                {
-                   
-                }
-            }
+
+            return touchesClaviers;
         }
 
-        private Buttons decodeXMLBouton(string boutonXML)
+        public Buttons LoadButton()
         {
-            switch(boutonXML)
+            XmlReader reader = XmlReader.Create("gamepadCommands.xml");
+
+            reader.MoveToContent();
+            while (reader.ReadToFollowing("Command"))
             {
-                case "A":
-                    break;
-                case "B":
-                    break;
-                case "X":
-                    break;
-                case "Y":
-                    break;
+                reader.ReadToFollowing("Button");
+                string keyString = reader.ReadElementContentAsString();
+                Enum.TryParse(keyString, out boutonGamePad);
             }
-            return Buttons.A;
+            return boutonGamePad;
         }
     }
 }

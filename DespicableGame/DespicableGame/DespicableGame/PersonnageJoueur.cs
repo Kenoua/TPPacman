@@ -12,6 +12,9 @@ namespace DespicableGame
         public PersonnageJoueur(Texture2D dessin, Vector2 position, Case ActualCase)
             : base(dessin, position, ActualCase)
         {
+            dernierContact = DateTime.Now;
+            delaiProchainContact = new TimeSpan(0, 0, 0, 1, 500);
+            pointsVie = 3;
             Destination = null;
         }
 
@@ -51,6 +54,24 @@ namespace DespicableGame
                 {
                     ActualCase = testTeleportation;
                     position = new Vector2(ActualCase.GetPosition().X, ActualCase.GetPosition().Y);
+                }
+            }
+        }
+
+        public override bool EstMort()
+        {
+            return mort;
+        }
+
+        public override void ToucherAutrePersonnage()
+        {
+            if (DateTime.Now - dernierContact >= delaiProchainContact)
+            {
+                dernierContact = DateTime.Now;
+                pointsVie--;
+                if (pointsVie == 0)
+                {
+                    mort = true;
                 }
             }
         }
