@@ -23,6 +23,7 @@ namespace DespicableGame.GameStates
         public static PersonnageJoueur Gru;
 
         List<Badge> listeBadges;
+        List<Badge> listeBadgesEnlever;
 
         List<PersonnageNonJoueur> Polices;
 
@@ -81,7 +82,7 @@ namespace DespicableGame.GameStates
                 
 
             //L'entrée du téléporteur
-            warpEntree = content.Load<Texture2D>("Sprites\\Warp1");
+            warpEntree = content.Load<Texture2D>("Sprites\\Pigeot");
             warpEntreePos = new Vector2(labyrinthe.GetCase(7, 4).GetPosition().X - Case.TAILLE_LIGNE, labyrinthe.GetCase(7, 4).GetPosition().Y + Case.TAILLE_LIGNE);
 
             //Les sorties du téléporteur
@@ -97,6 +98,7 @@ namespace DespicableGame.GameStates
 
             //Les objets, Badges/Pokéballs/MasterBalls
             listeBadges = LevelLoader.ChargerBadges();
+            listeBadgesEnlever = new List<Badge>();
         }
 
         public void Update()
@@ -127,7 +129,18 @@ namespace DespicableGame.GameStates
         
         public void updateObjets()
         {
-            
+            foreach(Badge B in listeBadges)
+            {
+                if (B.ActualCase == Gru.ActualCase)
+                {
+                    Gru.badgesAmasse.Add(B);
+                    listeBadgesEnlever.Add(B);
+                }
+            }
+            foreach(Badge B in listeBadgesEnlever)
+            {
+                listeBadges.Remove(B);
+            }
         }
 
         public void HandleInput()
@@ -246,6 +259,7 @@ namespace DespicableGame.GameStates
             {
                 O.Draw(_spriteBatch);
             }
+            
             //Draw de la Police
             foreach(PersonnageNonJoueur police in Polices)
             {
