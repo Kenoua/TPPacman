@@ -90,6 +90,7 @@ namespace DespicableGame.GameStates
 
         public void Update()
         {
+
             if (!Gru.EstMort())
             {
                 Gru.Mouvement();
@@ -106,6 +107,10 @@ namespace DespicableGame.GameStates
                 ((EtatMenu)DespicableGame.etatDeJeu).PartiePerdu();
                 DespicableGame.etatDeJeu.LoadContent(content);
             }
+
+            Gru.Mouvement();
+            Police.Mouvement();
+
         }
 
         public void HandleInput()
