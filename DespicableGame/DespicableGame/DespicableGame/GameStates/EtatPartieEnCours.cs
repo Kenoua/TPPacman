@@ -101,6 +101,7 @@ namespace DespicableGame.GameStates
                 Gru.Mouvement();
                 foreach(PersonnageNonJoueur police in Polices)
                 {
+                    police.Update();
                     police.Mouvement();
                     if (Gru.ActualCase == police.ActualCase)
                     {
