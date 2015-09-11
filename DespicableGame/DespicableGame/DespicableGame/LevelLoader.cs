@@ -43,7 +43,6 @@ namespace DespicableGame
                     new Vector2(labyrinthe.GetCase(x, y).GetPosition().X, labyrinthe.GetCase(x, y).GetPosition().Y), 
                     labyrinthe.GetCase(x, y))); 
             }
-
             return badges;
         }
 
@@ -58,6 +57,11 @@ namespace DespicableGame
                     labyrinthe.GetCase(i, i)));
             }
             return ennemis;
+        }
+
+        public static void Recommencer()
+        {
+            level = 0;
         }
 
         private static bool verifierCaseNonValide(int x, int y)
