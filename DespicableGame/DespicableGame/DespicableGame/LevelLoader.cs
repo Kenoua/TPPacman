@@ -59,6 +59,11 @@ namespace DespicableGame
             return ennemis;
         }
 
+        public static void Recommencer()
+        {
+            level = 0;
+        }
+
         private static bool verifierCaseNonValide(int x, int y)
         {
             bool caseNonValide = false;
