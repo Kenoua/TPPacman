@@ -15,7 +15,7 @@ namespace DespicableGame
         {
             dernierContact = DateTime.Now;
             delaiProchainContact = new TimeSpan(0, 0, 0, 1, 500);
-            pointsVie = 1;
+            pointsVie = 3;
             Destination = null;
             badgesAmasse = new List<Badge>();
         }

@@ -24,6 +24,7 @@ namespace DespicableGame.GameStates
 
         List<Badge> listeBadges;
         List<Badge> listeBadgesEnlever;
+        Vector2 emplacementFinNiveau;
 
         List<PersonnageNonJoueur> Polices;
 
@@ -55,14 +56,16 @@ namespace DespicableGame.GameStates
             labyrinthe = new Labyrinthe();
             content = _content;
 
-            if (LevelLoader.AugementerLevel(1) == 8) 
+            if (LevelLoader.AugementerLevel(1) == 9)
             {
                 DespicableGame.etatDeJeu = new EtatMenu();
                 ((EtatMenu)DespicableGame.etatDeJeu).PartieGagner();
                 DespicableGame.etatDeJeu.LoadContent(content);
+                LevelLoader.Recommencer();
             }
 
             LevelLoader.SetContent(content, labyrinthe);
+            emplacementFinNiveau = new Vector2(-1, -1);
 
             input = DespicableGame.input;
 
@@ -79,7 +82,7 @@ namespace DespicableGame.GameStates
 
 
             Polices = LevelLoader.ChargerEnnemis();
-                
+
 
             //L'entrée du téléporteur
             warpEntree = content.Load<Texture2D>("Sprites\\Pigeot");
@@ -103,33 +106,40 @@ namespace DespicableGame.GameStates
 
         public void Update()
         {
-
-            if (!Gru.EstMort())
+            if (!estNiveauTerminer())
             {
-                Gru.Mouvement();
-                foreach(PersonnageNonJoueur police in Polices)
+                if (!Gru.EstMort())
                 {
-                    police.Update();
-                    police.Mouvement();
-                    if (Gru.ActualCase == police.ActualCase)
+                    Gru.Mouvement();
+                    foreach (PersonnageNonJoueur police in Polices)
                     {
-                        Gru.ToucherAutrePersonnage();
+                        police.Update();
+                        police.Mouvement();
+                        if (Gru.ActualCase == police.ActualCase)
+                        {
+                            Gru.ToucherAutrePersonnage();
+                        }
                     }
                 }
+                else
+                {
+                    LevelLoader.Recommencer();
+                    DespicableGame.etatDeJeu = new EtatMenu();
+                    ((EtatMenu)DespicableGame.etatDeJeu).PartiePerdu();
+                    DespicableGame.etatDeJeu.LoadContent(content);
+                }
+                updateObjets();
             }
             else
             {
-                LevelLoader.Recommencer();
-                DespicableGame.etatDeJeu = new EtatMenu();
-                ((EtatMenu)DespicableGame.etatDeJeu).PartiePerdu();
+                DespicableGame.etatDeJeu = new EtatPartieEnCours();
                 DespicableGame.etatDeJeu.LoadContent(content);
             }
-            updateObjets();
         }
-        
+
         public void updateObjets()
         {
-            foreach(Badge B in listeBadges)
+            foreach (Badge B in listeBadges)
             {
                 if (B.ActualCase == Gru.ActualCase)
                 {
@@ -137,9 +147,13 @@ namespace DespicableGame.GameStates
                     listeBadgesEnlever.Add(B);
                 }
             }
-            foreach(Badge B in listeBadgesEnlever)
+            foreach (Badge B in listeBadgesEnlever)
             {
                 listeBadges.Remove(B);
+            }
+            if (listeBadges.Count == 0 && emplacementFinNiveau == new Vector2(-1,-1))
+            {
+                emplacementFinNiveau = LevelLoader.ChargerFinNiveau();
             }
         }
 
@@ -153,6 +167,18 @@ namespace DespicableGame.GameStates
             {
                 HandleKeyboardInput();
             }
+        }
+
+        private bool estNiveauTerminer()
+        {
+            if (emplacementFinNiveau != new Vector2(-1,-1))
+            {
+                if (emplacementFinNiveau.X == Gru.ActualCase.OrdreX && emplacementFinNiveau.Y == Gru.ActualCase.OrdreY)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         private void HandleKeyboardInput()
@@ -197,7 +223,7 @@ namespace DespicableGame.GameStates
             }
             if (Gru.Destination == null)
             {
-                if(input.IsInputDown(InputHandler.boutonGamePad))
+                if (input.IsInputDown(InputHandler.boutonGamePad))
                 {
                     //Attaquer
                 }
@@ -259,9 +285,12 @@ namespace DespicableGame.GameStates
             {
                 O.Draw(_spriteBatch);
             }
-            
+
+            if(emplacementFinNiveau.X != -1)
+                _spriteBatch.Draw(content.Load<Texture2D>("Sprites\\PokeBall"),labyrinthe.GetCase((int)emplacementFinNiveau.X, (int)emplacementFinNiveau.Y).GetPosition(), Color.White);
+
             //Draw de la Police
-            foreach(PersonnageNonJoueur police in Polices)
+            foreach (PersonnageNonJoueur police in Polices)
             {
                 police.Draw(_spriteBatch);
             }

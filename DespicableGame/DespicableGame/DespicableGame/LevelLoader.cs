@@ -46,6 +46,17 @@ namespace DespicableGame
             return badges;
         }
 
+        public static Vector2 ChargerFinNiveau()
+        {
+           Vector2 position;
+            do
+            {
+                position.X = GenerateurChiffreAleatoire.NouveauChiffre(14);
+                position.Y = GenerateurChiffreAleatoire.NouveauChiffre(10);
+            } while (verifierCaseNonValide((int)position.X, (int)position.Y));
+            return position;
+        }
+
         public static List<PersonnageNonJoueur> ChargerEnnemis()
         {
             List<PersonnageNonJoueur> ennemis = new List<PersonnageNonJoueur>();
