@@ -11,10 +11,14 @@ namespace DespicableGame
     {
         public List<Badge> badgesAmasse;
         public List<Pokeball> pokeballAmasse;
+        public Case derniereCase;
+        public Case snorlaxUsed;
         public PersonnageJoueur(Texture2D dessin, Vector2 position, Case ActualCase)
             : base(dessin, position, ActualCase)
         {
             dernierContact = DateTime.Now;
+            derniereCase = null;
+            snorlaxUsed = null;
             delaiProchainContact = new TimeSpan(0, 0, 0, 1, 500);
             pointsVie = 3;
             Destination = null;
@@ -32,6 +36,7 @@ namespace DespicableGame
 
                 if (position.X == Destination.GetPosition().X && position.Y == Destination.GetPosition().Y)
                 {
+                    derniereCase = ActualCase;
                     ActualCase = Destination;
                     Destination = null;
                 }
@@ -41,7 +46,7 @@ namespace DespicableGame
         public void VerifierMouvement(Case caseDestionation, int vitesseX, int vitesseY)
         {
             //Si la direction choisie n'est pas nulle
-            if (caseDestionation != null)
+            if (caseDestionation != null && !checkSnorlax(caseDestionation))
             {
                 //On vérifie si la case est un téléporteur
                 Case testTeleportation = TestTeleporter(caseDestionation);
@@ -87,6 +92,19 @@ namespace DespicableGame
                 return ((Teleporteur)laCase).Teleport();
             }
             return null;
+        }
+
+        private bool checkSnorlax(Case _case)
+        {
+            if(snorlaxUsed != null)
+            {
+                if((_case.GetPosition() == snorlaxUsed.GetPosition()))
+                {
+                    return true;
+                }
+            }
+            return false;
+
         }
     }
 }

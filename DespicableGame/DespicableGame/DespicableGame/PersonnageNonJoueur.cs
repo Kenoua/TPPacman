@@ -10,6 +10,7 @@ namespace DespicableGame
     {
         private EnemyStates.EtatEnnemi etatPresent;
         private Case positionJoueur;
+        public Case caseSnorlax;
 
         public PersonnageNonJoueur(Texture2D dessin, Vector2 position, Case ActualCase)
             : base(dessin, position, ActualCase)
@@ -21,6 +22,7 @@ namespace DespicableGame
             delaiProchainContact = new TimeSpan(0, 0, 0, 2, 500);
             etatPresent = new EnemyStates.EtatAleatoire(this);
             Destination = MouvementIA(ActualCase);
+            caseSnorlax = null;
         }
 
         public void ChangerEtat(EnemyStates.EtatEnnemi nouvelEtat)
@@ -35,6 +37,10 @@ namespace DespicableGame
 
         public override void Mouvement()
         {
+            if(checkSnorlax(Destination))
+            {
+                Destination = MouvementIA(ActualCase);
+            }
             if (Destination != null)
             {
                 position.X += VitesseX;
@@ -46,6 +52,20 @@ namespace DespicableGame
                     Destination = MouvementIA(ActualCase);
                 }
             }
+
+        }
+
+        private bool checkSnorlax(Case _case)
+        {
+            if (caseSnorlax != null)
+            {
+                if ((_case.GetPosition() == caseSnorlax.GetPosition()))
+                {
+                    return true;
+                }
+            }
+            return false;
+
         }
 
         public void Update()

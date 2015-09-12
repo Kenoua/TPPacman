@@ -9,7 +9,7 @@ namespace DespicableGame
 {
     public class Labyrinthe
     {
-        private Case[][] Cases;
+        public Case[][] Cases;
         public const int LARGEUR = 14;
         public const int HAUTEUR = 10;
 
