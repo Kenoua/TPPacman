@@ -19,7 +19,8 @@ namespace DespicableGame
 
         public override void Rammasser()
         {
-            throw new NotImplementedException();
+            position = new Vector2(1100, 100 + (50 * (int)(pokeType)));
+            ActualCase = null;
         }
     }
 }
