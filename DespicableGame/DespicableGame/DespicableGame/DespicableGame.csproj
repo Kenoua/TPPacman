@@ -92,6 +92,7 @@
     <Compile Include="Personnage.cs" />
     <Compile Include="PersonnageJoueur.cs" />
     <Compile Include="PersonnageNonJoueur.cs" />
+    <Compile Include="Pointage.cs" />
     <Compile Include="Pokeball.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />

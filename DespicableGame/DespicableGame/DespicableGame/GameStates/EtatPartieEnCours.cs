@@ -24,6 +24,12 @@ namespace DespicableGame.GameStates
 
         List<Badge> listeBadges;
         List<Badge> listeBadgesEnlever;
+
+        List<Pokeball> listePokeballs;
+        List<Pokeball> listePokeballsEnlever;
+
+        List<MasterBall> listeMasterballs;
+        List<MasterBall> listeMasterballsEnlever;
         Vector2 emplacementFinNiveau;
 
         List<PersonnageNonJoueur> Polices;
@@ -36,8 +42,6 @@ namespace DespicableGame.GameStates
 
         Texture2D[] warpSorties = new Texture2D[4];
         Vector2[] warpSortiesPos = new Vector2[4];
-
-        Texture2D[] badgesTextures = new Texture2D[8];
 
         //VITESSE doit être un diviseur entier de 64
         public const int VITESSE = 4;
@@ -102,6 +106,9 @@ namespace DespicableGame.GameStates
             //Les objets, Badges/Pokéballs/MasterBalls
             listeBadges = LevelLoader.ChargerBadges();
             listeBadgesEnlever = new List<Badge>();
+
+            listePokeballs = LevelLoader.ChargerPokeballs();
+            listePokeballsEnlever = new List<Pokeball>();
         }
 
         public void Update()
@@ -139,17 +146,34 @@ namespace DespicableGame.GameStates
 
         public void updateObjets()
         {
+            foreach (Pokeball P in listePokeballs)
+            {
+                if(P.ActualCase == Gru.ActualCase)
+                {
+                    listePokeballsEnlever.Add(P);
+                }
+            }
             foreach (Badge B in listeBadges)
             {
                 if (B.ActualCase == Gru.ActualCase)
                 {
-                    Gru.badgesAmasse.Add(B);
-                    listeBadgesEnlever.Add(B);
+                    foreach(Pokeball pokeball in listePokeballsEnlever)
+                    {
+                        if(pokeball.pokeType == B.badgeType)
+                        {
+                            Gru.badgesAmasse.Add(B);
+                            listeBadgesEnlever.Add(B);
+                        }
+                    }
                 }
             }
             foreach (Badge B in listeBadgesEnlever)
             {
                 listeBadges.Remove(B);
+            }
+            foreach (Pokeball P in listePokeballsEnlever)
+            {
+                listePokeballs.Remove(P);
             }
             if (listeBadges.Count == 0 && emplacementFinNiveau == new Vector2(-1,-1))
             {
@@ -171,7 +195,7 @@ namespace DespicableGame.GameStates
 
         private bool estNiveauTerminer()
         {
-            if (emplacementFinNiveau != new Vector2(-1,-1))
+            if (emplacementFinNiveau.X != -1)
             {
                 if (emplacementFinNiveau.X == Gru.ActualCase.OrdreX && emplacementFinNiveau.Y == Gru.ActualCase.OrdreY)
                 {
@@ -280,14 +304,19 @@ namespace DespicableGame.GameStates
             {
                 _spriteBatch.Draw(warpSorties[i], warpSortiesPos[i], Color.White);
             }
-            //Draw des objets
+            //Draw des badges
             foreach (Objets O in listeBadges)
+            {
+                O.Draw(_spriteBatch);
+            }
+            //Draw des pokeballs
+            foreach (Objets O in listePokeballs)
             {
                 O.Draw(_spriteBatch);
             }
 
             if(emplacementFinNiveau.X != -1)
-                _spriteBatch.Draw(content.Load<Texture2D>("Sprites\\PokeBall"),labyrinthe.GetCase((int)emplacementFinNiveau.X, (int)emplacementFinNiveau.Y).GetPosition(), Color.White);
+                _spriteBatch.Draw(content.Load<Texture2D>("Sprites\\ladder"),labyrinthe.GetCase((int)emplacementFinNiveau.X, (int)emplacementFinNiveau.Y).GetPosition(), Color.White);
 
             //Draw de la Police
             foreach (PersonnageNonJoueur police in Polices)

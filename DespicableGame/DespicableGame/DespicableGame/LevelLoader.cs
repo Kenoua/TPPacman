@@ -13,6 +13,7 @@ namespace DespicableGame
         private static ContentManager content;
         private static Labyrinthe labyrinthe;
         private static int level = 0;
+        private static Dictionary<int, int> emplacementsUtiliser;
 
         public static void SetContent(ContentManager _content, Labyrinthe _labyrinthe)
         {
@@ -46,6 +47,26 @@ namespace DespicableGame
             return badges;
         }
 
+        public static List<Pokeball> ChargerPokeballs()
+        {
+            List<Pokeball> pokeballs = new List<Pokeball>();
+            for (int i = 0; i < level; i++)
+            {
+                int x = -1;
+                int y = -1;
+                do
+                {
+                    x = GenerateurChiffreAleatoire.NouveauChiffre(14);
+                    y = GenerateurChiffreAleatoire.NouveauChiffre(10);
+                } while (verifierCaseNonValide(x, y));
+
+                pokeballs.Add(new Pokeball((BadgeType)i, content.Load<Texture2D>("Sprites\\Pokeball"),
+                    new Vector2(labyrinthe.GetCase(x, y).GetPosition().X, labyrinthe.GetCase(x, y).GetPosition().Y),
+                    labyrinthe.GetCase(x, y)));
+            }
+            return pokeballs;
+        }
+
         public static Vector2 ChargerFinNiveau()
         {
            Vector2 position;
@@ -72,6 +93,7 @@ namespace DespicableGame
 
         public static void Recommencer()
         {
+            Pointage.GetInstance().RetourZero();
             level = 0;
         }
 
