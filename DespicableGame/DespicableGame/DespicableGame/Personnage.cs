@@ -16,6 +16,7 @@ namespace DespicableGame
         protected TimeSpan delaiProchainContact;
         protected int directionArriere;
 
+        public int PointsVie { get { return pointsVie; } }
         public int DirectionArriere { get; set; }
         public Case ActualCase { get; set; }
         public Case Destination { get; set; }

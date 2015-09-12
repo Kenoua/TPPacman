@@ -124,10 +124,10 @@ namespace DespicableGame.GameStates
 
             for (int i = 0; i < NB_OPTION; i++)
             {
-                couleurTexte = Color.White;
+                couleurTexte = Color.Gray;
                 if (optionSelectionner == i)
                     couleurTexte = Color.Blue;
-                _spriteBatch.DrawString(content.Load<SpriteFont>("Font\\MainFont"), textesMenu[i], new Vector2(500, 100 * i), couleurTexte);
+                _spriteBatch.DrawString(content.Load<SpriteFont>("Font\\MainFont"), textesMenu[i], new Vector2(500, 300 + 100 * i), couleurTexte);
             }
         }
     }

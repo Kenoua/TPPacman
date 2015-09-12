@@ -125,6 +125,7 @@ namespace DespicableGame.GameStates
                         if (Gru.ActualCase == police.ActualCase)
                         {
                             Gru.ToucherAutrePersonnage();
+                            police.ToucherAutrePersonnage();
                         }
                     }
                 }
@@ -318,11 +319,21 @@ namespace DespicableGame.GameStates
             if(emplacementFinNiveau.X != -1)
                 _spriteBatch.Draw(content.Load<Texture2D>("Sprites\\ladder"),labyrinthe.GetCase((int)emplacementFinNiveau.X, (int)emplacementFinNiveau.Y).GetPosition(), Color.White);
 
-            //Draw de la Police
-            foreach (PersonnageNonJoueur police in Polices)
+            //Dessiner les points de vie restant
+            for (int i = 0; i < Gru.PointsVie; i++ )
             {
-                police.Draw(_spriteBatch);
+                _spriteBatch.Draw(content.Load<Texture2D>("Sprites\\RedPlayer"), new Vector2(0 + 100 * i, 0), Color.White);
             }
+
+            //Dessiner le score
+            _spriteBatch.DrawString(content.Load<SpriteFont>("Font\\MainFont"), "Score: " + Pointage.GetInstance().GetTotalPointage(), new Vector2(450, 0), Color.Black);
+
+
+                //Draw de la Police
+                foreach (PersonnageNonJoueur police in Polices)
+                {
+                    police.Draw(_spriteBatch);
+                }
 
             //Draw de Gru
             if (!Gru.EstMort())
