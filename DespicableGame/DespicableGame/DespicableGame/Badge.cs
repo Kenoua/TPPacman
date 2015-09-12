@@ -19,6 +19,8 @@ namespace DespicableGame
         }
         public override void Rammasser()
         {
+            position = new Vector2(1000,100+(50*(int)(badgeType)));
+            ActualCase = null;
             
         }
     }

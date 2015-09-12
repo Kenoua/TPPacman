@@ -184,7 +184,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Sprites\ladder.jpg">
+    <Compile Include="Sprites\ladder.png">
       <Name>ladder</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
