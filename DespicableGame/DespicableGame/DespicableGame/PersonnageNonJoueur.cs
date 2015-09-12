@@ -18,7 +18,7 @@ namespace DespicableGame
             directionArriere = -1;
             pointsVie = 1;
             dernierContact = DateTime.Now;
-            delaiProchainContact = new TimeSpan(0, 0, 0, 0, 300);
+            delaiProchainContact = new TimeSpan(0, 0, 0, 2, 500);
             etatPresent = new EnemyStates.EtatAleatoire(this);
             Destination = MouvementIA(ActualCase);
         }
@@ -60,7 +60,7 @@ namespace DespicableGame
 
         public override void ToucherAutrePersonnage()
         {
-
+            
         }
 
         private Case MouvementIA(Case AI_Case)
