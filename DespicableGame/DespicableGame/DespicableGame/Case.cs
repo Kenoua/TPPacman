@@ -22,6 +22,14 @@ namespace DespicableGame
         private Case caseGauche = null;
         private Case caseDroite = null;
 
+        public int OrdreX 
+        {
+            get { return ordreX; }
+        }
+        public int OrdreY
+        {
+            get { return ordreY; }
+        }
         public Case CaseHaut
         {
             get { return caseHaut; }

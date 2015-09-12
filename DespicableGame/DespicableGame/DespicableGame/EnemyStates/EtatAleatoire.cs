@@ -103,7 +103,6 @@ namespace DespicableGame.EnemyStates
                         
                         culDeSac = true;
                     }
-
                 }
             }
         }
