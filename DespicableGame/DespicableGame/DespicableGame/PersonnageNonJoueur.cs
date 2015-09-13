@@ -52,10 +52,18 @@ namespace DespicableGame
                     {
                         counter++;
                         Destination = MouvementIA(ActualCase);
-                        if (counter > 20)
+                        if(counter >30)
                         {
+                            VitesseX = -VitesseX;
+                            VitesseY = -VitesseY;
                             Destination = derniereCase;
-                        }
+                            directionArriere += 2;
+                            if(directionArriere >3)
+                            {
+                                directionArriere -= 4;
+                            }
+                        }                      
+                        
                     }     
                     while(checkSnorlax(Destination));
            

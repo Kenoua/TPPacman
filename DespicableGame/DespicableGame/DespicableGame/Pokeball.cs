@@ -51,7 +51,7 @@ namespace DespicableGame
             ActualCase = null;
         }
 
-        public void Draw(SpriteBatch spritebatch)
+        new public void Draw(SpriteBatch spritebatch)
         {
             
             spritebatch.Draw(dessin, position,pokeColor);
