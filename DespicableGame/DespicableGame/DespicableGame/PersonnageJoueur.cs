@@ -11,7 +11,6 @@ namespace DespicableGame
     {
         public List<Badge> badgesAmasse;
         public List<Pokeball> pokeballAmasse;
-        public Case derniereCase;
         public Case snorlaxUsed;
         public PersonnageJoueur(Texture2D dessin, Vector2 position, Case ActualCase)
             : base(dessin, position, ActualCase)
