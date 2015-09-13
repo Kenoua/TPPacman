@@ -151,6 +151,8 @@ namespace DespicableGame.GameStates
             {
                 if(P.ActualCase == Gru.ActualCase)
                 {
+                    P.Rammasser();
+                    Gru.pokeballAmasse.Add(P);
                     listePokeballsEnlever.Add(P);
                 }
             }
@@ -162,6 +164,7 @@ namespace DespicableGame.GameStates
                     {
                         if(pokeball.pokeType == B.badgeType)
                         {
+                            B.Rammasser();
                             Gru.badgesAmasse.Add(B);
                             listeBadgesEnlever.Add(B);
                         }
@@ -310,10 +313,18 @@ namespace DespicableGame.GameStates
             {
                 O.Draw(_spriteBatch);
             }
-            //Draw des pokeballs
-            foreach (Objets O in listePokeballs)
+            foreach (Badge B in Gru.badgesAmasse)
             {
-                O.Draw(_spriteBatch);
+                B.Draw(_spriteBatch);
+            }
+            //Draw des pokeballs
+            foreach (Pokeball P in listePokeballs)
+            {
+                P.Draw(_spriteBatch);
+            }
+            foreach (Pokeball P in Gru.pokeballAmasse)
+            {
+                P.Draw(_spriteBatch);
             }
 
             if(emplacementFinNiveau.X != -1)
@@ -327,6 +338,7 @@ namespace DespicableGame.GameStates
 
             //Dessiner le score
             _spriteBatch.DrawString(content.Load<SpriteFont>("Font\\MainFont"), "Score: " + Pointage.GetInstance().GetTotalPointage(), new Vector2(450, 0), Color.Black);
+            _spriteBatch.DrawString(content.Load<SpriteFont>("Font\\MainFont"), "Badges", new Vector2(1000, 50), Color.Black);
 
 
                 //Draw de la Police
