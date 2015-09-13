@@ -6,6 +6,8 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
+using Microsoft.Xna.Framework.Audio;
 
 
 namespace DespicableGame.GameStates
@@ -20,6 +22,9 @@ namespace DespicableGame.GameStates
         private string[] textesMenu;
         private bool partiePerdu = false;
         private bool partieGagner = false;
+        private SoundEffect menuMusique;
+        private SoundEffectInstance menuMusiqueInstance;
+
 
         public void LoadContent(ContentManager _content)
         {
@@ -28,6 +33,12 @@ namespace DespicableGame.GameStates
             textesMenu[0] = "Play";
             textesMenu[1] = "Exit";
             input = DespicableGame.input;
+
+            menuMusique = content.Load<SoundEffect>("Musique/EcranTitre");
+            menuMusiqueInstance = menuMusique.CreateInstance();
+            menuMusiqueInstance.IsLooped = true;
+            menuMusiqueInstance.Volume = 0.3f;
+            menuMusiqueInstance.Play();
         }
 
         public void Update()
@@ -126,7 +137,7 @@ namespace DespicableGame.GameStates
 
         public void Draw(SpriteBatch _spriteBatch)
         {
-            _spriteBatch.Draw(content.Load<Texture2D>("Sprites\\background"), Vector2.Zero, null, Color.White, 0f, Vector2.Zero, 2.0f, SpriteEffects.None, 0f);
+            _spriteBatch.Draw(content.Load<Texture2D>("Sprites\\titleScreen"), Vector2.Zero, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
             Color couleurTexte;
 
             if(partiePerdu)
@@ -140,7 +151,7 @@ namespace DespicableGame.GameStates
                 couleurTexte = Color.White;
                 if (optionSelectionner == i)
                     couleurTexte = Color.Blue;
-                _spriteBatch.DrawString(content.Load<SpriteFont>("Font\\MainFont"), textesMenu[i], new Vector2(600, 200 + 100 * i), couleurTexte);
+                _spriteBatch.DrawString(content.Load<SpriteFont>("Font\\MainFont"), textesMenu[i], new Vector2(800, 400 + 100 * i), couleurTexte);
             }
         }
     }
