@@ -21,8 +21,8 @@ namespace DespicableGame
             dernierContact = DateTime.Now;
             delaiProchainContact = new TimeSpan(0, 0, 0, 2, 500);
             etatPresent = new EnemyStates.EtatAleatoire(this);
+            caseSnorlax = new Case(0,-1,-1);
             Destination = MouvementIA(ActualCase);
-            caseSnorlax = null;
         }
 
         public void ChangerEtat(EnemyStates.EtatEnnemi nouvelEtat)
@@ -37,10 +37,7 @@ namespace DespicableGame
 
         public override void Mouvement()
         {
-            if(checkSnorlax(Destination))
-            {
-                Destination = MouvementIA(ActualCase);
-            }
+            
             if (Destination != null)
             {
                 position.X += VitesseX;
@@ -48,8 +45,21 @@ namespace DespicableGame
 
                 if (position.X == Destination.GetPosition().X && position.Y == Destination.GetPosition().Y)
                 {
+                    derniereCase = ActualCase;
                     ActualCase = Destination;
-                    Destination = MouvementIA(ActualCase);
+                    int counter = 0;
+                    do
+                    {
+                        counter++;
+                        Destination = MouvementIA(ActualCase);
+                        if (counter > 20)
+                        {
+                            Destination = derniereCase;
+                        }
+                    }     
+                    while(checkSnorlax(Destination));
+           
+                    
                 }
             }
 
