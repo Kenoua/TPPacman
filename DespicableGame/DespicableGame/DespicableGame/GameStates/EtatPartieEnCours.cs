@@ -312,7 +312,7 @@ namespace DespicableGame.GameStates
             labyrinthe.DessinerVertical(_spriteBatch, murVertical);
 
             //Draw de l'entrée du téléporteur
-            _spriteBatch.Draw(warpEntree, warpEntreePos, Color.White);
+            _spriteBatch.Draw(warpEntree,new Vector2(warpEntreePos.X - 24,warpEntreePos.Y) , Color.White);
 
             //Draw des sorties du téléporteur
             for (int i = 0; i < 4; i++)
