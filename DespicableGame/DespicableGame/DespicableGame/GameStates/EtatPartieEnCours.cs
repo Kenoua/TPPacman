@@ -219,7 +219,18 @@ namespace DespicableGame.GameStates
             {
                 if (input.IsInputDown(InputHandler.touchesClavier[4]))
                 {
-                    //Attaquer
+                    if(Gru.derniereCase != null && Gru.snorlaxUsed == null)
+                    {
+
+                        Gru.snorlaxUsed = Gru.derniereCase;
+                        foreach(PersonnageNonJoueur PNJ in Polices)
+                        {
+                            PNJ.caseSnorlax = Gru.snorlaxUsed;
+                        }
+                        
+                    }
+                    
+
                 }
                 else if (input.IsInputDown(InputHandler.touchesClavier[0]))
                 {
@@ -301,7 +312,7 @@ namespace DespicableGame.GameStates
             labyrinthe.DessinerVertical(_spriteBatch, murVertical);
 
             //Draw de l'entrée du téléporteur
-            _spriteBatch.Draw(warpEntree, warpEntreePos, Color.White);
+            _spriteBatch.Draw(warpEntree,new Vector2(warpEntreePos.X - 24,warpEntreePos.Y) , Color.White);
 
             //Draw des sorties du téléporteur
             for (int i = 0; i < 4; i++)
@@ -325,6 +336,12 @@ namespace DespicableGame.GameStates
             foreach (Pokeball P in Gru.pokeballAmasse)
             {
                 P.Draw(_spriteBatch);
+            }
+
+            //drawsnorlax
+            if(Gru.snorlaxUsed != null)
+            {
+                _spriteBatch.Draw(content.Load<Texture2D>("Sprites\\snorlax"), labyrinthe.GetCase(Gru.snorlaxUsed.OrdreX, Gru.snorlaxUsed.OrdreY).GetPosition(), Color.White);
             }
 
             if(emplacementFinNiveau.X != -1)

@@ -10,6 +10,7 @@ namespace DespicableGame
     {
         private EnemyStates.EtatEnnemi etatPresent;
         private Case positionJoueur;
+        public Case caseSnorlax;
 
         public PersonnageNonJoueur(Texture2D dessin, Vector2 position, Case ActualCase)
             : base(dessin, position, ActualCase)
@@ -20,6 +21,7 @@ namespace DespicableGame
             dernierContact = DateTime.Now;
             delaiProchainContact = new TimeSpan(0, 0, 0, 2, 500);
             etatPresent = new EnemyStates.EtatAleatoire(this);
+            caseSnorlax = new Case(0,-1,-1);
             Destination = MouvementIA(ActualCase);
         }
 
@@ -36,6 +38,7 @@ namespace DespicableGame
 
         public override void Mouvement()
         {
+            
             if (Destination != null)
             {
                 position.X += VitesseX;
@@ -43,10 +46,45 @@ namespace DespicableGame
 
                 if (position.X == Destination.GetPosition().X && position.Y == Destination.GetPosition().Y)
                 {
+                    derniereCase = ActualCase;
                     ActualCase = Destination;
-                    Destination = MouvementIA(ActualCase);
+                    int counter = 0;
+                    do
+                    {
+                        counter++;
+                        Destination = MouvementIA(ActualCase);
+                        if(counter >30)
+                        {
+                            VitesseX = -VitesseX;
+                            VitesseY = -VitesseY;
+                            Destination = derniereCase;
+                            directionArriere += 2;
+                            if(directionArriere >3)
+                            {
+                                directionArriere -= 4;
+                            }
+                        }                      
+                        
+                    }     
+                    while(checkSnorlax(Destination));
+           
+                    
                 }
             }
+
+        }
+
+        private bool checkSnorlax(Case _case)
+        {
+            if (caseSnorlax != null && _case!= null)
+            {
+                if ((_case.GetPosition() == caseSnorlax.GetPosition()))
+                {
+                    return true;
+                }
+            }
+            return false;
+
         }
 
         public void Update()
