@@ -48,6 +48,7 @@ namespace DespicableGame
                 {
                     derniereCase = ActualCase;
                     ActualCase = Destination;
+                    Update();
                     int counter = 0;
                     do
                     {

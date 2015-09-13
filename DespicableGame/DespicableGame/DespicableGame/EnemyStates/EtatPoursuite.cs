@@ -45,27 +45,26 @@ namespace DespicableGame.EnemyStates
                     personnage.VitesseY = 0;
                     caseDirection = AI_Case.CaseGauche;
                 }
-                if (caseDirection == null)
-                {
-                    if (personnage.ActualCase.OrdreY != GameStates.EtatPartieEnCours.Gru.ActualCase.OrdreY)
-                    {
-                        if (personnage.ActualCase.OrdreY < GameStates.EtatPartieEnCours.Gru.ActualCase.OrdreY)
-                        {
-                            //Joueur est dessous l'ennemi
-                            personnage.VitesseX = 0;
-                            personnage.VitesseY = -4;
-                            caseDirection = AI_Case.CaseHaut;
-                        }
-                        else
-                        {
-                            //Joueur est en haut de l'ennemi
-                            personnage.VitesseX = 0;
-                            personnage.VitesseY = 4;
-                            caseDirection = AI_Case.CaseBas;
-                        }
-                    }
-                }
             }
+            else if (personnage.ActualCase.OrdreY != GameStates.EtatPartieEnCours.Gru.ActualCase.OrdreY)
+            {
+                if (personnage.ActualCase.OrdreY < GameStates.EtatPartieEnCours.Gru.ActualCase.OrdreY)
+                {
+                    //Joueur est dessous l'ennemi
+                    personnage.VitesseX = 0;
+                    personnage.VitesseY = 4;
+                    caseDirection = AI_Case.CaseBas;
+                }
+                else
+                {
+                    //Joueur est en haut de l'ennemi
+                    personnage.VitesseX = 0;
+                    personnage.VitesseY = -4;
+                    caseDirection = AI_Case.CaseHaut;
+                }
+
+            }
+
             return caseDirection;
         }
     }
