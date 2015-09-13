@@ -25,7 +25,7 @@ namespace DespicableGame.EnemyStates
 
         public Case Mouvement(Case AI_Case)
         {
-            Case caseDirection = GameStates.EtatPartieEnCours.Gru.ActualCase;
+            Case caseDirection = personnage.Destination;
             personnage.VitesseX = 0;
             personnage.VitesseY = 0;
 
