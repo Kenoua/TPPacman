@@ -16,8 +16,8 @@ namespace DespicableGame.EnemyStates
 
         public void Update()
         {
-            personnage.JoueurEnVue();
-            if(personnage.GetPositionJoueur() != null)
+            personnage.PositionJoueur = personnage.JoueurEnVue();
+            if(personnage.PositionJoueur != null)
             {
                 personnage.ChangerEtat(new EtatPoursuite(personnage));
             }

@@ -28,9 +28,10 @@ namespace DespicableGame
             etatPresent = nouvelEtat;
         }
 
-        public Case GetPositionJoueur()
+        public Case PositionJoueur
         {
-            return positionJoueur;
+            get { return positionJoueur; }
+            set { positionJoueur = value; }
         }
 
         public override void Mouvement()
@@ -72,6 +73,9 @@ namespace DespicableGame
         {
             Case joueur = null;
 
+            if (ActualCase == GameStates.EtatPartieEnCours.Gru.ActualCase)
+                joueur = ActualCase;
+
             joueur = regardHaut(this.ActualCase.CaseHaut);
 
             if (joueur != null)
@@ -97,7 +101,7 @@ namespace DespicableGame
                     }
                     else
                     {
-                        joueur = regardGauche(this.ActualCase.CaseHaut);
+                        joueur = regardGauche(this.ActualCase.CaseGauche);
                         if (joueur != null)
                         {
                             positionJoueur = joueur;
@@ -119,7 +123,7 @@ namespace DespicableGame
                 }
                 else if (_caseVerifier.CaseHaut != null)
                 {
-                    regardHaut(_caseVerifier.CaseHaut);
+                    return regardHaut(_caseVerifier.CaseHaut);
                 }
             }
             return null;
@@ -135,7 +139,7 @@ namespace DespicableGame
                 }
                 else if (_caseVerifier.CaseDroite != null)
                 {
-                    regardDroit(_caseVerifier.CaseDroite);
+                    return regardDroit(_caseVerifier.CaseDroite);
                 }
             }
             return null;
@@ -151,7 +155,7 @@ namespace DespicableGame
                 }
                 else if (_caseVerifier.CaseBas != null)
                 {
-                    regardBas(_caseVerifier.CaseBas);
+                    return regardBas(_caseVerifier.CaseBas);
                 }
             }
             return null;
@@ -167,7 +171,7 @@ namespace DespicableGame
                 }
                 else if (_caseVerifier.CaseGauche != null)
                 {
-                    regardGauche(_caseVerifier.CaseGauche);
+                    return regardGauche(_caseVerifier.CaseGauche);
                 }
             }
             return null;
