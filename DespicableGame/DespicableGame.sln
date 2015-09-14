@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DespicableGame", "DespicableGame\DespicableGame\DespicableGame.csproj", "{DA9D1D0D-6B4B-4540-A79C-1D20E0EEBDA6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DespicableGame", "DespicableGame\DespicableGame\DespicableGame.csproj", "{99B674A3-32AB-4C35-A506-AA7CA7F71BF3}"
 EndProject
-Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "DespicableGameContent", "DespicableGame\DespicableGameContent\DespicableGameContent.contentproj", "{170EA9E0-3A3C-4023-9ADE-4DEED01FA027}"
+Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "DespicableGameContent", "DespicableGame\DespicableGameContent\DespicableGameContent.contentproj", "{53CA1246-B8B3-4E8C-A22C-1B6D0DC2C445}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,12 +13,12 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{DA9D1D0D-6B4B-4540-A79C-1D20E0EEBDA6}.Debug|x86.ActiveCfg = Debug|x86
-		{DA9D1D0D-6B4B-4540-A79C-1D20E0EEBDA6}.Debug|x86.Build.0 = Debug|x86
-		{DA9D1D0D-6B4B-4540-A79C-1D20E0EEBDA6}.Release|x86.ActiveCfg = Release|x86
-		{DA9D1D0D-6B4B-4540-A79C-1D20E0EEBDA6}.Release|x86.Build.0 = Release|x86
-		{170EA9E0-3A3C-4023-9ADE-4DEED01FA027}.Debug|x86.ActiveCfg = Debug|x86
-		{170EA9E0-3A3C-4023-9ADE-4DEED01FA027}.Release|x86.ActiveCfg = Release|x86
+		{99B674A3-32AB-4C35-A506-AA7CA7F71BF3}.Debug|x86.ActiveCfg = Debug|x86
+		{99B674A3-32AB-4C35-A506-AA7CA7F71BF3}.Debug|x86.Build.0 = Debug|x86
+		{99B674A3-32AB-4C35-A506-AA7CA7F71BF3}.Release|x86.ActiveCfg = Release|x86
+		{99B674A3-32AB-4C35-A506-AA7CA7F71BF3}.Release|x86.Build.0 = Release|x86
+		{53CA1246-B8B3-4E8C-A22C-1B6D0DC2C445}.Debug|x86.ActiveCfg = Debug|x86
+		{53CA1246-B8B3-4E8C-A22C-1B6D0DC2C445}.Release|x86.ActiveCfg = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
