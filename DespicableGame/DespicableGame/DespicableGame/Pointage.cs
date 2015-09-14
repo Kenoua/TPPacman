@@ -9,10 +9,12 @@ namespace DespicableGame
     {
         private static Pointage instance = null;
         int totalPointage;
+        int serie;
 
         private Pointage()
         {
             totalPointage = 0;
+            serie = 0;
         }
 
         public static Pointage GetInstance()
@@ -26,7 +28,13 @@ namespace DespicableGame
 
         public void AjouterPoints(int _ajout)
         {
-            totalPointage += _ajout;
+            totalPointage += _ajout + serie;
+            IncrementerSerie();
+        }
+
+        public void RetirerPoints(int _retrait)
+        {
+            totalPointage -= _retrait;
         }
 
         public int GetTotalPointage()
@@ -37,6 +45,16 @@ namespace DespicableGame
         public void RetourZero()
         {
             totalPointage = 0;
+        }
+
+        private void IncrementerSerie()
+        {
+            serie += 10;
+        }
+
+        public void ReinitialiserSerie()
+        {
+            serie = 0;
         }
     }
 }
