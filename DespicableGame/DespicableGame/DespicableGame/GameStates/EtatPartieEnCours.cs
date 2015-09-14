@@ -109,6 +109,9 @@ namespace DespicableGame.GameStates
 
             listePokeballs = LevelLoader.ChargerPokeballs();
             listePokeballsEnlever = new List<Pokeball>();
+
+            listeMasterballs = LevelLoader.ChargerMasterballs();
+            listeMasterballsEnlever = new List<MasterBall>();
         }
 
         public void Update()
@@ -155,6 +158,18 @@ namespace DespicableGame.GameStates
                     listePokeballsEnlever.Add(P);
                 }
             }
+
+            foreach (MasterBall M in listeMasterballs)
+            {
+                if (M.ActualCase == Gru.ActualCase)
+                {
+                    M.Rammasser();
+                    
+                    Gru.masterBallAmasse.Add(M);
+                    listeMasterballsEnlever.Add(M);
+                }
+            }
+
             foreach (Badge B in listeBadges)
             {
                 if (B.ActualCase == Gru.ActualCase)
@@ -327,7 +342,7 @@ namespace DespicableGame.GameStates
             {
                 B.Draw(_spriteBatch);
             }
-            //Draw des pokeballs
+            //Draw des pokeballs/MasterBalls
             foreach (Pokeball P in listePokeballs)
             {
                 P.Draw(_spriteBatch);
@@ -336,7 +351,14 @@ namespace DespicableGame.GameStates
             {
                 P.Draw(_spriteBatch);
             }
-
+            foreach (MasterBall M in listeMasterballs)
+            {
+                M.Draw(_spriteBatch);
+            }
+            foreach (MasterBall M in Gru.masterBallAmasse)
+            {
+                M.Draw(_spriteBatch);
+            }
             //drawsnorlax
             if(Gru.snorlaxUsed != null)
             {

@@ -11,7 +11,7 @@ namespace DespicableGame
     public abstract class Objets
     {
         protected Texture2D dessin;
-        protected Vector2 position;
+        public Vector2 position;
         public Case ActualCase { get; set; }
 
         public Objets(Texture2D sprite, Vector2 position, Case actualCase)

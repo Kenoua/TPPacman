@@ -67,6 +67,27 @@ namespace DespicableGame
             return pokeballs;
         }
 
+        public static List<MasterBall> ChargerMasterballs()
+        {
+            List<MasterBall> masterBalls = new List<MasterBall>();
+            for (int i = 0; i < level/3+1; i++)
+            {
+                int x = -1;
+                int y = -1;
+                do
+                {
+                    x = GenerateurChiffreAleatoire.NouveauChiffre(14);
+                    y = GenerateurChiffreAleatoire.NouveauChiffre(10);
+                } while (verifierCaseNonValide(x, y));
+
+                masterBalls.Add(new MasterBall(content.Load<Texture2D>("Sprites\\MasterBall"),
+                    new Vector2(labyrinthe.GetCase(x, y).GetPosition().X, labyrinthe.GetCase(x, y).GetPosition().Y),
+                    labyrinthe.GetCase(x, y)));
+            }
+            return masterBalls;
+        }
+
+
         public static Vector2 ChargerFinNiveau()
         {
            Vector2 position;

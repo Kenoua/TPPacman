@@ -34,6 +34,7 @@ namespace DespicableGame.GameStates
             textesMenu[1] = "Exit";
             input = DespicableGame.input;
 
+      
             menuMusique = content.Load<SoundEffect>("Musique/EcranTitre");
             menuMusiqueInstance = menuMusique.CreateInstance();
             menuMusiqueInstance.IsLooped = true;
@@ -111,6 +112,7 @@ namespace DespicableGame.GameStates
         {
             if (optionSelectionner == 0)
             {
+                //LOLOLOLOLOLOLOL menuMusiqueInstance.Stop();
                 DespicableGame.etatDeJeu = new EtatPartieEnCours();
                 DespicableGame.etatDeJeu.LoadContent(content);
             }
