@@ -193,6 +193,10 @@ namespace DespicableGame.GameStates
             {
                 listePokeballs.Remove(P);
             }
+            foreach (MasterBall M in listeMasterballsEnlever)
+            {
+                listeMasterballs.Remove(M);
+            }
             if (listeBadges.Count == 0 && emplacementFinNiveau == new Vector2(-1,-1))
             {
                 emplacementFinNiveau = LevelLoader.ChargerFinNiveau();
@@ -233,7 +237,13 @@ namespace DespicableGame.GameStates
             {
                 if (input.IsInputDown(InputHandler.touchesClavier[4]))
                 {
-                    if(Gru.derniereCase != null && Gru.snorlaxUsed == null)
+                    if (Gru.masterBallAmasse.Count() > 0 && !Gru.estPokemonLegendaire)
+                    {
+                        Gru.utiliseLegendaire(content);
+                        Gru.masterBallAmasse.RemoveAt(0);
+                             
+                    }
+                    else if (Gru.derniereCase != null && Gru.snorlaxUsed == null && !Gru.estPokemonLegendaire)
                     {
 
                         Gru.snorlaxUsed = Gru.derniereCase;
@@ -355,9 +365,11 @@ namespace DespicableGame.GameStates
             {
                 M.Draw(_spriteBatch);
             }
+            int counterMBalls = 0;
             foreach (MasterBall M in Gru.masterBallAmasse)
             {
-                M.Draw(_spriteBatch);
+                M.Draw(_spriteBatch,counterMBalls);
+                counterMBalls++;
             }
             //drawsnorlax
             if(Gru.snorlaxUsed != null)

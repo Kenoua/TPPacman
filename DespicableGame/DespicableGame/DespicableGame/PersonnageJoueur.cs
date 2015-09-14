@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+
 
 
 namespace DespicableGame
@@ -13,6 +15,10 @@ namespace DespicableGame
         public List<Pokeball> pokeballAmasse;
         public List<MasterBall> masterBallAmasse;
         public Case snorlaxUsed;
+        public bool estPokemonLegendaire;
+        public int counterLegendaire;
+        public Texture2D spriteJoueurReserve;
+        public int modificateurVitese;
         public PersonnageJoueur(Texture2D dessin, Vector2 position, Case ActualCase)
             : base(dessin, position, ActualCase)
         {
@@ -21,10 +27,14 @@ namespace DespicableGame
             snorlaxUsed = null;
             delaiProchainContact = new TimeSpan(0, 0, 0, 1, 500);
             pointsVie = 3;
+            estPokemonLegendaire = false;
+            counterLegendaire = 0;
             Destination = null;
             badgesAmasse = new List<Badge>();
             pokeballAmasse = new List<Pokeball>();
             masterBallAmasse = new List<MasterBall>();
+            spriteJoueurReserve = dessin;
+            modificateurVitese = 1;
         }
 
         //Algo assez ordinaire.  Pour que ça fonctionne, la vitesse doit être un diviseur entier de 64, pourrait être à revoir.
@@ -32,14 +42,25 @@ namespace DespicableGame
         {
             if (Destination != null)
             {
-                position.X += VitesseX;
-                position.Y += VitesseY;
+                position.X += VitesseX * modificateurVitese;
+                position.Y += VitesseY * modificateurVitese;
 
                 if (position.X == Destination.GetPosition().X && position.Y == Destination.GetPosition().Y)
                 {
                     derniereCase = ActualCase;
                     ActualCase = Destination;
                     Destination = null;
+                }
+            }
+
+            if(estPokemonLegendaire)
+            {
+                counterLegendaire--;
+                if(counterLegendaire <=0)
+                {
+                    estPokemonLegendaire = false;
+                    dessin = spriteJoueurReserve;
+                    modificateurVitese = 1;
                 }
             }
         }
@@ -106,6 +127,29 @@ namespace DespicableGame
             }
             return false;
 
+        }
+
+        public void utiliseLegendaire(ContentManager _content)
+        {
+            counterLegendaire = 300;
+            modificateurVitese = 2;
+            estPokemonLegendaire = true;
+
+            int choixLegendaire = new Random().Next(3);
+            if(choixLegendaire == 0)
+            {
+                dessin = _content.Load<Texture2D>("Sprites\\Zapdos");
+            }
+            else if(choixLegendaire == 1)
+            {
+                dessin = _content.Load<Texture2D>("Sprites\\Moltres");
+            }
+            else
+            {
+                dessin = _content.Load<Texture2D>("Sprites\\Articuno");
+            }
+            
+            
         }
     }
 }
