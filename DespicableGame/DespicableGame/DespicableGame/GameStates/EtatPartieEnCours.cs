@@ -33,6 +33,7 @@ namespace DespicableGame.GameStates
         Vector2 emplacementFinNiveau;
 
         List<PersonnageNonJoueur> Polices;
+        List<Snorlax> Snorlaxs;
 
         Texture2D murHorizontal;
         Texture2D murVertical;
@@ -88,6 +89,7 @@ namespace DespicableGame.GameStates
 
 
             Polices = LevelLoader.ChargerEnnemis();
+            Snorlaxs = LevelLoader.ChargerSnorlax();
 
 
             //L'entrée du téléporteur
@@ -131,6 +133,10 @@ namespace DespicableGame.GameStates
                             Gru.ToucherAutrePersonnage();
                             police.ToucherAutrePersonnage();
                         }
+                    }
+                    foreach(Snorlax snorlax in Snorlaxs)
+                    {
+                        snorlax.Mouvement();
                     }
                 }
                 else
@@ -295,18 +301,7 @@ namespace DespicableGame.GameStates
                     {
                         Gru.utiliseLegendaire(content);
                         Gru.masterBallAmasse.RemoveAt(0);
-
-                    }
-                    else if (Gru.derniereCase != null && Gru.snorlaxUsed == null && !Gru.estPokemonLegendaire)
-                    {
-
-                        Gru.snorlaxUsed = Gru.derniereCase;
-                        foreach (PersonnageNonJoueur PNJ in Polices)
-                        {
-                            PNJ.caseSnorlax = Gru.snorlaxUsed;
-                        }
-
-                    }
+                    }              
                 }
                 else if (input.GetGamePadJoystick().Left.Y == 1)
                 {
@@ -392,9 +387,9 @@ namespace DespicableGame.GameStates
                 counterMBalls++;
             }
             //drawsnorlax
-            if(Gru.snorlaxUsed != null)
+            foreach(Snorlax S in Snorlaxs)
             {
-                _spriteBatch.Draw(content.Load<Texture2D>("Sprites\\snorlax"), labyrinthe.GetCase(Gru.snorlaxUsed.OrdreX, Gru.snorlaxUsed.OrdreY).GetPosition(), Color.White);
+                S.Draw(_spriteBatch);
             }
 
             if(emplacementFinNiveau.X != -1)

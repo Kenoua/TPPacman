@@ -5,7 +5,10 @@ using System.Text;
 
 namespace DespicableGame.SnorlaxStates
 {
-    class EtatSnorlax
+    public interface EtatSnorlax 
     {
+        void Update();
+
+        Case Mouvement(Case AI_Case);
     }
 }
