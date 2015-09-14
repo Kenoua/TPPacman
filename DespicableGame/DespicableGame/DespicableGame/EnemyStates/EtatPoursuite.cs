@@ -16,6 +16,9 @@ namespace DespicableGame.EnemyStates
 
         public void Update()
         {
+            if (GameStates.EtatPartieEnCours.Gru.estPokemonLegendaire)
+                personnage.ChangerEtat(new EtatApeurer(personnage));
+
             personnage.PositionJoueur = personnage.JoueurEnVue();
             if (personnage.PositionJoueur == null)
             {

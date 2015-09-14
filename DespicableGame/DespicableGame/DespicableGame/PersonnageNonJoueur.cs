@@ -22,7 +22,7 @@ namespace DespicableGame
             pointsVie = 1;
             dernierContact = DateTime.Now;
             delaiProchainContact = new TimeSpan(0, 0, 0, 2, 500);
-            etatPresent = new EnemyStates.EtatApeurer(this);
+            etatPresent = new EnemyStates.EtatAleatoire(this);
             caseSnorlax = new Case(0,-1,-1);
             Destination = MouvementIA(ActualCase);
         }
