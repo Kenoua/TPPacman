@@ -20,6 +20,11 @@ namespace DespicableGame
             ActualCase = null;
         }
 
+        public void Draw(SpriteBatch spritebatch,int _position)
+        {
+
+            spritebatch.Draw(dessin, new Vector2(position.X,position.Y+(_position* 50)),Color.White);
+        }
         
     }
 }
