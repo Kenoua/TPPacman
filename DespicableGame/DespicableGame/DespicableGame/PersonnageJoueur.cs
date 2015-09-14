@@ -18,7 +18,7 @@ namespace DespicableGame
         public bool estPokemonLegendaire;
         public int counterLegendaire;
         public Texture2D spriteJoueurReserve;
-        public int modificateurVitese;
+        public int modificateurVitesse;
         public PersonnageJoueur(Texture2D dessin, Vector2 position, Case ActualCase)
             : base(dessin, position, ActualCase)
         {
@@ -34,19 +34,19 @@ namespace DespicableGame
             pokeballAmasse = new List<Pokeball>();
             masterBallAmasse = new List<MasterBall>();
             spriteJoueurReserve = dessin;
-            modificateurVitese = 1;
+            modificateurVitesse = 1;
         }
 
         //Algo assez ordinaire.  Pour que ça fonctionne, la vitesse doit être un diviseur entier de 64, pourrait être à revoir.
         public override void Mouvement()
         {
-            if (DateTime.Now - dernierContact >= delaiProchainContact)
-                modificateurVitese = 1;
+            if (DateTime.Now - dernierContact >= delaiProchainContact && !estPokemonLegendaire)
+                modificateurVitesse = 1;
 
             if (Destination != null)
             {
-                position.X += VitesseX * modificateurVitese;
-                position.Y += VitesseY * modificateurVitese;
+                position.X += VitesseX * modificateurVitesse;
+                position.Y += VitesseY * modificateurVitesse;
 
                 if (position.X == Destination.GetPosition().X && position.Y == Destination.GetPosition().Y)
                 {
@@ -63,7 +63,7 @@ namespace DespicableGame
                 {
                     estPokemonLegendaire = false;
                     dessin = spriteJoueurReserve;
-                    modificateurVitese = 1;
+                    modificateurVitesse = 1;
                 }
             }
         }
@@ -105,7 +105,7 @@ namespace DespicableGame
                 {
                     dernierContact = DateTime.Now;
                     pointsVie--;
-                    modificateurVitese = 2;
+                    modificateurVitesse = 2;
                     Pointage.GetInstance().ReinitialiserSerie();
                     Pointage.GetInstance().RetirerPoints(200);
                     if (pointsVie == 0)
@@ -141,7 +141,7 @@ namespace DespicableGame
         public void utiliseLegendaire(ContentManager _content)
         {
             counterLegendaire = 300;
-            modificateurVitese = 2;
+            modificateurVitesse = 2;
             estPokemonLegendaire = true;
 
             int choixLegendaire = new Random().Next(3);
