@@ -11,6 +11,7 @@ namespace DespicableGame
     {
         public List<Badge> badgesAmasse;
         public List<Pokeball> pokeballAmasse;
+        public List<MasterBall> masterBallAmasse;
         public Case snorlaxUsed;
         public PersonnageJoueur(Texture2D dessin, Vector2 position, Case ActualCase)
             : base(dessin, position, ActualCase)
@@ -23,6 +24,7 @@ namespace DespicableGame
             Destination = null;
             badgesAmasse = new List<Badge>();
             pokeballAmasse = new List<Pokeball>();
+            masterBallAmasse = new List<MasterBall>();
         }
 
         //Algo assez ordinaire.  Pour que ça fonctionne, la vitesse doit être un diviseur entier de 64, pourrait être à revoir.
