@@ -111,7 +111,7 @@ namespace DespicableGame.GameStates
         {
             if (optionSelectionner == 0)
             {
-                menuMusiqueInstance.Stop();
+                //LOLOLOLOLOLOLOL menuMusiqueInstance.Stop();
                 DespicableGame.etatDeJeu = new EtatPartieEnCours();
                 DespicableGame.etatDeJeu.LoadContent(content);
             }
