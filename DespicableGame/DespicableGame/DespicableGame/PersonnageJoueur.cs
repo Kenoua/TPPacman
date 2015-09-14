@@ -40,6 +40,9 @@ namespace DespicableGame
         //Algo assez ordinaire.  Pour que ça fonctionne, la vitesse doit être un diviseur entier de 64, pourrait être à revoir.
         public override void Mouvement()
         {
+            if (DateTime.Now - dernierContact >= delaiProchainContact)
+                modificateurVitese = 1;
+
             if (Destination != null)
             {
                 position.X += VitesseX * modificateurVitese;
@@ -53,10 +56,10 @@ namespace DespicableGame
                 }
             }
 
-            if(estPokemonLegendaire)
+            if (estPokemonLegendaire)
             {
                 counterLegendaire--;
-                if(counterLegendaire <=0)
+                if (counterLegendaire <= 0)
                 {
                     estPokemonLegendaire = false;
                     dessin = spriteJoueurReserve;
@@ -96,13 +99,19 @@ namespace DespicableGame
 
         public override void ToucherAutrePersonnage()
         {
-            if (DateTime.Now - dernierContact >= delaiProchainContact)
+            if (!estPokemonLegendaire)
             {
-                dernierContact = DateTime.Now;
-                pointsVie--;
-                if (pointsVie == 0)
+                if (DateTime.Now - dernierContact >= delaiProchainContact)
                 {
-                    mort = true;
+                    dernierContact = DateTime.Now;
+                    pointsVie--;
+                    modificateurVitese = 2;
+                    Pointage.GetInstance().ReinitialiserSerie();
+                    Pointage.GetInstance().RetirerPoints(200);
+                    if (pointsVie == 0)
+                    {
+                        mort = true;
+                    }
                 }
             }
         }
@@ -118,9 +127,9 @@ namespace DespicableGame
 
         private bool checkSnorlax(Case _case)
         {
-            if(snorlaxUsed != null)
+            if (snorlaxUsed != null)
             {
-                if((_case.GetPosition() == snorlaxUsed.GetPosition()))
+                if ((_case.GetPosition() == snorlaxUsed.GetPosition()))
                 {
                     return true;
                 }
@@ -136,11 +145,11 @@ namespace DespicableGame
             estPokemonLegendaire = true;
 
             int choixLegendaire = new Random().Next(3);
-            if(choixLegendaire == 0)
+            if (choixLegendaire == 0)
             {
                 dessin = _content.Load<Texture2D>("Sprites\\Zapdos");
             }
-            else if(choixLegendaire == 1)
+            else if (choixLegendaire == 1)
             {
                 dessin = _content.Load<Texture2D>("Sprites\\Moltres");
             }
@@ -148,8 +157,8 @@ namespace DespicableGame
             {
                 dessin = _content.Load<Texture2D>("Sprites\\Articuno");
             }
-            
-            
+
+
         }
     }
 }

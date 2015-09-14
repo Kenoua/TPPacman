@@ -207,6 +207,18 @@ namespace DespicableGame
             Cases[6][9].CaseHaut = Cases[6][8];
             Cases[7][9].CaseHaut = Cases[7][8];
 
+            Cases[6][0].CaseBas = Cases[6][1];
+            Cases[7][0].CaseBas = Cases[7][1];
+
+            Cases[6][0].CaseBas = Cases[6][1];
+            Cases[7][0].CaseBas = Cases[7][1];
+
+            Cases[0][4].CaseDroite = Cases[1][4];
+            Cases[0][5].CaseDroite = Cases[1][5];
+
+            Cases[13][4].CaseGauche = Cases[12][4];
+            Cases[13][5].CaseGauche = Cases[12][5];
+
             //On place le téléporteur
             Teleporteur teleporter = new Teleporteur(Cases[0][0], Cases[13][0], Cases[0][9], Cases[13][9]);
             Cases[6][4].CaseDroite = teleporter;

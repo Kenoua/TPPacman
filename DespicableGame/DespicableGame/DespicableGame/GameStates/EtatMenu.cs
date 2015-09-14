@@ -143,10 +143,10 @@ namespace DespicableGame.GameStates
             Color couleurTexte;
 
             if(partiePerdu)
-                _spriteBatch.DrawString(content.Load<SpriteFont>("Font\\MainFont"), "Game Over", new Vector2(550, 100), Color.Tomato);
+                _spriteBatch.DrawString(content.Load<SpriteFont>("Font\\MainFont"), "Game Over", new Vector2(550, 290), Color.Red);
 
             if (partieGagner)
-                _spriteBatch.DrawString(content.Load<SpriteFont>("Font\\MainFont"), "Congratulations! You are now a Pokemon Master!", new Vector2(100, 100), Color.Gold);
+                _spriteBatch.DrawString(content.Load<SpriteFont>("Font\\MainFont"), "Congratulations! You are now a Pokemon Master!", new Vector2(100, 290), Color.Gold);
 
             for (int i = 0; i < NB_OPTION; i++)
             {
