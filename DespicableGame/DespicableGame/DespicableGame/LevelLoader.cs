@@ -105,9 +105,17 @@ namespace DespicableGame
 
             for (int i = 0; i < 3 + level / 3; i++)
             {
+                int x = -1;
+                int y = -1;
+                do
+                {
+                    x = GenerateurChiffreAleatoire.NouveauChiffre(14);
+                    y = GenerateurChiffreAleatoire.NouveauChiffre(10);
+                } while (!verifierCaseNonValide(x, y));
+
                 ennemis.Add(new PersonnageNonJoueur(content.Load<Texture2D>("Sprites\\RocketGrunt"),
-                    new Vector2(labyrinthe.GetCase(i, i).GetPosition().X, labyrinthe.GetCase(i, i).GetPosition().Y),
-                    labyrinthe.GetCase(i, i)));
+                    new Vector2(labyrinthe.GetCase(x, y).GetPosition().X, labyrinthe.GetCase(x, y).GetPosition().Y),
+                    labyrinthe.GetCase(x, y)));
             }
             return ennemis;
         }

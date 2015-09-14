@@ -142,6 +142,7 @@ namespace DespicableGame.GameStates
             }
             else
             {
+                Pointage.GetInstance().AjouterPoints(250);
                 DespicableGame.etatDeJeu = new EtatPartieEnCours();
                 DespicableGame.etatDeJeu.LoadContent(content);
             }
@@ -288,7 +289,22 @@ namespace DespicableGame.GameStates
             {
                 if (input.IsInputDown(InputHandler.boutonGamePad))
                 {
-                    //Attaquer
+                    if (Gru.masterBallAmasse.Count() > 0 && !Gru.estPokemonLegendaire)
+                    {
+                        Gru.utiliseLegendaire(content);
+                        Gru.masterBallAmasse.RemoveAt(0);
+
+                    }
+                    else if (Gru.derniereCase != null && Gru.snorlaxUsed == null && !Gru.estPokemonLegendaire)
+                    {
+
+                        Gru.snorlaxUsed = Gru.derniereCase;
+                        foreach (PersonnageNonJoueur PNJ in Polices)
+                        {
+                            PNJ.caseSnorlax = Gru.snorlaxUsed;
+                        }
+
+                    }
                 }
                 else if (input.GetGamePadJoystick().Left.Y == 1)
                 {

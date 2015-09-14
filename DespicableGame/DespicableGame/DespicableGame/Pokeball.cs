@@ -47,6 +47,7 @@ namespace DespicableGame
 
         public override void Rammasser()
         {
+            Pointage.GetInstance().AjouterPoints(50);
             position = new Vector2(1100, 100 + (50 * (int)(pokeType)));
             ActualCase = null;
         }
