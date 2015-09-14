@@ -40,6 +40,9 @@ namespace DespicableGame
         //Algo assez ordinaire.  Pour que ça fonctionne, la vitesse doit être un diviseur entier de 64, pourrait être à revoir.
         public override void Mouvement()
         {
+            if (DateTime.Now - dernierContact >= delaiProchainContact)
+                modificateurVitese = 1;
+
             if (Destination != null)
             {
                 position.X += VitesseX * modificateurVitese;
@@ -102,6 +105,7 @@ namespace DespicableGame
                 {
                     dernierContact = DateTime.Now;
                     pointsVie--;
+                    modificateurVitese = 2;
                     Pointage.GetInstance().ReinitialiserSerie();
                     Pointage.GetInstance().RetirerPoints(200);
                     if (pointsVie == 0)
