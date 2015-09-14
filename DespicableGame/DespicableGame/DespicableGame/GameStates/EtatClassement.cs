@@ -88,7 +88,7 @@ namespace DespicableGame.GameStates
             for (int i = 0; i < scores.Count; i++)
             {
                 _spriteBatch.DrawString(content.Load<SpriteFont>("Font\\MainFont"), scores[i].name, new Vector2(300, 100 + 100 * i), Color.White);
-                _spriteBatch.DrawString(content.Load<SpriteFont>("Font\\MainFont"), scores[i].score.ToString(), new Vector2(700, 100 + 100 * i), Color.White);
+                _spriteBatch.DrawString(content.Load<SpriteFont>("Font\\SecondFont"), scores[i].score.ToString(), new Vector2(700, 100 + 100 * i), Color.White);
             }
         }
 
