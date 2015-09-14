@@ -9,12 +9,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace DespicableGame.GameStates
 {
-    /// <summary>
-    /// Class that defines a state for the game.
-    /// SaveScoreMenu will display a menu after losing the game
-    /// so the player can save his score in the XML file
-    /// </summary>
-    public class EtatSauvegarderScore : EtatJeu
+    class EtatSauvegarderScore : EtatJeu
     {
         protected ContentManager content;
         protected InputHandler input;
@@ -83,6 +78,16 @@ namespace DespicableGame.GameStates
             }
         }
 
+        public void PartiePerdu()
+        {
+            partiePerdu = true;
+        }
+
+        public void PartieGagner()
+        {
+            partieGagner = true;
+        }
+
         /// <summary>
         /// Draws the specified _sprite batch.
         /// </summary>
@@ -90,14 +95,13 @@ namespace DespicableGame.GameStates
         public void Draw(SpriteBatch _spriteBatch)
         {
             if (partiePerdu)
-                _spriteBatch.DrawString(content.Load<SpriteFont>("Font\\MainFont"), "Game Over", new Vector2(550, 250), Color.Red);
+                _spriteBatch.DrawString(content.Load<SpriteFont>("Font\\MainFont"), "Game Over", new Vector2(550, 290), Color.Red);
 
             if (partieGagner)
-                _spriteBatch.DrawString(content.Load<SpriteFont>("Font\\MainFont"), "Congratulations! You are now a Pokemon Master!", new Vector2(100, 250), Color.Gold);
+                _spriteBatch.DrawString(content.Load<SpriteFont>("Font\\MainFont"), "Congratulations! You are now a Pokemon Master!", new Vector2(100, 290), Color.Gold);
 
-
-            _spriteBatch.DrawString(content.Load<SpriteFont>("Font\\MainFont"), name, new Vector2(300, 400), Color.Black);
-            _spriteBatch.DrawString(content.Load<SpriteFont>("Font\\MainFont"), score, new Vector2(700, 400), Color.Black);
+            _spriteBatch.DrawString(content.Load<SpriteFont>("Font\\MainFont"), name, new Vector2(300, 400), Color.White);
+            _spriteBatch.DrawString(content.Load<SpriteFont>("Font\\MainFont"), score, new Vector2(700, 400), Color.White);
         }
 
         /// <summary>
@@ -107,16 +111,6 @@ namespace DespicableGame.GameStates
         public bool HasExited()
         {
             return exit;
-        }
-
-        public void PartiePerdu()
-        {
-            partiePerdu = true;
-        }
-
-        public void PartieGagner()
-        {
-            partieGagner = true;
         }
     }
 }

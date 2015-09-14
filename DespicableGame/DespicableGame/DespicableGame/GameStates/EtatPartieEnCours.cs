@@ -64,8 +64,8 @@ namespace DespicableGame.GameStates
 
             if (LevelLoader.AugementerLevel(1) == 9)
             {
-                DespicableGame.etatDeJeu = new EtatMenu();
-                ((EtatMenu)DespicableGame.etatDeJeu).PartieGagner();
+                DespicableGame.etatDeJeu = new EtatSauvegarderScore(Pointage.GetInstance().GetTotalPointage().ToString());
+                ((EtatSauvegarderScore)DespicableGame.etatDeJeu).PartieGagner();
                 DespicableGame.etatDeJeu.LoadContent(content);
                 LevelLoader.Recommencer();
             }
@@ -141,10 +141,10 @@ namespace DespicableGame.GameStates
                 }
                 else
                 {
-                    LevelLoader.Recommencer();
-                    DespicableGame.etatDeJeu = new EtatMenu();
-                    ((EtatMenu)DespicableGame.etatDeJeu).PartiePerdu();
+                    DespicableGame.etatDeJeu = new EtatSauvegarderScore(Pointage.GetInstance().GetTotalPointage().ToString());
+                    ((EtatSauvegarderScore)DespicableGame.etatDeJeu).PartiePerdu();
                     DespicableGame.etatDeJeu.LoadContent(content);
+                    LevelLoader.Recommencer();
                 }
                 updateObjets();
             }
@@ -402,8 +402,8 @@ namespace DespicableGame.GameStates
             }
 
             //Dessiner le score
-            _spriteBatch.DrawString(content.Load<SpriteFont>("Font\\MainFont"), "Score: " + Pointage.GetInstance().GetTotalPointage(), new Vector2(450, 0), Color.Black);
-            _spriteBatch.DrawString(content.Load<SpriteFont>("Font\\MainFont"), "Badges", new Vector2(1000, 50), Color.Black);
+            _spriteBatch.DrawString(content.Load<SpriteFont>("Font\\SecondFont"), "Score: " + Pointage.GetInstance().GetTotalPointage(), new Vector2(450, 0), Color.Black);
+            _spriteBatch.DrawString(content.Load<SpriteFont>("Font\\SecondFont"), "Badges", new Vector2(1000, 50), Color.Black);
 
 
                 //Draw de la Police
