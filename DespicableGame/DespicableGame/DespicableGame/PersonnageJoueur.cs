@@ -19,6 +19,8 @@ namespace DespicableGame
         public int counterLegendaire;
         public Texture2D spriteJoueurReserve;
         public int modificateurVitese;
+        private bool estToucher;
+
         public PersonnageJoueur(Texture2D dessin, Vector2 position, Case ActualCase)
             : base(dessin, position, ActualCase)
         {
@@ -28,6 +30,7 @@ namespace DespicableGame
             delaiProchainContact = new TimeSpan(0, 0, 0, 1, 500);
             pointsVie = 3;
             estPokemonLegendaire = false;
+            estToucher = false;
             counterLegendaire = 0;
             Destination = null;
             badgesAmasse = new List<Badge>();
@@ -41,7 +44,10 @@ namespace DespicableGame
         public override void Mouvement()
         {
             if (DateTime.Now - dernierContact >= delaiProchainContact)
+            {
+                estToucher = false;
                 modificateurVitese = 1;
+            }
 
             if (Destination != null)
             {
@@ -53,6 +59,8 @@ namespace DespicableGame
                     derniereCase = ActualCase;
                     ActualCase = Destination;
                     Destination = null;
+                    if(estToucher)
+                        modificateurVitese = 2;
                 }
             }
 
@@ -105,7 +113,7 @@ namespace DespicableGame
                 {
                     dernierContact = DateTime.Now;
                     pointsVie--;
-                    modificateurVitese = 2;
+                    estToucher = true;
                     Pointage.GetInstance().ReinitialiserSerie();
                     Pointage.GetInstance().RetirerPoints(200);
                     if (pointsVie == 0)
