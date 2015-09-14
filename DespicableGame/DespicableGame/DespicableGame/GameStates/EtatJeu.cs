@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Content;
 
 namespace DespicableGame.GameStates
 {
-    public interface EtatJeu
+    public interface EtatJeu 
     {
         void LoadContent(ContentManager _content);
 
