@@ -82,7 +82,7 @@ namespace DespicableGame
         {
             List<PersonnageNonJoueur> ennemis = new List<PersonnageNonJoueur>();
 
-            for (int i = 0; i < 1 + level / 3; i++)
+            for (int i = 0; i < 3 + level / 3; i++)
             {
                 ennemis.Add(new PersonnageNonJoueur(content.Load<Texture2D>("Sprites\\RocketGrunt"),
                     new Vector2(labyrinthe.GetCase(i, i).GetPosition().X, labyrinthe.GetCase(i, i).GetPosition().Y),
