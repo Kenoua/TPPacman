@@ -407,8 +407,8 @@ namespace DespicableGame.GameStates
             }
 
             //Dessiner le score
-            _spriteBatch.DrawString(content.Load<SpriteFont>("Font\\MainFont"), "Score: " + Pointage.GetInstance().GetTotalPointage(), new Vector2(450, 0), Color.Black);
-            _spriteBatch.DrawString(content.Load<SpriteFont>("Font\\MainFont"), "Badges", new Vector2(1000, 50), Color.Black);
+            _spriteBatch.DrawString(content.Load<SpriteFont>("Font\\SecondFont"), "Score: " + Pointage.GetInstance().GetTotalPointage(), new Vector2(450, 0), Color.Black);
+            _spriteBatch.DrawString(content.Load<SpriteFont>("Font\\SecondFont"), "Badges", new Vector2(1000, 50), Color.Black);
 
 
                 //Draw de la Police
