@@ -99,6 +99,8 @@
     <Compile Include="DespicableGame.cs" />
     <Compile Include="Teleporteur.cs" />
     <Compile Include="XMLCommandsReader.cs" />
+    <Compile Include="XMLScoreReader.cs" />
+    <Compile Include="XMLScoreWriter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />
