@@ -1,13 +1,13 @@
-//﻿using System;
+﻿//using System;
 //using System.Collections.Generic;
 //using System.Linq;
 //using System.Text;
 //using System.Xml;
 
-//namespace DespicableGame
+//namespace Exercice5
 //{
-////    /// <summary>
-////    /// Class that is able to read a XML file.
+//    /// <summary>
+//    /// Class that is able to read a XML file.
 //    /// </summary>
 //    public class XMLScoreReader
 //    {
