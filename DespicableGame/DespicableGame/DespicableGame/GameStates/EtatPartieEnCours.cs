@@ -38,6 +38,7 @@ namespace DespicableGame.GameStates
         Texture2D murVertical;
 
         Texture2D warpEntree;
+        Texture2D background;
         Vector2 warpEntreePos;
 
         Texture2D[] warpSorties = new Texture2D[4];
@@ -75,6 +76,7 @@ namespace DespicableGame.GameStates
 
             murHorizontal = content.Load<Texture2D>("Sprites\\Hwall");
             murVertical = content.Load<Texture2D>("Sprites\\Vwall");
+            background = content.Load<Texture2D>("Sprites\\background");
 
             // TODO: use this.Content to load your game content here
             Gru = new PersonnageJoueur
@@ -337,6 +339,8 @@ namespace DespicableGame.GameStates
 
         public void Draw(SpriteBatch _spriteBatch)
         {
+            //Draw Background
+            _spriteBatch.Draw(background, new Vector2(0,0), Color.White);
 
             //Draw de chacune des cases
             for (int i = 0; i < Labyrinthe.LARGEUR; i++)

@@ -97,6 +97,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="DespicableGame.cs" />
+    <Compile Include="Snorlax.cs" />
     <Compile Include="Teleporteur.cs" />
     <Compile Include="XMLCommandsReader.cs" />
     <Compile Include="XMLScoreReader.cs" />
