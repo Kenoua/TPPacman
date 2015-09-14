@@ -98,6 +98,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="DespicableGame.cs" />
     <Compile Include="Snorlax.cs" />
+    <Compile Include="SnorlaxStates\EtatDeplacement.cs" />
+    <Compile Include="SnorlaxStates\EtatSnorlax.cs" />
+    <Compile Include="SnorlaxStates\EtatSommeil.cs" />
     <Compile Include="Teleporteur.cs" />
     <Compile Include="XMLCommandsReader.cs" />
     <Compile Include="XMLScoreReader.cs" />
