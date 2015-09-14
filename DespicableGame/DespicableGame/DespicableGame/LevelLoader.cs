@@ -70,7 +70,8 @@ namespace DespicableGame
         public static List<MasterBall> ChargerMasterballs()
         {
             List<MasterBall> masterBalls = new List<MasterBall>();
-            for (int i = 0; i < 2; i++)
+
+            for (int i = 0; i < level/3+1; i++)
             {
                 int x = -1;
                 int y = -1;
