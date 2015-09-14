@@ -10,17 +10,19 @@ namespace DespicableGame
     {
         private EnemyStates.EtatEnnemi etatPresent;
         private Case positionJoueur;
+        private Case dernierePositionJoueur;
         public Case caseSnorlax;
 
         public PersonnageNonJoueur(Texture2D dessin, Vector2 position, Case ActualCase)
             : base(dessin, position, ActualCase)
         {
             positionJoueur = null;
+            dernierePositionJoueur = null;
             directionArriere = -1;
             pointsVie = 1;
             dernierContact = DateTime.Now;
             delaiProchainContact = new TimeSpan(0, 0, 0, 2, 500);
-            etatPresent = new EnemyStates.EtatAleatoire(this);
+            etatPresent = new EnemyStates.EtatApeurer(this);
             caseSnorlax = new Case(0,-1,-1);
             Destination = MouvementIA(ActualCase);
         }
@@ -34,6 +36,12 @@ namespace DespicableGame
         {
             get { return positionJoueur; }
             set { positionJoueur = value; }
+        }
+
+        public Case DernierePositionJoueur
+        {
+            get { return dernierePositionJoueur; }
+            set { dernierePositionJoueur = value; }
         }
 
         public override void Mouvement()
@@ -120,6 +128,7 @@ namespace DespicableGame
             if (joueur != null)
             {
                 positionJoueur = joueur;
+                dernierePositionJoueur = joueur;
                 return joueur;
             }
             else
@@ -128,6 +137,7 @@ namespace DespicableGame
                 if (joueur != null)
                 {
                     positionJoueur = joueur;
+                    dernierePositionJoueur = joueur;
                     return joueur;
                 }
                 else
@@ -136,6 +146,7 @@ namespace DespicableGame
                     if (joueur != null)
                     {
                         positionJoueur = joueur;
+                        dernierePositionJoueur = joueur;
                         return joueur;
                     }
                     else
@@ -144,6 +155,7 @@ namespace DespicableGame
                         if (joueur != null)
                         {
                             positionJoueur = joueur;
+                            dernierePositionJoueur = joueur;
                             return joueur;
                         }
                     }
