@@ -11,11 +11,12 @@ namespace DespicableGame.GameStates
 {
     class EtatPause : EtatJeu
     {
+
         private EtatPartieEnCours dernierePartieEnCours;
         protected ContentManager content;
         protected InputHandler input;
         private bool exit = false;
-        private readonly int NB_OPTION = 2;
+        private readonly int NB_OPTION = 3;
         private int optionSelectionner = 0;
         private string[] textesMenu;
 
@@ -24,7 +25,8 @@ namespace DespicableGame.GameStates
             content = _content;
             textesMenu = new string[NB_OPTION];
             textesMenu[0] = "Resume";
-            textesMenu[1] = "Exit";
+            textesMenu[1] = "Retour au menu";
+            textesMenu[2] = "Quitter";
             input = DespicableGame.input;
         }
 
@@ -108,6 +110,13 @@ namespace DespicableGame.GameStates
 
             if (optionSelectionner == 1)
             {
+                LevelLoader.Recommencer();
+                DespicableGame.etatDeJeu = new EtatMenu();
+                DespicableGame.etatDeJeu.LoadContent(content);
+            }
+
+            if (optionSelectionner == 2)
+            {
                 exit = true;
             }
         }
@@ -121,7 +130,7 @@ namespace DespicableGame.GameStates
             
             dernierePartieEnCours.Draw(_spriteBatch);
             Color couleurTexte;
-
+         
             for (int i = 0; i < NB_OPTION; i++)
             {
                 couleurTexte = Color.Gray;
