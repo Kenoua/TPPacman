@@ -62,8 +62,8 @@ namespace DespicableGame.GameStates
 
             if (LevelLoader.AugementerLevel(1) == 9)
             {
-                DespicableGame.etatDeJeu = new EtatSauvegarderScore(Pointage.GetInstance().GetTotalPointage().ToString());
-                ((EtatSauvegarderScore)DespicableGame.etatDeJeu).PartieGagner();
+                DespicableGame.etatDeJeu = new EtatMenu();
+                ((EtatMenu)DespicableGame.etatDeJeu).PartieGagner();
                 DespicableGame.etatDeJeu.LoadContent(content);
                 LevelLoader.Recommencer();
             }
@@ -133,10 +133,10 @@ namespace DespicableGame.GameStates
                 }
                 else
                 {
-                    DespicableGame.etatDeJeu = new EtatSauvegarderScore(Pointage.GetInstance().GetTotalPointage().ToString());
-                    ((EtatSauvegarderScore)DespicableGame.etatDeJeu).PartiePerdu();
-                    DespicableGame.etatDeJeu.LoadContent(content);
                     LevelLoader.Recommencer();
+                    DespicableGame.etatDeJeu = new EtatMenu();
+                    ((EtatMenu)DespicableGame.etatDeJeu).PartiePerdu();
+                    DespicableGame.etatDeJeu.LoadContent(content);
                 }
                 updateObjets();
             }
