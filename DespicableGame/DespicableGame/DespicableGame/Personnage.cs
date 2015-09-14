@@ -8,6 +8,8 @@ namespace DespicableGame
 {
     public abstract class Personnage
     {
+        private const int VITESSE = 4;
+
         protected Texture2D dessin;
         protected Vector2 position;
         protected bool mort;
@@ -23,6 +25,7 @@ namespace DespicableGame
         public Case Destination { get; set; }
         public int VitesseX { get; set; }
         public int VitesseY { get; set; }
+        public int Vitesse { get { return VITESSE; }}
 
         public Personnage(Texture2D sprite, Vector2 position, Case actualCase)
         {

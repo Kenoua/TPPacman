@@ -13,8 +13,6 @@ namespace DespicableGame.GameStates
 {
     public class EtatPartieEnCours : EtatJeu
     {
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
         InputHandler input;
 
         public const int SCREENWIDTH = 1280;
@@ -44,13 +42,6 @@ namespace DespicableGame.GameStates
         Texture2D[] warpSorties = new Texture2D[4];
         Vector2[] warpSortiesPos = new Vector2[4];
 
-        //VITESSE doit être un diviseur entier de 64
-        public const int VITESSE = 4;
-
-        //Position de départ de Gru
-        public const int DEPART_X = 6;
-        public const int DEPART_Y = 7;
-
         private Labyrinthe labyrinthe;
 
         private bool exit = false;
@@ -79,12 +70,7 @@ namespace DespicableGame.GameStates
             background = content.Load<Texture2D>("Sprites\\background");
 
             // TODO: use this.Content to load your game content here
-            Gru = new PersonnageJoueur
-                (
-                content.Load<Texture2D>("Sprites\\RedPlayer"),
-                new Vector2(labyrinthe.GetCase(DEPART_X, DEPART_Y).GetPosition().X, labyrinthe.GetCase(DEPART_X, DEPART_Y).GetPosition().Y),
-                labyrinthe.GetCase(DEPART_X, DEPART_Y)
-                );
+            Gru = LevelLoader.ChargerPersonnage();
 
 
             Polices = LevelLoader.ChargerEnnemis();
@@ -261,22 +247,22 @@ namespace DespicableGame.GameStates
                 }
                 else if (input.IsInputDown(InputHandler.touchesClavier[0]))
                 {
-                    Gru.VerifierMouvement(Gru.ActualCase.CaseHaut, 0, -VITESSE);
+                    Gru.VerifierMouvement(Gru.ActualCase.CaseHaut, 0, -Gru.Vitesse);
                 }
 
                 else if (input.IsInputDown(InputHandler.touchesClavier[1]))
                 {
-                    Gru.VerifierMouvement(Gru.ActualCase.CaseBas, 0, VITESSE);
+                    Gru.VerifierMouvement(Gru.ActualCase.CaseBas, 0, Gru.Vitesse);
                 }
 
                 else if (input.IsInputDown(InputHandler.touchesClavier[2]))
                 {
-                    Gru.VerifierMouvement(Gru.ActualCase.CaseGauche, -VITESSE, 0);
+                    Gru.VerifierMouvement(Gru.ActualCase.CaseGauche, -Gru.Vitesse, 0);
                 }
 
                 else if (input.IsInputDown(InputHandler.touchesClavier[3]))
                 {
-                    Gru.VerifierMouvement(Gru.ActualCase.CaseDroite, VITESSE, 0);
+                    Gru.VerifierMouvement(Gru.ActualCase.CaseDroite, Gru.Vitesse, 0);
                 }
             }
         }
@@ -310,22 +296,22 @@ namespace DespicableGame.GameStates
                 }
                 else if (input.GetGamePadJoystick().Left.Y == 1)
                 {
-                    Gru.VerifierMouvement(Gru.ActualCase.CaseHaut, 0, -VITESSE);
+                    Gru.VerifierMouvement(Gru.ActualCase.CaseHaut, 0, -Gru.Vitesse);
                 }
 
                 else if (input.GetGamePadJoystick().Left.Y == -1)
                 {
-                    Gru.VerifierMouvement(Gru.ActualCase.CaseBas, 0, VITESSE);
+                    Gru.VerifierMouvement(Gru.ActualCase.CaseBas, 0, Gru.Vitesse);
                 }
 
                 else if (input.GetGamePadJoystick().Left.X == -1)
                 {
-                    Gru.VerifierMouvement(Gru.ActualCase.CaseGauche, -VITESSE, 0);
+                    Gru.VerifierMouvement(Gru.ActualCase.CaseGauche, -Gru.Vitesse, 0);
                 }
 
                 else if (input.GetGamePadJoystick().Left.X == 1)
                 {
-                    Gru.VerifierMouvement(Gru.ActualCase.CaseDroite, VITESSE, 0);
+                    Gru.VerifierMouvement(Gru.ActualCase.CaseDroite, Gru.Vitesse, 0);
                 }
             }
         }

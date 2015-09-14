@@ -31,7 +31,7 @@ namespace DespicableGame.GameStates
             XMLScoreReader reader = new XMLScoreReader();
             reader.Load("Scores.xml");
             scores = reader.GetScores();
-            arrangeTopList();
+            TrierLaListe();
         }
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace DespicableGame.GameStates
         /// Arranges the list so the scores are written from best to worse
         /// using bubble sorting.
         /// </summary>
-        public void arrangeTopList()
+        private void TrierLaListe()
         {
 
             Score temp;
