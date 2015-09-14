@@ -9,12 +9,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace DespicableGame.GameStates
 {
-    /// <summary>
-    /// Class that defines a state for the game.
-    /// LeaderboardState will display the highest scores
-    /// of different players.
-    /// </summary>
-    public class EtatClassement : EtatJeu
+    class EtatClassement : EtatJeu
     {
         protected ContentManager content;
         protected InputHandler input;
@@ -36,7 +31,7 @@ namespace DespicableGame.GameStates
             XMLScoreReader reader = new XMLScoreReader();
             reader.Load("Scores.xml");
             scores = reader.GetScores();
-            TrierLaListe();
+            arrangeTopList();
         }
 
         /// <summary>
@@ -44,14 +39,14 @@ namespace DespicableGame.GameStates
         /// </summary>
         public void Update()
         {
-            
+
         }
 
         /// <summary>
         /// Arranges the list so the scores are written from best to worse
         /// using bubble sorting.
         /// </summary>
-        public void TrierLaListe()
+        public void arrangeTopList()
         {
 
             Score temp;
@@ -87,13 +82,13 @@ namespace DespicableGame.GameStates
         /// <param name="_spriteBatch">The _sprite batch.</param>
         public void Draw(SpriteBatch _spriteBatch)
         {
-            _spriteBatch.DrawString(content.Load<SpriteFont>("Font\\MainFont"), "Nom", new Vector2(300, 0), Color.Black);
-            _spriteBatch.DrawString(content.Load<SpriteFont>("Font\\MainFont"), "Pointage", new Vector2(700, 0), Color.Black);
+            _spriteBatch.DrawString(content.Load<SpriteFont>("Font\\MainFont"), "Joueur", new Vector2(300, 0), Color.White);
+            _spriteBatch.DrawString(content.Load<SpriteFont>("Font\\MainFont"), "Pointage", new Vector2(700, 0), Color.White);
 
             for (int i = 0; i < scores.Count; i++)
             {
-                _spriteBatch.DrawString(content.Load<SpriteFont>("Font\\MainFont"), scores[i].name, new Vector2(300, 100 + 100 * i), Color.Black);
-                _spriteBatch.DrawString(content.Load<SpriteFont>("Font\\MainFont"), scores[i].score.ToString(), new Vector2(700, 100 + 100 * i), Color.Black);
+                _spriteBatch.DrawString(content.Load<SpriteFont>("Font\\MainFont"), scores[i].name, new Vector2(300, 100 + 100 * i), Color.White);
+                _spriteBatch.DrawString(content.Load<SpriteFont>("Font\\MainFont"), scores[i].score.ToString(), new Vector2(700, 100 + 100 * i), Color.White);
             }
         }
 
@@ -107,3 +102,4 @@ namespace DespicableGame.GameStates
         }
     }
 }
+

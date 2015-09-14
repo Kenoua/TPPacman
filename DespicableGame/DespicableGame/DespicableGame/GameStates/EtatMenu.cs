@@ -17,11 +17,9 @@ namespace DespicableGame.GameStates
         protected ContentManager content;
         protected InputHandler input;
         private bool exit = false;
-        private readonly int NB_OPTION = 2;
+        private readonly int NB_OPTION = 3;
         private int optionSelectionner = 0;
         private string[] textesMenu;
-        private bool partiePerdu = false;
-        private bool partieGagner = false;
         private SoundEffect menuMusique;
         private SoundEffectInstance menuMusiqueInstance;
 
@@ -31,7 +29,8 @@ namespace DespicableGame.GameStates
             content = _content;
             textesMenu = new string[NB_OPTION];
             textesMenu[0] = "Play";
-            textesMenu[1] = "Exit";
+            textesMenu[1] = "Classement";
+            textesMenu[2] = "Exit";
             input = DespicableGame.input;
 
       
@@ -112,12 +111,18 @@ namespace DespicableGame.GameStates
         {
             if (optionSelectionner == 0)
             {
-                menuMusiqueInstance.Stop();
+                //LOLOLOLOLOLOLOL menuMusiqueInstance.Stop();
                 DespicableGame.etatDeJeu = new EtatPartieEnCours();
                 DespicableGame.etatDeJeu.LoadContent(content);
             }
 
             if (optionSelectionner == 1)
+            {
+                DespicableGame.etatDeJeu = new EtatClassement();
+                DespicableGame.etatDeJeu.LoadContent(content);
+            }
+
+            if (optionSelectionner == 2)
             {
                 exit = true;
             }
@@ -127,30 +132,14 @@ namespace DespicableGame.GameStates
             return exit;
         }
 
-        public void PartiePerdu()
-        {
-            partiePerdu = true;
-        }
-
-        public void PartieGagner()
-        {
-            partieGagner = true;
-        }
-
         public void Draw(SpriteBatch _spriteBatch)
         {
             _spriteBatch.Draw(content.Load<Texture2D>("Sprites\\titleScreen"), Vector2.Zero, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
             Color couleurTexte;
 
-            if(partiePerdu)
-                _spriteBatch.DrawString(content.Load<SpriteFont>("Font\\MainFont"), "Game Over", new Vector2(550, 290), Color.Red);
-
-            if (partieGagner)
-                _spriteBatch.DrawString(content.Load<SpriteFont>("Font\\MainFont"), "Congratulations! You are now a Pokemon Master!", new Vector2(100, 290), Color.Gold);
-
             for (int i = 0; i < NB_OPTION; i++)
             {
-                couleurTexte = Color.White;
+                couleurTexte = Color.Gray;
                 if (optionSelectionner == i)
                     couleurTexte = Color.Blue;
                 _spriteBatch.DrawString(content.Load<SpriteFont>("Font\\MainFont"), textesMenu[i], new Vector2(800, 400 + 100 * i), couleurTexte);
