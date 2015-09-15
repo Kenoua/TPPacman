@@ -8,6 +8,9 @@ using Microsoft.Xna.Framework.Content;
 
 namespace DespicableGame.GameStates
 {
+    /// <summary>
+    /// Interface qui définit les différents états d'une fenêtre de jeu.
+    /// </summary>
     public interface EtatJeu 
     {
         void LoadContent(ContentManager _content);

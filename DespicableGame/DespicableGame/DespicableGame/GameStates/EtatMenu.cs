@@ -12,6 +12,9 @@ using Microsoft.Xna.Framework.Audio;
 
 namespace DespicableGame.GameStates
 {
+    /// <summary>
+    /// État du jeu qui définit un menu dans la fenêtre de jeu.
+    /// </summary>
     class EtatMenu : EtatJeu
     {
         protected ContentManager content;
@@ -24,6 +27,10 @@ namespace DespicableGame.GameStates
         private SoundEffectInstance menuMusiqueInstance;
 
 
+        /// <summary>
+        /// Loads the content.
+        /// </summary>
+        /// <param name="_content">The _content.</param>
         public void LoadContent(ContentManager _content)
         {
             content = _content;
@@ -41,11 +48,17 @@ namespace DespicableGame.GameStates
             menuMusiqueInstance.Play();
         }
 
+        /// <summary>
+        /// Updates this instance.
+        /// </summary>
         public void Update()
         {
 
         }
 
+        /// <summary>
+        /// Handles the input.
+        /// </summary>
         public void HandleInput()
         {
             if (input.IsGamePadOneConnected())
@@ -68,6 +81,9 @@ namespace DespicableGame.GameStates
 
 
         }
+        /// <summary>
+        /// Handles the keyboard input.
+        /// </summary>
         private void HandleKeyboardInput()
         {
             if (input.IsInputPressed(Keys.Escape))
@@ -88,6 +104,9 @@ namespace DespicableGame.GameStates
                 ChoisirOption();
             }
         }
+        /// <summary>
+        /// Handles the game pad input.
+        /// </summary>
         private void HandleGamePadInput()
         {
             if (input.IsInputPressed(Buttons.Back))
@@ -107,11 +126,13 @@ namespace DespicableGame.GameStates
             }
         }
 
+        /// <summary>
+        /// Choisirs the option.
+        /// </summary>
         private void ChoisirOption()
         {
             if (optionSelectionner == 0)
             {
-                //LOLOLOLOLOLOLOL menuMusiqueInstance.Stop();
                 DespicableGame.etatDeJeu = new EtatPartieEnCours();
                 DespicableGame.etatDeJeu.LoadContent(content);
             }
@@ -127,11 +148,19 @@ namespace DespicableGame.GameStates
                 exit = true;
             }
         }
+        /// <summary>
+        /// Determines whether this instance has exited.
+        /// </summary>
+        /// <returns></returns>
         public bool HasExited()
         {
             return exit;
         }
 
+        /// <summary>
+        /// Draws the specified _sprite batch.
+        /// </summary>
+        /// <param name="_spriteBatch">The _sprite batch.</param>
         public void Draw(SpriteBatch _spriteBatch)
         {
             _spriteBatch.Draw(content.Load<Texture2D>("Sprites\\titleScreen"), Vector2.Zero, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);

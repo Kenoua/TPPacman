@@ -8,6 +8,9 @@ using Microsoft.Xna.Framework.Content;
 
 namespace DespicableGame
 {
+    /// <summary>
+    /// Classe statique qui se charge d'initialiser chaque niveau.
+    /// </summary>
     public class LevelLoader
     {
         private static ContentManager content;
@@ -17,18 +20,32 @@ namespace DespicableGame
         const int DEPART_X = 6;
         const int DEPART_Y = 7;
 
+        /// <summary>
+        /// Sets the content.
+        /// </summary>
+        /// <param name="_content">The _content.</param>
+        /// <param name="_labyrinthe">The _labyrinthe.</param>
         public static void SetContent(ContentManager _content, Labyrinthe _labyrinthe)
         {
             content = _content;
             labyrinthe = _labyrinthe;
         }
 
+        /// <summary>
+        /// Augementers the level.
+        /// </summary>
+        /// <param name="_level">The _level.</param>
+        /// <returns></returns>
         public static int AugementerLevel(int _level)
         {
             level += _level;
             return level;
         }
 
+        /// <summary>
+        /// Chargers the personnage.
+        /// </summary>
+        /// <returns></returns>
         public static PersonnageJoueur ChargerPersonnage()
         {
             return new PersonnageJoueur
@@ -39,6 +56,11 @@ namespace DespicableGame
                 );
         }
 
+        /// <summary>
+        /// Chargers the badges.
+        /// @see verifierCaseNonValide
+        /// </summary>
+        /// <returns></returns>
         public static List<Badge> ChargerBadges()
         {
             List<Badge> badges = new List<Badge>();
@@ -59,6 +81,11 @@ namespace DespicableGame
             return badges;
         }
 
+        /// <summary>
+        /// Chargers the pokeballs.
+        /// @see verifierCaseNonValide
+        /// </summary>
+        /// <returns></returns>
         public static List<Pokeball> ChargerPokeballs()
         {
             List<Pokeball> pokeballs = new List<Pokeball>();
@@ -79,6 +106,11 @@ namespace DespicableGame
             return pokeballs;
         }
 
+        /// <summary>
+        /// Chargers the masterballs.
+        /// @see verifierCaseNonValide
+        /// </summary>
+        /// <returns></returns>
         public static List<MasterBall> ChargerMasterballs()
         {
             List<MasterBall> masterBalls = new List<MasterBall>();
@@ -101,6 +133,11 @@ namespace DespicableGame
         }
 
 
+        /// <summary>
+        /// Chargers the fin niveau.
+        /// @see verifierCaseNonValide
+        /// </summary>
+        /// <returns></returns>
         public static Vector2 ChargerFinNiveau()
         {
             Vector2 position;
@@ -112,6 +149,11 @@ namespace DespicableGame
             return position;
         }
 
+        /// <summary>
+        /// Chargers the ennemis.
+        /// @see verifierCaseNonValide
+        /// </summary>
+        /// <returns></returns>
         public static List<PersonnageNonJoueur> ChargerEnnemis()
         {
             List<PersonnageNonJoueur> ennemis = new List<PersonnageNonJoueur>();
@@ -133,12 +175,45 @@ namespace DespicableGame
             return ennemis;
         }
 
+
+        /// <summary>
+        /// Recommencers this instance.
+        /// </summary>
+
+        public static List<Snorlax> ChargerSnorlax()
+        {
+            List<Snorlax> snorlaxs = new List<Snorlax>();
+
+            for (int i = 0; i < 4 + level / 3; i++)
+            {
+                int x = -1;
+                int y = -1;
+                do
+                {
+                    x = GenerateurChiffreAleatoire.NouveauChiffre(14);
+                    y = GenerateurChiffreAleatoire.NouveauChiffre(10);
+                } while (verifierCaseNonValide(x, y));
+
+                snorlaxs.Add(new Snorlax(content.Load<Texture2D>("Sprites\\Snorlax"),
+                    new Vector2(labyrinthe.GetCase(x, y).GetPosition().X, labyrinthe.GetCase(x, y).GetPosition().Y),
+                    labyrinthe.GetCase(x, y)));
+            }
+            return snorlaxs;
+        }
+
         public static void Recommencer()
         {
             Pointage.GetInstance().RetourZero();
             level = 0;
         }
 
+        /// <summary>
+        /// Vérifie si les coordonnnées de la case choisie
+        /// tombe à l'intérieur des zones de départ des officiers.
+        /// </summary>
+        /// <param name="x">The x.</param>
+        /// <param name="y">The y.</param>
+        /// <returns></returns>
         private static bool verifierCaseNonValide(int x, int y)
         {
             bool caseNonValide = false;

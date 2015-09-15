@@ -9,6 +9,9 @@ using Microsoft.Xna.Framework.Input;
 
 namespace DespicableGame.GameStates
 {
+    /// <summary>
+    /// État du jeu qui permet de mettre une partie en pause.
+    /// </summary>
     class EtatPause : EtatJeu
     {
 
@@ -20,6 +23,10 @@ namespace DespicableGame.GameStates
         private int optionSelectionner = 0;
         private string[] textesMenu;
 
+        /// <summary>
+        /// Loads the content.
+        /// </summary>
+        /// <param name="_content">The _content.</param>
         public void LoadContent(ContentManager _content)
         {
             content = _content;
@@ -30,11 +37,18 @@ namespace DespicableGame.GameStates
             input = DespicableGame.input;
         }
 
+        /// <summary>
+        /// Updates this instance.
+        /// </summary>
         public void Update()
         {
 
         }
 
+        /// <summary>
+        /// Sets the partie inachever.
+        /// </summary>
+        /// <param name="_etatPartieEnCours">The _etat partie en cours.</param>
         public void setPartieInachever(EtatPartieEnCours _etatPartieEnCours)
         {
             dernierePartieEnCours = _etatPartieEnCours;
@@ -62,6 +76,9 @@ namespace DespicableGame.GameStates
 
 
         }
+        /// <summary>
+        /// Handles the keyboard input.
+        /// </summary>
         private void HandleKeyboardInput()
         {
             if (input.IsInputPressed(Keys.Escape))
@@ -82,6 +99,9 @@ namespace DespicableGame.GameStates
                 choisirOption();
             }
         }
+        /// <summary>
+        /// Handles the game pad input.
+        /// </summary>
         private void HandleGamePadInput()
         {
             if (input.IsInputPressed(Buttons.Back))
@@ -101,6 +121,9 @@ namespace DespicableGame.GameStates
             }
         }
 
+        /// <summary>
+        /// Choisirs the option.
+        /// </summary>
         private void choisirOption()
         {
             if (optionSelectionner == 0)
@@ -120,11 +143,19 @@ namespace DespicableGame.GameStates
                 exit = true;
             }
         }
+        /// <summary>
+        /// Determines whether this instance has exited.
+        /// </summary>
+        /// <returns></returns>
         public bool HasExited()
         {
             return exit;
         }
 
+        /// <summary>
+        /// Draws the specified _sprite batch.
+        /// </summary>
+        /// <param name="_spriteBatch">The _sprite batch.</param>
         public void Draw(SpriteBatch _spriteBatch)
         {
             

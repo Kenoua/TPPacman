@@ -9,6 +9,10 @@ using Microsoft.Xna.Framework.Input;
 
 namespace DespicableGame.GameStates
 {
+    /// <summary>
+    /// État du jeu permettant d'afficher les pointages
+    /// précédents dans la fenêtre de jeu.
+    /// </summary>
     class EtatClassement : EtatJeu
     {
         protected ContentManager content;
@@ -20,7 +24,7 @@ namespace DespicableGame.GameStates
         /// <summary>
         /// Loads the content.
         /// @see GetScores
-        /// @see ArrangeTopList
+        /// @see TrierLaListe
         /// </summary>
         /// <param name="_content">The _content.</param>
         public void LoadContent(ContentManager _content)

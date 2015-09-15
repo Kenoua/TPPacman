@@ -3,12 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace DespicableGame.EnemyStates
+namespace DespicableGame.SnorlaxStates
 {
-    /// <summary>
-    /// Interface qui définit tous les états d'un ennemi.
-    /// </summary>
-    public interface EtatEnnemi
+    public interface EtatSnorlax 
     {
         void Update();
 

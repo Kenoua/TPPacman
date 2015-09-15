@@ -137,6 +137,9 @@ namespace DespicableGame
             base.Draw(gameTime);
         }
 
+        /// <summary>
+        /// Handles the input.
+        /// </summary>
         private void HandleInput()
         {
             etatDeJeu.HandleInput();
