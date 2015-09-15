@@ -13,17 +13,29 @@ using Microsoft.Xna.Framework.Media;
 
 namespace DespicableGame
 {
+    /// <summary>
+    /// Classe qui permet d'aller lire un fichier XML
+    /// pour y rechercher les boutons qui seront utilisés
+    /// pour jouer au jeu.
+    /// </summary>
     public class XMLCommandReader
     {
         private Buttons boutonGamePad;
         private List<Keys> touchesClaviers;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="XMLCommandReader"/> class.
+        /// </summary>
         public XMLCommandReader()
         {
             touchesClaviers = new List<Keys>();
         }
 
 
+        /// <summary>
+        /// Loads the keys. (Keyboard)
+        /// </summary>
+        /// <returns></returns>
         public List<Keys> LoadKeys()
         {
             XmlReader reader = XmlReader.Create("keyboardCommands.xml");
@@ -42,6 +54,10 @@ namespace DespicableGame
             return touchesClaviers;
         }
 
+        /// <summary>
+        /// Loads the button (Gamepad).
+        /// </summary>
+        /// <returns></returns>
         public Buttons LoadButton()
         {
             XmlReader reader = XmlReader.Create("gamepadCommands.xml");

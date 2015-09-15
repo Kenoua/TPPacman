@@ -7,11 +7,22 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace DespicableGame
 {
+    /// <summary>
+    /// Classe qui définit une pokeball comme étant
+    /// un objet du jeu pouvant être ramassé.
+    /// </summary>
     public class Pokeball : Objets
     {
         public BadgeType pokeType;
         public Color pokeColor;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Pokeball"/> class.
+        /// </summary>
+        /// <param name="_pokeType">Type of the _poke.</param>
+        /// <param name="sprite">The sprite.</param>
+        /// <param name="position">The position.</param>
+        /// <param name="actualCase">The actual case.</param>
         public Pokeball(BadgeType _pokeType, Texture2D sprite, Vector2 position, Case actualCase)
             : base(sprite, position, actualCase)
         {
@@ -45,6 +56,9 @@ namespace DespicableGame
             }
         }
 
+        /// <summary>
+        /// Rammassers this instance.
+        /// </summary>
         public override void Rammasser()
         {
             Pointage.GetInstance().AjouterPoints(50);
@@ -52,6 +66,10 @@ namespace DespicableGame
             ActualCase = null;
         }
 
+        /// <summary>
+        /// Draws the specified spritebatch.
+        /// </summary>
+        /// <param name="spritebatch">The spritebatch.</param>
         new public void Draw(SpriteBatch spritebatch)
         {
             

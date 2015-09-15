@@ -9,6 +9,9 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace DespicableGame
 {
+    /// <summary>
+    /// Classe qui définit le personnage qui sera joué par le joueur.
+    /// </summary>
     public class PersonnageJoueur : Personnage
     {
         public List<Badge> badgesAmasse;
@@ -20,8 +23,14 @@ namespace DespicableGame
         public Texture2D spriteJoueurReserve;
         public int modificateurVitese;
         private bool estToucher;
-        
 
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PersonnageJoueur"/> class.
+        /// </summary>
+        /// <param name="dessin">The dessin.</param>
+        /// <param name="position">The position.</param>
+        /// <param name="ActualCase">The actual case.</param>
         public PersonnageJoueur(Texture2D dessin, Vector2 position, Case ActualCase)
             : base(dessin, position, ActualCase)
         {
@@ -41,6 +50,9 @@ namespace DespicableGame
             modificateurVitese = 1;
         }
 
+        /// <summary>
+        /// Mouvements this instance.
+        /// </summary>
         public override void Mouvement()
         {
             if (DateTime.Now - dernierContact >= delaiProchainContact && !estPokemonLegendaire)
@@ -76,6 +88,12 @@ namespace DespicableGame
             }
         }
 
+        /// <summary>
+        /// Verifiers the mouvement.
+        /// </summary>
+        /// <param name="caseDestionation">The case destionation.</param>
+        /// <param name="vitesseX">The vitesse x.</param>
+        /// <param name="vitesseY">The vitesse y.</param>
         public void VerifierMouvement(Case caseDestionation, int vitesseX, int vitesseY)
         {
             //Si la direction choisie n'est pas nulle
@@ -102,11 +120,18 @@ namespace DespicableGame
             }
         }
 
+        /// <summary>
+        /// Ests the mort.
+        /// </summary>
+        /// <returns></returns>
         public override bool EstMort()
         {
             return mort;
         }
 
+        /// <summary>
+        /// Touchers the autre personnage.
+        /// </summary>
         public override void ToucherAutrePersonnage()
         {
             if (!estPokemonLegendaire)
@@ -125,6 +150,11 @@ namespace DespicableGame
             }
         }
 
+        /// <summary>
+        /// Tests the teleporter.
+        /// </summary>
+        /// <param name="laCase">The la case.</param>
+        /// <returns></returns>
         private Case TestTeleporter(Case laCase)
         {
             if (laCase is Teleporteur)
@@ -134,6 +164,11 @@ namespace DespicableGame
             return null;
         }
 
+        /// <summary>
+        /// Checks the snorlax.
+        /// </summary>
+        /// <param name="_case">The _case.</param>
+        /// <returns></returns>
         private bool CheckSnorlax(Case _case)
         {
             if (snorlaxUsed != null)
@@ -147,6 +182,10 @@ namespace DespicableGame
 
         }
 
+        /// <summary>
+        /// Utilises the legendaire.
+        /// </summary>
+        /// <param name="_content">The _content.</param>
         public void UtiliseLegendaire(ContentManager _content)
         {
             counterLegendaire = 300;

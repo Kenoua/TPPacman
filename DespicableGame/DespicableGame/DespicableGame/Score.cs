@@ -6,8 +6,8 @@ using System.Text;
 namespace DespicableGame
 {
     /// <summary>
-    /// Structure that defines a score with
-    /// the value of the score and the name associated
+    /// Structure qui définit un pointage avec un
+    /// nom de joueur et une valeur.
     /// </summary>
     public struct Score
     {

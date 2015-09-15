@@ -6,6 +6,10 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace DespicableGame
 {
+    /// <summary>
+    /// Classe qui définit un personnage n'étant pas joueur
+    /// et qui sera donc complètement géré par l'application
+    /// </summary>
     public class PersonnageNonJoueur : Personnage
     {
         private EnemyStates.EtatEnnemi etatPresent;
@@ -26,28 +30,50 @@ namespace DespicableGame
             Destination = MouvementIA(ActualCase);
         }
 
+        /// <summary>
+        /// Changers the etat.
+        /// </summary>
+        /// <param name="nouvelEtat">The nouvel etat.</param>
         public void ChangerEtat(EnemyStates.EtatEnnemi nouvelEtat)
         {
             etatPresent = nouvelEtat;
         }
 
+        /// <summary>
+        /// Gets or sets the position joueur.
+        /// </summary>
+        /// <value>
+        /// The position joueur.
+        /// </value>
         public Case PositionJoueur
         {
             get { return positionJoueur; }
             set { positionJoueur = value; }
         }
 
+        /// <summary>
+        /// Gets or sets the derniere position joueur.
+        /// </summary>
+        /// <value>
+        /// The derniere position joueur.
+        /// </value>
         public Case DernierePositionJoueur
         {
             get { return dernierePositionJoueur; }
             set { dernierePositionJoueur = value; }
         }
 
+        /// <summary>
+        /// Touchers the autre personnage.
+        /// </summary>
         public override void ToucherAutrePersonnage()
         {
             
         }
 
+        /// <summary>
+        /// Mouvements this instance.
+        /// </summary>
         public override void Mouvement()
         {
             
@@ -77,33 +103,44 @@ namespace DespicableGame
                                 directionArriere -= 4;
                             }
                         }                      
-                        
-
                     }     
                     while(caseSnorlax.Contains(Destination));
-
-           
-                    
                 }
             }
 
         }
 
+        /// <summary>
+        /// Updates this instance.
+        /// </summary>
         public void Update()
         {
             etatPresent.Update();
         }
 
+        /// <summary>
+        /// Ests the mort.
+        /// </summary>
+        /// <returns></returns>
         public override bool EstMort()
         {
             return mort;
         }
 
+        /// <summary>
+        /// Mouvements the ia.
+        /// </summary>
+        /// <param name="AI_Case">a i_ case.</param>
+        /// <returns></returns>
         private Case MouvementIA(Case AI_Case)
         {
             return etatPresent.Mouvement(AI_Case);
         }
 
+        /// <summary>
+        /// Joueurs the en vue.
+        /// </summary>
+        /// <returns></returns>
         public Case JoueurEnVue()
         {
             Case joueur = null;
@@ -148,12 +185,21 @@ namespace DespicableGame
             return joueur;
         }
 
+        /// <summary>
+        /// Attribuer the joueur.
+        /// </summary>
+        /// <param name="joueur">The joueur.</param>
         private void attribuerJoueur(Case joueur)
         {
             positionJoueur = joueur;
             dernierePositionJoueur = joueur;
         }
 
+        /// <summary>
+        /// Regardes vers le haut.
+        /// </summary>
+        /// <param name="_caseVerifier">The _case verifier.</param>
+        /// <returns></returns>
         private Case RegardHaut(Case _caseVerifier)
         {
             if (_caseVerifier != null)
@@ -170,6 +216,11 @@ namespace DespicableGame
             return null;
         }
 
+        /// <summary>
+        /// Regardes vers la droite.
+        /// </summary>
+        /// <param name="_caseVerifier">The _case verifier.</param>
+        /// <returns></returns>
         private Case RegardDroit(Case _caseVerifier)
         {
             if (_caseVerifier != null)
@@ -186,6 +237,11 @@ namespace DespicableGame
             return null;
         }
 
+        /// <summary>
+        /// Regardes vers le  bas.
+        /// </summary>
+        /// <param name="_caseVerifier">The _case verifier.</param>
+        /// <returns></returns>
         private Case RegardBas(Case _caseVerifier)
         {
             if (_caseVerifier != null)
@@ -202,6 +258,11 @@ namespace DespicableGame
             return null;
         }
 
+        /// <summary>
+        /// Regardes vers la gauche.
+        /// </summary>
+        /// <param name="_caseVerifier">The _case verifier.</param>
+        /// <returns></returns>
         private Case RegardGauche(Case _caseVerifier)
         {
             if (_caseVerifier != null)
