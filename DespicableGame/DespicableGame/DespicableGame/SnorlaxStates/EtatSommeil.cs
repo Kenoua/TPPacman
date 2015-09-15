@@ -5,6 +5,9 @@ using System.Text;
 
 namespace DespicableGame.SnorlaxStates
 {
+    /// <summary>
+    /// Définit l'état dans lequel Snorlax est immobile
+    /// </summary>
     class EtatSommeil : EtatSnorlax
     {
         private readonly Snorlax personnage;

@@ -127,7 +127,7 @@ namespace DespicableGame.GameStates
                     }
                     foreach(Snorlax snorlax in Snorlaxs)
                     {
-                        snorlax.setCasesRocket(getRocketCases());
+                        snorlax.SetCasesRocket(getRocketCases());
                         snorlax.Mouvement();
                     }
                 }

@@ -98,7 +98,7 @@ namespace DespicableGame
         /// Sets the cases rocket.
         /// </summary>
         /// <param name="_casesRocket">The _cases rocket.</param>
-        public void setCasesRocket(List<Case> _casesRocket)
+        public void SetCasesRocket(List<Case> _casesRocket)
         {
             listeCasesRocket = _casesRocket;
         }
