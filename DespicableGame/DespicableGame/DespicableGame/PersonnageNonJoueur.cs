@@ -43,6 +43,11 @@ namespace DespicableGame
             set { dernierePositionJoueur = value; }
         }
 
+        public override void ToucherAutrePersonnage()
+        {
+            
+        }
+
         public override void Mouvement()
         {
             
@@ -73,8 +78,13 @@ namespace DespicableGame
                             }
                         }                      
                         
+<<<<<<< HEAD
                     }     
                     while(caseSnorlax.Contains(Destination));
+=======
+                    }
+                    while(CheckSnorlax(Destination));
+>>>>>>> master
            
                     
                 }
@@ -82,6 +92,22 @@ namespace DespicableGame
 
         }
 
+<<<<<<< HEAD
+=======
+        private bool CheckSnorlax(Case _case)
+        {
+            if (caseSnorlax != null && _case!= null)
+            {
+                if ((_case.GetPosition() == caseSnorlax.GetPosition()))
+                {
+                    return true;
+                }
+            }
+            return false;
+
+        }
+
+>>>>>>> master
         public void Update()
         {
             etatPresent.Update();
@@ -90,11 +116,6 @@ namespace DespicableGame
         public override bool EstMort()
         {
             return mort;
-        }
-
-        public override void ToucherAutrePersonnage()
-        {
-            
         }
 
         private Case MouvementIA(Case AI_Case)
@@ -109,39 +130,35 @@ namespace DespicableGame
             if (ActualCase == GameStates.EtatPartieEnCours.Gru.ActualCase)
                 joueur = ActualCase;
 
-            joueur = regardHaut(this.ActualCase.CaseHaut);
+            joueur = RegardHaut(this.ActualCase.CaseHaut);
 
             if (joueur != null)
             {
-                positionJoueur = joueur;
-                dernierePositionJoueur = joueur;
+                attribuerJoueur(joueur);
                 return joueur;
             }
             else
             {
-                joueur = regardDroit(this.ActualCase.CaseDroite);
+                joueur = RegardDroit(this.ActualCase.CaseDroite);
                 if (joueur != null)
                 {
-                    positionJoueur = joueur;
-                    dernierePositionJoueur = joueur;
+                    attribuerJoueur(joueur);
                     return joueur;
                 }
                 else
                 {
-                    joueur = regardBas(this.ActualCase.CaseBas);
+                    joueur = RegardBas(this.ActualCase.CaseBas);
                     if (joueur != null)
                     {
-                        positionJoueur = joueur;
-                        dernierePositionJoueur = joueur;
+                        attribuerJoueur(joueur);
                         return joueur;
                     }
                     else
                     {
-                        joueur = regardGauche(this.ActualCase.CaseGauche);
+                        joueur = RegardGauche(this.ActualCase.CaseGauche);
                         if (joueur != null)
                         {
-                            positionJoueur = joueur;
-                            dernierePositionJoueur = joueur;
+                            attribuerJoueur(joueur);
                             return joueur;
                         }
                     }
@@ -150,7 +167,13 @@ namespace DespicableGame
             return joueur;
         }
 
-        private Case regardHaut(Case _caseVerifier)
+        private void attribuerJoueur(Case joueur)
+        {
+            positionJoueur = joueur;
+            dernierePositionJoueur = joueur;
+        }
+
+        private Case RegardHaut(Case _caseVerifier)
         {
             if (_caseVerifier != null)
             {
@@ -160,13 +183,13 @@ namespace DespicableGame
                 }
                 else if (_caseVerifier.CaseHaut != null)
                 {
-                    return regardHaut(_caseVerifier.CaseHaut);
+                    return RegardHaut(_caseVerifier.CaseHaut);
                 }
             }
             return null;
         }
 
-        private Case regardDroit(Case _caseVerifier)
+        private Case RegardDroit(Case _caseVerifier)
         {
             if (_caseVerifier != null)
             {
@@ -176,13 +199,13 @@ namespace DespicableGame
                 }
                 else if (_caseVerifier.CaseDroite != null)
                 {
-                    return regardDroit(_caseVerifier.CaseDroite);
+                    return RegardDroit(_caseVerifier.CaseDroite);
                 }
             }
             return null;
         }
 
-        private Case regardBas(Case _caseVerifier)
+        private Case RegardBas(Case _caseVerifier)
         {
             if (_caseVerifier != null)
             {
@@ -192,13 +215,13 @@ namespace DespicableGame
                 }
                 else if (_caseVerifier.CaseBas != null)
                 {
-                    return regardBas(_caseVerifier.CaseBas);
+                    return RegardBas(_caseVerifier.CaseBas);
                 }
             }
             return null;
         }
 
-        private Case regardGauche(Case _caseVerifier)
+        private Case RegardGauche(Case _caseVerifier)
         {
             if (_caseVerifier != null)
             {
@@ -208,7 +231,7 @@ namespace DespicableGame
                 }
                 else if (_caseVerifier.CaseGauche != null)
                 {
-                    return regardGauche(_caseVerifier.CaseGauche);
+                    return RegardGauche(_caseVerifier.CaseGauche);
                 }
             }
             return null;

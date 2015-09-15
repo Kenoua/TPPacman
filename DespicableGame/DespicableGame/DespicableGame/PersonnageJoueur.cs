@@ -41,7 +41,6 @@ namespace DespicableGame
             modificateurVitese = 1;
         }
 
-        //Algo assez ordinaire.  Pour que ça fonctionne, la vitesse doit être un diviseur entier de 64, pourrait être à revoir.
         public override void Mouvement()
         {
             if (DateTime.Now - dernierContact >= delaiProchainContact && !estPokemonLegendaire)
@@ -60,7 +59,7 @@ namespace DespicableGame
                     derniereCase = ActualCase;
                     ActualCase = Destination;
                     Destination = null;
-                    if(estToucher)
+                    if (estToucher)
                         modificateurVitese = 2;
                 }
             }
@@ -80,7 +79,11 @@ namespace DespicableGame
         public void VerifierMouvement(Case caseDestionation, int vitesseX, int vitesseY)
         {
             //Si la direction choisie n'est pas nulle
+<<<<<<< HEAD
             if (caseDestionation != null && !caseSnorlax.Contains(caseDestionation))
+=======
+            if (caseDestionation != null && !CheckSnorlax(caseDestionation))
+>>>>>>> master
             {
                 //On vérifie si la case est un téléporteur
                 Case testTeleportation = TestTeleporter(caseDestionation);
@@ -115,7 +118,6 @@ namespace DespicableGame
                     dernierContact = DateTime.Now;
                     pointsVie--;
                     estToucher = true;
-                    Pointage.GetInstance().ReinitialiserSerie();
                     Pointage.GetInstance().RetirerPoints(200);
                     if (pointsVie == 0)
                     {
@@ -134,7 +136,7 @@ namespace DespicableGame
             return null;
         }
 
-        private bool checkSnorlax(Case _case)
+        private bool CheckSnorlax(Case _case)
         {
             if (snorlaxUsed != null)
             {
@@ -147,7 +149,7 @@ namespace DespicableGame
 
         }
 
-        public void utiliseLegendaire(ContentManager _content)
+        public void UtiliseLegendaire(ContentManager _content)
         {
             counterLegendaire = 300;
             modificateurVitese = 2;
@@ -166,8 +168,6 @@ namespace DespicableGame
             {
                 dessin = _content.Load<Texture2D>("Sprites\\Articuno");
             }
-
-
         }
         public void setCasesSnorlax(List<Case> _casesSnorlax)
         {

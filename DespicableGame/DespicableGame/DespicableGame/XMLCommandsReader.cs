@@ -15,8 +15,8 @@ namespace DespicableGame
 {
     public class XMLCommandReader
     {
-        Buttons boutonGamePad;
-        List<Keys> touchesClaviers;
+        private Buttons boutonGamePad;
+        private List<Keys> touchesClaviers;
 
         public XMLCommandReader()
         {

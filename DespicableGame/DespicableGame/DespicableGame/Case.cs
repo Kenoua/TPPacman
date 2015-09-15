@@ -61,7 +61,7 @@ namespace DespicableGame
 
         public const int TAILLE_CASE = 64;
 
-        public const int OFFEST_CASE = 56;
+        public const int OFFSET_CASE = 56;
 
         public const int TAILLE_LIGNE = 8;
 
@@ -141,9 +141,9 @@ namespace DespicableGame
 
             if (IsMurBas())
             {
-                position.Y += OFFEST_CASE;
+                position.Y += OFFSET_CASE;
                 spriteBatch.Draw(horizontale, position, Color.White);
-                position.Y -= OFFEST_CASE;
+                position.Y -= OFFSET_CASE;
             }
 
             if (IsMurGauche())
@@ -153,9 +153,9 @@ namespace DespicableGame
 
             if (IsMurDroit())
             {
-                position.X += OFFEST_CASE;
+                position.X += OFFSET_CASE;
                 spriteBatch.Draw(verticale, position, Color.White);
-                position.X -= OFFEST_CASE;
+                position.X -= OFFSET_CASE;
             }
         }
     }

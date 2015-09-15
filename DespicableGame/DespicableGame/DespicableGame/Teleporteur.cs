@@ -8,8 +8,6 @@ namespace DespicableGame
 {
     class Teleporteur : Case
     {
-        Random r = new Random();
-
         public Teleporteur(Case caseHaut, Case caseBas, Case caseGauche, Case caseDroite)
         {
             this.CaseHaut = caseHaut;
@@ -20,7 +18,7 @@ namespace DespicableGame
 
         public Case Teleport()
         {
-            int choixRandom = r.Next(4);
+            int choixRandom = GenerateurChiffreAleatoire.NouveauChiffre(4);
 
             switch (choixRandom)
             {
