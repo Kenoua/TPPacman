@@ -23,9 +23,7 @@ namespace DespicableGame.GameStates
         private readonly int NB_OPTION = 3;
         private int optionSelectionner = 0;
         private string[] textesMenu;
-        private SoundEffect menuMusique;
-        private SoundEffectInstance menuMusiqueInstance;
-
+       
 
         /// <summary>
         /// Loads the content.
@@ -41,11 +39,7 @@ namespace DespicableGame.GameStates
             input = DespicableGame.input;
 
       
-            menuMusique = content.Load<SoundEffect>("Musique/EcranTitre");
-            menuMusiqueInstance = menuMusique.CreateInstance();
-            menuMusiqueInstance.IsLooped = true;
-            menuMusiqueInstance.Volume = 0.3f;
-            menuMusiqueInstance.Play();
+            
         }
 
         /// <summary>
