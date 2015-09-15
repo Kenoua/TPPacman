@@ -16,16 +16,16 @@ namespace DespicableGame
     /// </summary>
     public class DespicableGame : Microsoft.Xna.Framework.Game
     {
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
-        
+        private GraphicsDeviceManager graphics;
+        private SpriteBatch spriteBatch;
+
         public static InputHandler input;
         public static GameStates.EtatJeu etatDeJeu;
 
         public const int SCREENWIDTH = 1280;
         public const int SCREENHEIGHT = 760;
-        
-                public DespicableGame()
+
+        public DespicableGame()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
@@ -141,6 +141,6 @@ namespace DespicableGame
         {
             etatDeJeu.HandleInput();
             input.Update();
-        }  
+        }
     }
 }

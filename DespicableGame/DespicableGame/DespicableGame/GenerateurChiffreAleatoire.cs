@@ -13,10 +13,5 @@ namespace DespicableGame
         {
             return random.Next(_max);
         }
-
-        public static int NouveauChiffre(int _min, int _max)
-        {
-            return random.Next(_min, _max);
-        }
     }
 }
