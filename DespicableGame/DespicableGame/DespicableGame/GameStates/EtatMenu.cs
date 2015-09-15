@@ -85,7 +85,7 @@ namespace DespicableGame.GameStates
 
             if (input.IsInputPressed(Keys.Space))
             {
-                choisirOption();
+                ChoisirOption();
             }
         }
         private void HandleGamePadInput()
@@ -103,11 +103,11 @@ namespace DespicableGame.GameStates
             }
             if (input.IsInputPressed(Buttons.A))
             {
-                choisirOption();
+                ChoisirOption();
             }
         }
 
-        private void choisirOption()
+        private void ChoisirOption()
         {
             if (optionSelectionner == 0)
             {

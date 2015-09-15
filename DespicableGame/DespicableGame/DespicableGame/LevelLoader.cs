@@ -13,7 +13,9 @@ namespace DespicableGame
         private static ContentManager content;
         private static Labyrinthe labyrinthe;
         private static int level = 0;
-        private static Dictionary<int, int> emplacementsUtiliser;
+
+        const int DEPART_X = 6;
+        const int DEPART_Y = 7;
 
         public static void SetContent(ContentManager _content, Labyrinthe _labyrinthe)
         {
@@ -27,10 +29,20 @@ namespace DespicableGame
             return level;
         }
 
+        public static PersonnageJoueur ChargerPersonnage()
+        {
+            return new PersonnageJoueur
+                (
+                content.Load<Texture2D>("Sprites\\RedPlayer"),
+                new Vector2(labyrinthe.GetCase(DEPART_X, DEPART_Y).GetPosition().X, labyrinthe.GetCase(DEPART_X, DEPART_Y).GetPosition().Y),
+                labyrinthe.GetCase(DEPART_X, DEPART_Y)
+                );
+        }
+
         public static List<Badge> ChargerBadges()
         {
             List<Badge> badges = new List<Badge>();
-            for(int i = 0; i < level; i++)
+            for (int i = 0; i < level; i++)
             {
                 int x = -1;
                 int y = -1;
@@ -40,9 +52,9 @@ namespace DespicableGame
                     y = GenerateurChiffreAleatoire.NouveauChiffre(10);
                 } while (verifierCaseNonValide(x, y));
 
-                badges.Add(new Badge((BadgeType)i, content.Load<Texture2D>("Sprites\\badge" + (i + 1).ToString()), 
-                    new Vector2(labyrinthe.GetCase(x, y).GetPosition().X, labyrinthe.GetCase(x, y).GetPosition().Y), 
-                    labyrinthe.GetCase(x, y))); 
+                badges.Add(new Badge((BadgeType)i, content.Load<Texture2D>("Sprites\\badge" + (i + 1).ToString()),
+                    new Vector2(labyrinthe.GetCase(x, y).GetPosition().X, labyrinthe.GetCase(x, y).GetPosition().Y),
+                    labyrinthe.GetCase(x, y)));
             }
             return badges;
         }
@@ -71,7 +83,7 @@ namespace DespicableGame
         {
             List<MasterBall> masterBalls = new List<MasterBall>();
 
-            for (int i = 0; i < level/2+1; i++)
+            for (int i = 0; i < level / 2 + 1; i++)
             {
                 int x = -1;
                 int y = -1;
@@ -91,7 +103,7 @@ namespace DespicableGame
 
         public static Vector2 ChargerFinNiveau()
         {
-           Vector2 position;
+            Vector2 position;
             do
             {
                 position.X = GenerateurChiffreAleatoire.NouveauChiffre(14);
