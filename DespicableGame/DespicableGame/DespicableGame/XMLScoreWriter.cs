@@ -73,6 +73,9 @@ namespace DespicableGame
             }
         }
     }
+    /// <summary>
+    /// Classe qui définit une entrée de pointage dans le fichier XML.
+    /// </summary>
     public class ScoreSave
     {
         public String score;
