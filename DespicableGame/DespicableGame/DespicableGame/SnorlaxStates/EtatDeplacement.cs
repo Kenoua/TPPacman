@@ -5,12 +5,19 @@ using System.Text;
 
 namespace DespicableGame.SnorlaxStates
 {
+    /// <summary>
+    /// Définit l'état dans lequel Snorlax se déplace
+    /// </summary>
     class EtatDeplacement : EtatSnorlax
     {
         private readonly Snorlax personnage;
         private int nombreDeplacements;
-      
 
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EtatDeplacement"/> class.
+        /// </summary>
+        /// <param name="_personnage">The _personnage.</param>
         public EtatDeplacement(Snorlax _personnage)
         {
             personnage = _personnage;
@@ -20,11 +27,19 @@ namespace DespicableGame.SnorlaxStates
 
         }
 
+        /// <summary>
+        /// Updates this instance.
+        /// </summary>
         public void Update()
         {
 
         }
 
+        /// <summary>
+        /// Mouvements the specified a i_ case.
+        /// </summary>
+        /// <param name="AI_Case">a i_ case.</param>
+        /// <returns></returns>
         public Case Mouvement(Case AI_Case)
         {
 
@@ -107,10 +122,12 @@ namespace DespicableGame.SnorlaxStates
                     }
                 }
             }
-
-
         }
 
+        /// <summary>
+        /// Personnages en vue.
+        /// </summary>
+        /// <returns></returns>
         public bool PersonnageEnvue()
         {
             bool personnageEnvue = false;
@@ -132,6 +149,11 @@ namespace DespicableGame.SnorlaxStates
             return personnageEnvue;
         }
 
+        /// <summary>
+        /// Regarder vers le haut.
+        /// </summary>
+        /// <param name="_caseVerifier">The _case verifier.</param>
+        /// <returns></returns>
         private bool regardHaut(Case _caseVerifier)
         {
             if (_caseVerifier != null)
@@ -148,6 +170,11 @@ namespace DespicableGame.SnorlaxStates
             return false;
         }
 
+        /// <summary>
+        /// Regarder vers la droite.
+        /// </summary>
+        /// <param name="_caseVerifier">The _case verifier.</param>
+        /// <returns></returns>
         private bool regardDroit(Case _caseVerifier)
         {
             if (_caseVerifier != null)
@@ -164,6 +191,11 @@ namespace DespicableGame.SnorlaxStates
             return false;
         }
 
+        /// <summary>
+        /// Regarder vers le bas.
+        /// </summary>
+        /// <param name="_caseVerifier">The _case verifier.</param>
+        /// <returns></returns>
         private bool regardBas(Case _caseVerifier)
         {
             if (_caseVerifier != null)
@@ -180,6 +212,11 @@ namespace DespicableGame.SnorlaxStates
             return false;
         }
 
+        /// <summary>
+        /// Regarder vers la gauche.
+        /// </summary>
+        /// <param name="_caseVerifier">The _case verifier.</param>
+        /// <returns></returns>
         private bool regardGauche(Case _caseVerifier)
         {
             if (_caseVerifier != null)
