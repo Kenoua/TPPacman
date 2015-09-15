@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace DespicableGame.EnemyStates
 {
@@ -21,6 +23,7 @@ namespace DespicableGame.EnemyStates
         public EtatRoder(PersonnageNonJoueur _personnage)
         {
             personnage = _personnage;
+            personnage.spriteColorEffect = Color.Orange;
         }
 
         /// <summary>

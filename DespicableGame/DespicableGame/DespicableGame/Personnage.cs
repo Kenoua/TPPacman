@@ -18,6 +18,7 @@ namespace DespicableGame
         protected TimeSpan delaiProchainContact;
         protected int directionArriere;
         public List<Case> caseSnorlax;
+        public Color spriteColorEffect;
 
         public Case derniereCase;
         public int PointsVie { get { return pointsVie; } }
@@ -38,6 +39,7 @@ namespace DespicableGame
             dessin = sprite;
             this.position = position;
             ActualCase = actualCase;
+            spriteColorEffect = Color.White;
         }
 
         public abstract void Mouvement();
@@ -48,7 +50,7 @@ namespace DespicableGame
 
         public void Draw(SpriteBatch spritebatch)
         {
-            spritebatch.Draw(dessin, position, Color.White);
+            spritebatch.Draw(dessin, position, spriteColorEffect);
         }
     }
 }
