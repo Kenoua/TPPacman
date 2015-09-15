@@ -18,6 +18,9 @@ namespace DespicableGame
     {
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
+        private SoundEffect menuMusique;
+        private SoundEffectInstance menuMusiqueInstance;
+
 
         public static InputHandler input;
         public static GameStates.EtatJeu etatDeJeu;
@@ -95,6 +98,12 @@ namespace DespicableGame
             input = new InputHandler();
             etatDeJeu = new GameStates.EtatMenu();
             etatDeJeu.LoadContent(Content);
+            menuMusique = Content.Load<SoundEffect>("Musique/EcranTitre");
+            menuMusiqueInstance = menuMusique.CreateInstance();
+            menuMusiqueInstance.IsLooped = true;
+            menuMusiqueInstance.Volume = 0.3f;
+            menuMusiqueInstance.Play();
+
         }
 
         /// <summary>

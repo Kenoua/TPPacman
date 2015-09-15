@@ -184,7 +184,7 @@ namespace DespicableGame
         {
             List<Snorlax> snorlaxs = new List<Snorlax>();
 
-            for (int i = 0; i < 4 + level / 3; i++)
+            for (int i = 0; i < 1 + level / 3; i++)
             {
                 int x = -1;
                 int y = -1;
