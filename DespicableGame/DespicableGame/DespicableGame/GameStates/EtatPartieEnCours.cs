@@ -13,34 +13,34 @@ namespace DespicableGame.GameStates
 {
     public class EtatPartieEnCours : EtatJeu
     {
-        InputHandler input;
+        private InputHandler input;
 
         public const int SCREENWIDTH = 1280;
         public const int SCREENHEIGHT = 796;
 
         public static PersonnageJoueur Gru;
 
-        List<Badge> listeBadges;
-        List<Badge> listeBadgesEnlever;
+        private List<Badge> listeBadges;
+        private List<Badge> listeBadgesEnlever;
 
-        List<Pokeball> listePokeballs;
-        List<Pokeball> listePokeballsEnlever;
+        private List<Pokeball> listePokeballs;
+        private List<Pokeball> listePokeballsEnlever;
 
-        List<MasterBall> listeMasterballs;
-        List<MasterBall> listeMasterballsEnlever;
-        Vector2 emplacementFinNiveau;
+        private List<MasterBall> listeMasterballs;
+        private List<MasterBall> listeMasterballsEnlever;
+        private Vector2 emplacementFinNiveau;
 
-        List<PersonnageNonJoueur> Polices;
+        private List<PersonnageNonJoueur> Polices;
 
-        Texture2D murHorizontal;
-        Texture2D murVertical;
+        private Texture2D murHorizontal;
+        private Texture2D murVertical;
 
-        Texture2D warpEntree;
-        Texture2D background;
-        Vector2 warpEntreePos;
+        private Texture2D warpEntree;
+        private Texture2D background;
+        private Vector2 warpEntreePos;
 
-        Texture2D[] warpSorties = new Texture2D[4];
-        Vector2[] warpSortiesPos = new Vector2[4];
+        private Texture2D[] warpSorties = new Texture2D[4];
+        private Vector2[] warpSortiesPos = new Vector2[4];
 
         private Labyrinthe labyrinthe;
 
@@ -228,7 +228,7 @@ namespace DespicableGame.GameStates
                 {
                     if (Gru.masterBallAmasse.Count() > 0 && !Gru.estPokemonLegendaire)
                     {
-                        Gru.utiliseLegendaire(content);
+                        Gru.UtiliseLegendaire(content);
                         Gru.masterBallAmasse.RemoveAt(0);
                              
                     }
@@ -279,7 +279,7 @@ namespace DespicableGame.GameStates
                 {
                     if (Gru.masterBallAmasse.Count() > 0 && !Gru.estPokemonLegendaire)
                     {
-                        Gru.utiliseLegendaire(content);
+                        Gru.UtiliseLegendaire(content);
                         Gru.masterBallAmasse.RemoveAt(0);
 
                     }

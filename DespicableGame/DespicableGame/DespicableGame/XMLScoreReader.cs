@@ -11,7 +11,7 @@ namespace DespicableGame
     /// </summary>
     public class XMLScoreReader
     {
-        List<Score> scores;
+        private List<Score> scores;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="XMLScoreReader"/> class.
