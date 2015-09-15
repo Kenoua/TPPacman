@@ -30,7 +30,10 @@ namespace DespicableGame.GameStates
         private List<MasterBall> listeMasterballsEnlever;
         private Vector2 emplacementFinNiveau;
 
-        private List<PersonnageNonJoueur> Polices;
+
+        List<PersonnageNonJoueur> Polices;
+        List<Snorlax> Snorlaxs;
+
 
         private Texture2D murHorizontal;
         private Texture2D murVertical;
@@ -74,6 +77,7 @@ namespace DespicableGame.GameStates
 
 
             Polices = LevelLoader.ChargerEnnemis();
+            Snorlaxs = LevelLoader.ChargerSnorlax();
 
 
             //L'entrée du téléporteur
@@ -108,15 +112,23 @@ namespace DespicableGame.GameStates
             {
                 if (!Gru.EstMort())
                 {
+                    Gru.setCasesSnorlax(getSnorlaxCases());
                     Gru.Mouvement();
                     foreach (PersonnageNonJoueur police in Polices)
                     {
+                        police.setCasesSnorlax(getSnorlaxCases());
                         police.Mouvement();
                         if (Gru.ActualCase == police.ActualCase)
                         {
                             Gru.ToucherAutrePersonnage();
                             police.ToucherAutrePersonnage();
+                            
                         }
+                    }
+                    foreach(Snorlax snorlax in Snorlaxs)
+                    {
+                        snorlax.setCasesRocket(getRocketCases());
+                        snorlax.Mouvement();
                     }
                 }
                 else
@@ -232,18 +244,6 @@ namespace DespicableGame.GameStates
                         Gru.masterBallAmasse.RemoveAt(0);
                              
                     }
-                    else if (Gru.derniereCase != null && Gru.snorlaxUsed == null && !Gru.estPokemonLegendaire)
-                    {
-
-                        Gru.snorlaxUsed = Gru.derniereCase;
-                        foreach(PersonnageNonJoueur PNJ in Polices)
-                        {
-                            PNJ.caseSnorlax = Gru.snorlaxUsed;
-                        }
-                        
-                    }
-                    
-
                 }
                 else if (input.IsInputDown(InputHandler.touchesClavier[0]))
                 {
@@ -281,18 +281,7 @@ namespace DespicableGame.GameStates
                     {
                         Gru.UtiliseLegendaire(content);
                         Gru.masterBallAmasse.RemoveAt(0);
-
-                    }
-                    else if (Gru.derniereCase != null && Gru.snorlaxUsed == null && !Gru.estPokemonLegendaire)
-                    {
-
-                        Gru.snorlaxUsed = Gru.derniereCase;
-                        foreach (PersonnageNonJoueur PNJ in Polices)
-                        {
-                            PNJ.caseSnorlax = Gru.snorlaxUsed;
-                        }
-
-                    }
+                    }              
                 }
                 else if (input.GetGamePadJoystick().Left.Y == 1)
                 {
@@ -378,9 +367,9 @@ namespace DespicableGame.GameStates
                 counterMBalls++;
             }
             //drawsnorlax
-            if(Gru.snorlaxUsed != null)
+            foreach(Snorlax S in Snorlaxs)
             {
-                _spriteBatch.Draw(content.Load<Texture2D>("Sprites\\snorlax"), labyrinthe.GetCase(Gru.snorlaxUsed.OrdreX, Gru.snorlaxUsed.OrdreY).GetPosition(), Color.White);
+                S.Draw(_spriteBatch);
             }
 
             if(emplacementFinNiveau.X != -1)
@@ -411,6 +400,25 @@ namespace DespicableGame.GameStates
         public bool HasExited()
         {
             return exit;
+        }
+
+        public List<Case> getRocketCases()
+        {
+            List<Case> rocketCases = new List<Case>();
+            foreach(PersonnageNonJoueur P in Polices)
+            {
+                rocketCases.Add(P.ActualCase);
+            }
+            return rocketCases;
+        }
+        public List<Case> getSnorlaxCases()
+        {
+            List<Case> snorlaxCases = new List<Case>();
+            foreach (Snorlax S in Snorlaxs)
+            {
+                snorlaxCases.Add(S.ActualCase);
+            }
+            return snorlaxCases;
         }
     }
 }

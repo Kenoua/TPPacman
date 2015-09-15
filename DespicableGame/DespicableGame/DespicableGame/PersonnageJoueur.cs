@@ -20,6 +20,7 @@ namespace DespicableGame
         public Texture2D spriteJoueurReserve;
         public int modificateurVitese;
         private bool estToucher;
+        
 
         public PersonnageJoueur(Texture2D dessin, Vector2 position, Case ActualCase)
             : base(dessin, position, ActualCase)
@@ -42,7 +43,7 @@ namespace DespicableGame
 
         public override void Mouvement()
         {
-            if (DateTime.Now - dernierContact >= delaiProchainContact)
+            if (DateTime.Now - dernierContact >= delaiProchainContact && !estPokemonLegendaire)
             {
                 estToucher = false;
                 modificateurVitese = 1;
@@ -78,7 +79,9 @@ namespace DespicableGame
         public void VerifierMouvement(Case caseDestionation, int vitesseX, int vitesseY)
         {
             //Si la direction choisie n'est pas nulle
-            if (caseDestionation != null && !CheckSnorlax(caseDestionation))
+
+            if (caseDestionation != null && !caseSnorlax.Contains(caseDestionation))
+
             {
                 //On vérifie si la case est un téléporteur
                 Case testTeleportation = TestTeleporter(caseDestionation);
@@ -163,6 +166,10 @@ namespace DespicableGame
             {
                 dessin = _content.Load<Texture2D>("Sprites\\Articuno");
             }
+        }
+        public void setCasesSnorlax(List<Case> _casesSnorlax)
+        {
+            caseSnorlax = _casesSnorlax;
         }
     }
 }

@@ -133,6 +133,27 @@ namespace DespicableGame
             return ennemis;
         }
 
+        public static List<Snorlax> ChargerSnorlax()
+        {
+            List<Snorlax> snorlaxs = new List<Snorlax>();
+
+            for (int i = 0; i < 4 + level / 3; i++)
+            {
+                int x = -1;
+                int y = -1;
+                do
+                {
+                    x = GenerateurChiffreAleatoire.NouveauChiffre(14);
+                    y = GenerateurChiffreAleatoire.NouveauChiffre(10);
+                } while (verifierCaseNonValide(x, y));
+
+                snorlaxs.Add(new Snorlax(content.Load<Texture2D>("Sprites\\Snorlax"),
+                    new Vector2(labyrinthe.GetCase(x, y).GetPosition().X, labyrinthe.GetCase(x, y).GetPosition().Y),
+                    labyrinthe.GetCase(x, y)));
+            }
+            return snorlaxs;
+        }
+
         public static void Recommencer()
         {
             Pointage.GetInstance().RetourZero();
