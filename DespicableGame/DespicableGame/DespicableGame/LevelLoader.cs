@@ -201,7 +201,6 @@ namespace DespicableGame
             return snorlaxs;
         }
 
->>>>>>> origin/master
         public static void Recommencer()
         {
             Pointage.GetInstance().RetourZero();
