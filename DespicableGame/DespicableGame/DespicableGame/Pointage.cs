@@ -34,6 +34,7 @@ namespace DespicableGame
 
         public void RetirerPoints(int _retrait)
         {
+            ReinitialiserSerie();
             totalPointage -= _retrait;
         }
 
@@ -52,7 +53,7 @@ namespace DespicableGame
             serie += 10;
         }
 
-        public void ReinitialiserSerie()
+        private void ReinitialiserSerie()
         {
             serie = 0;
         }

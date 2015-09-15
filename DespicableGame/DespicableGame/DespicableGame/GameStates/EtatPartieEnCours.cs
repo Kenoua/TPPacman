@@ -228,7 +228,7 @@ namespace DespicableGame.GameStates
                 {
                     if (Gru.masterBallAmasse.Count() > 0 && !Gru.estPokemonLegendaire)
                     {
-                        Gru.utiliseLegendaire(content);
+                        Gru.UtiliseLegendaire(content);
                         Gru.masterBallAmasse.RemoveAt(0);
                              
                     }
@@ -279,7 +279,7 @@ namespace DespicableGame.GameStates
                 {
                     if (Gru.masterBallAmasse.Count() > 0 && !Gru.estPokemonLegendaire)
                     {
-                        Gru.utiliseLegendaire(content);
+                        Gru.UtiliseLegendaire(content);
                         Gru.masterBallAmasse.RemoveAt(0);
 
                     }
