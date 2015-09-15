@@ -30,12 +30,10 @@ namespace DespicableGame.GameStates
         private List<MasterBall> listeMasterballsEnlever;
         private Vector2 emplacementFinNiveau;
 
-<<<<<<< HEAD
+
         List<PersonnageNonJoueur> Polices;
         List<Snorlax> Snorlaxs;
-=======
-        private List<PersonnageNonJoueur> Polices;
->>>>>>> master
+
 
         private Texture2D murHorizontal;
         private Texture2D murVertical;

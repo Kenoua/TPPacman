@@ -79,11 +79,9 @@ namespace DespicableGame
         public void VerifierMouvement(Case caseDestionation, int vitesseX, int vitesseY)
         {
             //Si la direction choisie n'est pas nulle
-<<<<<<< HEAD
+
             if (caseDestionation != null && !caseSnorlax.Contains(caseDestionation))
-=======
-            if (caseDestionation != null && !CheckSnorlax(caseDestionation))
->>>>>>> master
+
             {
                 //On vérifie si la case est un téléporteur
                 Case testTeleportation = TestTeleporter(caseDestionation);

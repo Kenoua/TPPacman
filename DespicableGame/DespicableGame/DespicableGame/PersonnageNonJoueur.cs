@@ -78,13 +78,10 @@ namespace DespicableGame
                             }
                         }                      
                         
-<<<<<<< HEAD
+
                     }     
                     while(caseSnorlax.Contains(Destination));
-=======
-                    }
-                    while(CheckSnorlax(Destination));
->>>>>>> master
+
            
                     
                 }
@@ -92,22 +89,6 @@ namespace DespicableGame
 
         }
 
-<<<<<<< HEAD
-=======
-        private bool CheckSnorlax(Case _case)
-        {
-            if (caseSnorlax != null && _case!= null)
-            {
-                if ((_case.GetPosition() == caseSnorlax.GetPosition()))
-                {
-                    return true;
-                }
-            }
-            return false;
-
-        }
-
->>>>>>> master
         public void Update()
         {
             etatPresent.Update();
