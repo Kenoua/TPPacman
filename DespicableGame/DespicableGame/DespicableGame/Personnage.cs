@@ -22,6 +22,7 @@ namespace DespicableGame
         protected TimeSpan delaiProchainContact;
         protected int directionArriere;
         public List<Case> caseSnorlax;
+        public Color spriteColorEffect;
 
         /// <summary>
         /// TToutes les propriétés utilisés pour la classe Personnage
@@ -51,6 +52,7 @@ namespace DespicableGame
             dessin = sprite;
             this.position = position;
             ActualCase = actualCase;
+            spriteColorEffect = Color.White;
         }
 
         /// <summary>
@@ -75,7 +77,7 @@ namespace DespicableGame
         /// <param name="spritebatch">The spritebatch.</param>
         public void Draw(SpriteBatch spritebatch)
         {
-            spritebatch.Draw(dessin, position, Color.White);
+            spritebatch.Draw(dessin, position, spriteColorEffect);
         }
     }
 }

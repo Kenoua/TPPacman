@@ -158,7 +158,7 @@ namespace DespicableGame
         {
             List<PersonnageNonJoueur> ennemis = new List<PersonnageNonJoueur>();
 
-            for (int i = 0; i < 3 + level / 3; i++)
+            for (int i = 0; i < 2 + level / 3; i++)
             {
                 int x = -1;
                 int y = -1;

@@ -24,6 +24,7 @@ namespace DespicableGame.EnemyStates
         public EtatApeurer(PersonnageNonJoueur _personnage)
         {
             personnage = _personnage;
+            personnage.spriteColorEffect = Color.Blue;
         }
 
         /// <summary>
