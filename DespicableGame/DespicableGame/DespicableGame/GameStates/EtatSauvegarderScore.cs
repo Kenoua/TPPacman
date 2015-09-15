@@ -9,6 +9,10 @@ using Microsoft.Xna.Framework.Input;
 
 namespace DespicableGame.GameStates
 {
+    /// <summary>
+    /// État du jeu qui permet de sauvegarder son score 
+    /// après avoir fini une partie
+    /// </summary>
     class EtatSauvegarderScore : EtatJeu
     {
         protected ContentManager content;
@@ -29,12 +33,19 @@ namespace DespicableGame.GameStates
             name = "";
         }
 
+        /// <summary>
+        /// Loads the content.
+        /// </summary>
+        /// <param name="_content">The _content.</param>
         public void LoadContent(ContentManager _content)
         {
             content = _content;
             input = DespicableGame.input;
         }
 
+        /// <summary>
+        /// Updates this instance.
+        /// </summary>
         public void Update()
         {
 
@@ -78,11 +89,17 @@ namespace DespicableGame.GameStates
             }
         }
 
+        /// <summary>
+        /// Parties the perdu.
+        /// </summary>
         public void PartiePerdu()
         {
             partiePerdu = true;
         }
 
+        /// <summary>
+        /// Parties the gagner.
+        /// </summary>
         public void PartieGagner()
         {
             partieGagner = true;

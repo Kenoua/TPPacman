@@ -221,6 +221,10 @@ namespace DespicableGame
             return currentGamePadState.ThumbSticks;
         }
 
+        /// <summary>
+        /// Gets the pressed keys.
+        /// </summary>
+        /// <returns></returns>
         public List<Keys> GetPressedKeys()
         {
             List<Keys> pressedKeys = new List<Keys>();

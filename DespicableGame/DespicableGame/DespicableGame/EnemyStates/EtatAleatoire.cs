@@ -5,15 +5,27 @@ using System.Text;
 
 namespace DespicableGame.EnemyStates
 {
+    /// <summary>
+    /// État d'un ennemi lui permettant de se 
+    /// déplacer dans le labyrinthe de façon aléatoire
+    /// </summary>
     public class EtatAleatoire : EtatEnnemi
     {
         private readonly PersonnageNonJoueur personnage;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EtatAleatoire"/> class.
+        /// </summary>
+        /// <param name="_personnage">The _personnage.</param>
         public EtatAleatoire(PersonnageNonJoueur _personnage)
         {
             personnage = _personnage;
         }
 
+        /// <summary>
+        /// Updates this instance.
+        /// @see ChangerEtat
+        /// </summary>
         public void Update()
         {
             if(GameStates.EtatPartieEnCours.Gru.estPokemonLegendaire)
@@ -26,6 +38,11 @@ namespace DespicableGame.EnemyStates
             }
         }
 
+        /// <summary>
+        /// Mouvements the specified a i_ case.
+        /// </summary>
+        /// <param name="AI_Case">a i_ case.</param>
+        /// <returns></returns>
         public Case Mouvement(Case AI_Case)
         {
             bool culDeSac = false;

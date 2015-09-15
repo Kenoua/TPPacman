@@ -7,6 +7,10 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace DespicableGame
 {
+    /// <summary>
+    /// Classe qui définit le labyrinthe que parcoureront les différents
+    /// personnages et objets.
+    /// </summary>
     public class Labyrinthe
     {
         public Case[][] Cases;
@@ -226,11 +230,22 @@ namespace DespicableGame
 
         }
 
+        /// <summary>
+        /// Gets the case.
+        /// </summary>
+        /// <param name="x">The x.</param>
+        /// <param name="y">The y.</param>
+        /// <returns></returns>
         public Case GetCase(int x, int y)
         {
             return Cases[x][y];
         }
 
+        /// <summary>
+        /// Dessiners the horizontal.
+        /// </summary>
+        /// <param name="spriteBatch">The sprite batch.</param>
+        /// <param name="horizontale">The horizontale.</param>
         public void DessinerHorizontal(SpriteBatch spriteBatch, Texture2D horizontale)
         {
             Vector2 haut = Cases[0][0].GetPosition();
@@ -248,6 +263,11 @@ namespace DespicableGame
             }
         }
 
+        /// <summary>
+        /// Dessiners the vertical.
+        /// </summary>
+        /// <param name="spriteBatch">The sprite batch.</param>
+        /// <param name="verticale">The verticale.</param>
         public void DessinerVertical(SpriteBatch spriteBatch, Texture2D verticale)
         {
             Vector2 gauche = Cases[0][0].GetPosition();

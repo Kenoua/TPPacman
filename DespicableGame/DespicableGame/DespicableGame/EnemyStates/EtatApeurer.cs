@@ -7,16 +7,29 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace DespicableGame.EnemyStates
 {
+    /// <summary>
+    /// État d'un ennemi lui obligeant de fuir
+    /// le joueur alors que celui-ci est sous l'effet
+    /// de sa master ball.
+    /// </summary>
     public class EtatApeurer : EtatEnnemi
     {
 
         private readonly PersonnageNonJoueur personnage;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EtatApeurer"/> class.
+        /// </summary>
+        /// <param name="_personnage">The _personnage.</param>
         public EtatApeurer(PersonnageNonJoueur _personnage)
         {
             personnage = _personnage;
         }
 
+        /// <summary>
+        /// Updates this instance.
+        /// @see ChangerEtat
+        /// </summary>
         public void Update()
         {
             if(!GameStates.EtatPartieEnCours.Gru.estPokemonLegendaire)
@@ -25,6 +38,11 @@ namespace DespicableGame.EnemyStates
             }
         }
 
+        /// <summary>
+        /// Mouvements the specified a i_ case.
+        /// </summary>
+        /// <param name="AI_Case">a i_ case.</param>
+        /// <returns></returns>
         public Case Mouvement(Case AI_Case)
         {
             Case caseDirection = personnage.Destination;

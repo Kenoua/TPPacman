@@ -5,6 +5,9 @@ using System.Text;
 
 namespace DespicableGame.EnemyStates
 {
+    /// <summary>
+    /// Interface qui définit tous les états d'un ennemi.
+    /// </summary>
     public interface EtatEnnemi
     {
         void Update();

@@ -5,16 +5,28 @@ using System.Text;
 
 namespace DespicableGame.EnemyStates
 {
+    /// <summary>
+    /// État d'un ennemi qui le fait roder vers
+    /// la derniere position connue du joueur.
+    /// </summary>
     public class EtatRoder : EtatEnnemi
     {
 
         private readonly PersonnageNonJoueur personnage;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EtatRoder"/> class.
+        /// </summary>
+        /// <param name="_personnage">The _personnage.</param>
         public EtatRoder(PersonnageNonJoueur _personnage)
         {
             personnage = _personnage;
         }
 
+        /// <summary>
+        /// Updates this instance.
+        /// @see ChangerEtat
+        /// </summary>
         public void Update()
         {
             if(personnage.ActualCase == personnage.DernierePositionJoueur)
@@ -24,6 +36,11 @@ namespace DespicableGame.EnemyStates
             }
         }
 
+        /// <summary>
+        /// Mouvements the specified a i_ case.
+        /// </summary>
+        /// <param name="AI_Case">a i_ case.</param>
+        /// <returns></returns>
         public Case Mouvement(Case AI_Case)
         {
             Case caseDirection = personnage.Destination;

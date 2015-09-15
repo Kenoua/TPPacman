@@ -8,7 +8,11 @@ using Microsoft.Xna.Framework.Graphics;
 namespace DespicableGame
 {
     public enum BadgeType {Boulder, Cascade, Lightning, Rainbow, Soul, March, Volcano, Earth};
-    
+
+    /// <summary>
+    /// Classe qui définit un badge pouvant être
+    /// ramassé sur le terrain.
+    /// </summary>
     public class Badge : Objets
     {
         public BadgeType badgeType;
@@ -17,6 +21,9 @@ namespace DespicableGame
         {
             this.badgeType = badgeType;
         }
+        /// <summary>
+        /// Rammassers this instance.
+        /// </summary>
         public override void Rammasser()
         {
             Pointage.GetInstance().AjouterPoints(100);

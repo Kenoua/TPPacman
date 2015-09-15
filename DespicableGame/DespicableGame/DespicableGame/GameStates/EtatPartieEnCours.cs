@@ -11,6 +11,9 @@ using Microsoft.Xna.Framework.Media;
 
 namespace DespicableGame.GameStates
 {
+    /// <summary>
+    /// État du jeu qui définit une partie dans la fenêtre de jeu.
+    /// </summary>
     public class EtatPartieEnCours : EtatJeu
     {
         private InputHandler input;
@@ -47,6 +50,15 @@ namespace DespicableGame.GameStates
         private bool exit = false;
         private ContentManager content;
 
+        /// <summary>
+        /// Loads the content.
+        /// @see ChargerPersonnage
+        /// @see ChargerEnnemis
+        /// @see ChargerMasterballs
+        /// @see ChargerPokeballs
+        /// @see ChargerBadges
+        /// </summary>
+        /// <param name="_content">The _content.</param>
         public void LoadContent(ContentManager _content)
         {
             labyrinthe = new Labyrinthe();
@@ -102,6 +114,11 @@ namespace DespicableGame.GameStates
             listeMasterballsEnlever = new List<MasterBall>();
         }
 
+        /// <summary>
+        /// Updates this instance.
+        /// @see updateObjets
+        /// @see Mouvement
+        /// </summary>
         public void Update()
         {
             if (!estNiveauTerminer())
@@ -115,7 +132,6 @@ namespace DespicableGame.GameStates
                         if (Gru.ActualCase == police.ActualCase)
                         {
                             Gru.ToucherAutrePersonnage();
-                            police.ToucherAutrePersonnage();
                         }
                     }
                 }
@@ -126,7 +142,7 @@ namespace DespicableGame.GameStates
                     DespicableGame.etatDeJeu.LoadContent(content);
                     LevelLoader.Recommencer();
                 }
-                updateObjets();
+                UpdateObjets();
             }
             else
             {
@@ -136,7 +152,11 @@ namespace DespicableGame.GameStates
             }
         }
 
-        public void updateObjets()
+        /// <summary>
+        /// Updates the objets.
+        /// @see Ramasser
+        /// </summary>
+        public void UpdateObjets()
         {
             foreach (Pokeball P in listePokeballs)
             {
@@ -192,6 +212,9 @@ namespace DespicableGame.GameStates
             }
         }
 
+        /// <summary>
+        /// Handles the input.
+        /// </summary>
         public void HandleInput()
         {
             if (input.IsGamePadOneConnected())
@@ -204,6 +227,10 @@ namespace DespicableGame.GameStates
             }
         }
 
+        /// <summary>
+        /// Ests the niveau terminer.
+        /// </summary>
+        /// <returns></returns>
         private bool estNiveauTerminer()
         {
             if (emplacementFinNiveau.X != -1)
@@ -216,6 +243,9 @@ namespace DespicableGame.GameStates
             return false;
         }
 
+        /// <summary>
+        /// Handles the keyboard input.
+        /// </summary>
         private void HandleKeyboardInput()
         {
             if (input.IsInputPressed(Keys.P))
@@ -242,8 +272,6 @@ namespace DespicableGame.GameStates
                         }
                         
                     }
-                    
-
                 }
                 else if (input.IsInputDown(InputHandler.touchesClavier[0]))
                 {
@@ -267,6 +295,9 @@ namespace DespicableGame.GameStates
             }
         }
 
+        /// <summary>
+        /// Handles the game pad input.
+        /// </summary>
         private void HandleGamePadInput()
         {
             if (input.IsInputPressed(Buttons.Back))
@@ -316,6 +347,9 @@ namespace DespicableGame.GameStates
             }
         }
 
+        /// <summary>
+        /// Pauses the partie.
+        /// </summary>
         private void PausePartie()
         {
             DespicableGame.etatDeJeu = new EtatPause();
@@ -323,6 +357,10 @@ namespace DespicableGame.GameStates
             ((EtatPause)DespicableGame.etatDeJeu).setPartieInachever(this);
         }
 
+        /// <summary>
+        /// Draws the specified _sprite batch.
+        /// </summary>
+        /// <param name="_spriteBatch">The _sprite batch.</param>
         public void Draw(SpriteBatch _spriteBatch)
         {
             //Draw Background
@@ -408,6 +446,10 @@ namespace DespicableGame.GameStates
                 Gru.Draw(_spriteBatch);
         }
 
+        /// <summary>
+        /// Determines whether this instance has exited.
+        /// </summary>
+        /// <returns></returns>
         public bool HasExited()
         {
             return exit;
