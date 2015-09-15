@@ -10,22 +10,20 @@ namespace DespicableGame
 {
     public class Snorlax : Personnage
     {
-        private SnorlaxStates.EtatSnorlax etatPresent;
-        private int counterTest;
+        public SnorlaxStates.EtatSnorlax etatPresent;
+        public List<Case> listeCasesRocket;
+
         public Snorlax(Texture2D dessin, Vector2 position, Case ActualCase)
             : base(dessin, position, ActualCase)
         {
+            listeCasesRocket = new List<Case>();
             etatPresent = new SnorlaxStates.EtatSommeil(this);
-            counterTest = 0;
+
         }
 
         public void Update()
         {
-            counterTest++;
-            if(counterTest >300)
-            {
-                etatPresent = new SnorlaxStates.EtatDeplacement(this);
-            }
+            etatPresent.Update();
         }
 
         public override void Mouvement()
@@ -58,6 +56,16 @@ namespace DespicableGame
         public override void ToucherAutrePersonnage()
         {
 
+        }
+
+        public void ChangerEtat(SnorlaxStates.EtatSnorlax nouvelEtat)
+        {
+            etatPresent = nouvelEtat;
+        }
+
+        public void setCasesRocket(List<Case> _casesRocket)
+        {
+            listeCasesRocket = _casesRocket;
         }
     }
 }

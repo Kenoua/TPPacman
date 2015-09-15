@@ -137,6 +137,7 @@ namespace DespicableGame.GameStates
                     foreach(Snorlax snorlax in Snorlaxs)
                     {
                         snorlax.Mouvement();
+                        snorlax.setCasesRocket(getRocketCases());
                     }
                 }
                 else
@@ -252,18 +253,6 @@ namespace DespicableGame.GameStates
                         Gru.masterBallAmasse.RemoveAt(0);
                              
                     }
-                    else if (Gru.derniereCase != null && Gru.snorlaxUsed == null && !Gru.estPokemonLegendaire)
-                    {
-
-                        Gru.snorlaxUsed = Gru.derniereCase;
-                        foreach(PersonnageNonJoueur PNJ in Polices)
-                        {
-                            PNJ.caseSnorlax = Gru.snorlaxUsed;
-                        }
-                        
-                    }
-                    
-
                 }
                 else if (input.IsInputDown(InputHandler.touchesClavier[0]))
                 {
@@ -420,6 +409,16 @@ namespace DespicableGame.GameStates
         public bool HasExited()
         {
             return exit;
+        }
+
+        public List<Case> getRocketCases()
+        {
+            List<Case> rocketCases = new List<Case>();
+            foreach(PersonnageNonJoueur P in Polices)
+            {
+                rocketCases.Add(P.ActualCase);
+            }
+            return rocketCases;
         }
     }
 }

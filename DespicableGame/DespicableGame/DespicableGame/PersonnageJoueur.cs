@@ -43,7 +43,7 @@ namespace DespicableGame
         //Algo assez ordinaire.  Pour que ça fonctionne, la vitesse doit être un diviseur entier de 64, pourrait être à revoir.
         public override void Mouvement()
         {
-            if (DateTime.Now - dernierContact >= delaiProchainContact)
+            if (DateTime.Now - dernierContact >= delaiProchainContact && !estPokemonLegendaire)
             {
                 estToucher = false;
                 modificateurVitese = 1;

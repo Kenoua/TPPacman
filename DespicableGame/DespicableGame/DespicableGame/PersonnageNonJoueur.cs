@@ -85,13 +85,7 @@ namespace DespicableGame
 
         private bool checkSnorlax(Case _case)
         {
-            if (caseSnorlax != null && _case!= null)
-            {
-                if ((_case.GetPosition() == caseSnorlax.GetPosition()))
-                {
-                    return true;
-                }
-            }
+
             return false;
 
         }
