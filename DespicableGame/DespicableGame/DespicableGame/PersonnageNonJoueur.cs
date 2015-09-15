@@ -44,6 +44,11 @@ namespace DespicableGame
             set { dernierePositionJoueur = value; }
         }
 
+        public override void ToucherAutrePersonnage()
+        {
+            
+        }
+
         public override void Mouvement()
         {
             
