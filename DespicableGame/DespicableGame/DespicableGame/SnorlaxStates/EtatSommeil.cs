@@ -12,7 +12,7 @@ namespace DespicableGame.SnorlaxStates
         public EtatSommeil(Snorlax _personnage)
         {
             personnage = _personnage;
-            tempsSommeil = GenerateurChiffreAleatoire.NouveauChiffre(60,300);
+            tempsSommeil = GenerateurChiffreAleatoire.NouveauChiffre(180,300);
             personnage.VitesseY = 0;
             personnage.VitesseX = 0;
         }

@@ -124,20 +124,23 @@ namespace DespicableGame.GameStates
             {
                 if (!Gru.EstMort())
                 {
+                    Gru.setCasesSnorlax(getSnorlaxCases());
                     Gru.Mouvement();
                     foreach (PersonnageNonJoueur police in Polices)
                     {
+                        police.setCasesSnorlax(getSnorlaxCases());
                         police.Mouvement();
                         if (Gru.ActualCase == police.ActualCase)
                         {
                             Gru.ToucherAutrePersonnage();
                             police.ToucherAutrePersonnage();
+                            
                         }
                     }
                     foreach(Snorlax snorlax in Snorlaxs)
                     {
-                        snorlax.Mouvement();
                         snorlax.setCasesRocket(getRocketCases());
+                        snorlax.Mouvement();
                     }
                 }
                 else
@@ -419,6 +422,15 @@ namespace DespicableGame.GameStates
                 rocketCases.Add(P.ActualCase);
             }
             return rocketCases;
+        }
+        public List<Case> getSnorlaxCases()
+        {
+            List<Case> snorlaxCases = new List<Case>();
+            foreach (Snorlax S in Snorlaxs)
+            {
+                snorlaxCases.Add(S.ActualCase);
+            }
+            return snorlaxCases;
         }
     }
 }
