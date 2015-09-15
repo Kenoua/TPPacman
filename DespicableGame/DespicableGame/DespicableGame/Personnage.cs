@@ -17,6 +17,7 @@ namespace DespicableGame
         protected DateTime dernierContact;
         protected TimeSpan delaiProchainContact;
         protected int directionArriere;
+        public List<Case> caseSnorlax;
 
         public Case derniereCase;
         public int PointsVie { get { return pointsVie; } }
@@ -32,6 +33,7 @@ namespace DespicableGame
             mort = false;
             VitesseX = 0;
             VitesseY = 0;
+            caseSnorlax = new List<Case>();
 
             dessin = sprite;
             this.position = position;

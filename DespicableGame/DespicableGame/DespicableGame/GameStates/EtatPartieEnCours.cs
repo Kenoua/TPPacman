@@ -11,9 +11,6 @@ using Microsoft.Xna.Framework.Media;
 
 namespace DespicableGame.GameStates
 {
-    /// <summary>
-    /// État du jeu qui définit une partie dans la fenêtre de jeu.
-    /// </summary>
     public class EtatPartieEnCours : EtatJeu
     {
         private InputHandler input;
@@ -33,7 +30,10 @@ namespace DespicableGame.GameStates
         private List<MasterBall> listeMasterballsEnlever;
         private Vector2 emplacementFinNiveau;
 
-        private List<PersonnageNonJoueur> Polices;
+
+        List<PersonnageNonJoueur> Polices;
+        List<Snorlax> Snorlaxs;
+
 
         private Texture2D murHorizontal;
         private Texture2D murVertical;
@@ -50,15 +50,6 @@ namespace DespicableGame.GameStates
         private bool exit = false;
         private ContentManager content;
 
-        /// <summary>
-        /// Loads the content.
-        /// @see ChargerPersonnage
-        /// @see ChargerEnnemis
-        /// @see ChargerMasterballs
-        /// @see ChargerPokeballs
-        /// @see ChargerBadges
-        /// </summary>
-        /// <param name="_content">The _content.</param>
         public void LoadContent(ContentManager _content)
         {
             labyrinthe = new Labyrinthe();
@@ -86,6 +77,7 @@ namespace DespicableGame.GameStates
 
 
             Polices = LevelLoader.ChargerEnnemis();
+            Snorlaxs = LevelLoader.ChargerSnorlax();
 
 
             //L'entrée du téléporteur
@@ -114,25 +106,29 @@ namespace DespicableGame.GameStates
             listeMasterballsEnlever = new List<MasterBall>();
         }
 
-        /// <summary>
-        /// Updates this instance.
-        /// @see updateObjets
-        /// @see Mouvement
-        /// </summary>
         public void Update()
         {
             if (!estNiveauTerminer())
             {
                 if (!Gru.EstMort())
                 {
+                    Gru.setCasesSnorlax(getSnorlaxCases());
                     Gru.Mouvement();
                     foreach (PersonnageNonJoueur police in Polices)
                     {
+                        police.setCasesSnorlax(getSnorlaxCases());
                         police.Mouvement();
                         if (Gru.ActualCase == police.ActualCase)
                         {
                             Gru.ToucherAutrePersonnage();
+                            police.ToucherAutrePersonnage();
+                            
                         }
+                    }
+                    foreach(Snorlax snorlax in Snorlaxs)
+                    {
+                        snorlax.setCasesRocket(getRocketCases());
+                        snorlax.Mouvement();
                     }
                 }
                 else
@@ -142,7 +138,7 @@ namespace DespicableGame.GameStates
                     DespicableGame.etatDeJeu.LoadContent(content);
                     LevelLoader.Recommencer();
                 }
-                UpdateObjets();
+                updateObjets();
             }
             else
             {
@@ -152,11 +148,7 @@ namespace DespicableGame.GameStates
             }
         }
 
-        /// <summary>
-        /// Updates the objets.
-        /// @see Ramasser
-        /// </summary>
-        public void UpdateObjets()
+        public void updateObjets()
         {
             foreach (Pokeball P in listePokeballs)
             {
@@ -212,9 +204,6 @@ namespace DespicableGame.GameStates
             }
         }
 
-        /// <summary>
-        /// Handles the input.
-        /// </summary>
         public void HandleInput()
         {
             if (input.IsGamePadOneConnected())
@@ -227,10 +216,6 @@ namespace DespicableGame.GameStates
             }
         }
 
-        /// <summary>
-        /// Ests the niveau terminer.
-        /// </summary>
-        /// <returns></returns>
         private bool estNiveauTerminer()
         {
             if (emplacementFinNiveau.X != -1)
@@ -243,9 +228,6 @@ namespace DespicableGame.GameStates
             return false;
         }
 
-        /// <summary>
-        /// Handles the keyboard input.
-        /// </summary>
         private void HandleKeyboardInput()
         {
             if (input.IsInputPressed(Keys.P))
@@ -261,16 +243,6 @@ namespace DespicableGame.GameStates
                         Gru.UtiliseLegendaire(content);
                         Gru.masterBallAmasse.RemoveAt(0);
                              
-                    }
-                    else if (Gru.derniereCase != null && Gru.snorlaxUsed == null && !Gru.estPokemonLegendaire)
-                    {
-
-                        Gru.snorlaxUsed = Gru.derniereCase;
-                        foreach(PersonnageNonJoueur PNJ in Polices)
-                        {
-                            PNJ.caseSnorlax = Gru.snorlaxUsed;
-                        }
-                        
                     }
                 }
                 else if (input.IsInputDown(InputHandler.touchesClavier[0]))
@@ -295,9 +267,6 @@ namespace DespicableGame.GameStates
             }
         }
 
-        /// <summary>
-        /// Handles the game pad input.
-        /// </summary>
         private void HandleGamePadInput()
         {
             if (input.IsInputPressed(Buttons.Back))
@@ -312,18 +281,7 @@ namespace DespicableGame.GameStates
                     {
                         Gru.UtiliseLegendaire(content);
                         Gru.masterBallAmasse.RemoveAt(0);
-
-                    }
-                    else if (Gru.derniereCase != null && Gru.snorlaxUsed == null && !Gru.estPokemonLegendaire)
-                    {
-
-                        Gru.snorlaxUsed = Gru.derniereCase;
-                        foreach (PersonnageNonJoueur PNJ in Polices)
-                        {
-                            PNJ.caseSnorlax = Gru.snorlaxUsed;
-                        }
-
-                    }
+                    }              
                 }
                 else if (input.GetGamePadJoystick().Left.Y == 1)
                 {
@@ -347,9 +305,6 @@ namespace DespicableGame.GameStates
             }
         }
 
-        /// <summary>
-        /// Pauses the partie.
-        /// </summary>
         private void PausePartie()
         {
             DespicableGame.etatDeJeu = new EtatPause();
@@ -357,10 +312,6 @@ namespace DespicableGame.GameStates
             ((EtatPause)DespicableGame.etatDeJeu).setPartieInachever(this);
         }
 
-        /// <summary>
-        /// Draws the specified _sprite batch.
-        /// </summary>
-        /// <param name="_spriteBatch">The _sprite batch.</param>
         public void Draw(SpriteBatch _spriteBatch)
         {
             //Draw Background
@@ -416,9 +367,9 @@ namespace DespicableGame.GameStates
                 counterMBalls++;
             }
             //drawsnorlax
-            if(Gru.snorlaxUsed != null)
+            foreach(Snorlax S in Snorlaxs)
             {
-                _spriteBatch.Draw(content.Load<Texture2D>("Sprites\\snorlax"), labyrinthe.GetCase(Gru.snorlaxUsed.OrdreX, Gru.snorlaxUsed.OrdreY).GetPosition(), Color.White);
+                S.Draw(_spriteBatch);
             }
 
             if(emplacementFinNiveau.X != -1)
@@ -446,13 +397,28 @@ namespace DespicableGame.GameStates
                 Gru.Draw(_spriteBatch);
         }
 
-        /// <summary>
-        /// Determines whether this instance has exited.
-        /// </summary>
-        /// <returns></returns>
         public bool HasExited()
         {
             return exit;
+        }
+
+        public List<Case> getRocketCases()
+        {
+            List<Case> rocketCases = new List<Case>();
+            foreach(PersonnageNonJoueur P in Polices)
+            {
+                rocketCases.Add(P.ActualCase);
+            }
+            return rocketCases;
+        }
+        public List<Case> getSnorlaxCases()
+        {
+            List<Case> snorlaxCases = new List<Case>();
+            foreach (Snorlax S in Snorlaxs)
+            {
+                snorlaxCases.Add(S.ActualCase);
+            }
+            return snorlaxCases;
         }
     }
 }
